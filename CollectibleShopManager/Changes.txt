@@ -1,0 +1,2 @@
+﻿1. Write static method to read from JSON file (static class to perform this function? )
+2. 
