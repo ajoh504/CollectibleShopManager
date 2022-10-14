@@ -1,2 +1,8 @@
-﻿1. Write static method to read from JSON file (static class to perform this function? )
-2. 
+﻿Short term:
+- Write static method to read from JSON file (static class to perform this function? )
+- Add other collectible item classes, such as coin and comic
+
+Long term:
+- Rewrite to use SQL database
+- Create task to back up the database
+- Allow for Excel import to rewrite to database
