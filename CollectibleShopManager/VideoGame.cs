@@ -8,7 +8,7 @@ namespace CollectibleShopManager
 {
     internal class VideoGame : CollectibleItem
     {
-        public string? Platform { get; private set; }
+        public string? Platform { get; set; }
         public VideoGame() { }
         public VideoGame(string? name, string? platform, string desc, decimal cost, decimal sellPrice) 
             : base(name, desc, cost, sellPrice)
