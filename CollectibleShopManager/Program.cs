@@ -111,7 +111,15 @@ namespace CollectibleShopManager
 
                             foreach (var game in jsonList)
                             {
-                                if (game.Name == title) Console.WriteLine(game);
+                                if (game.Name == title)
+                                {
+                                    Console.WriteLine($"Title: {game.Name}");
+                                    Console.WriteLine($"Platform: {game.Platform}");
+                                    Console.WriteLine($"Description: {game.Description}");
+                                    Console.WriteLine($"Cost: {game.Cost}");
+                                    Console.WriteLine($"Sell price: {game.SellPrice}");
+                                    Console.WriteLine("\n");
+                                }
                                 else Console.WriteLine($"{title} not found");
                             }
                             Console.ReadLine();
@@ -134,7 +142,12 @@ namespace CollectibleShopManager
 
                             foreach (var game in jsonList)
                             {
-                                Console.WriteLine(game);
+                                Console.WriteLine($"Title: {game.Name}");
+                                Console.WriteLine($"Platform: {game.Platform}");
+                                Console.WriteLine($"Description: {game.Description}");
+                                Console.WriteLine($"Cost: {game.Cost}");
+                                Console.WriteLine($"Sell price: {game.SellPrice}");
+                                Console.WriteLine("\n"); 
                             }
                             Console.ReadLine();
                         }
