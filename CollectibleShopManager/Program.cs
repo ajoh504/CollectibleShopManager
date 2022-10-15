@@ -97,7 +97,25 @@ namespace CollectibleShopManager
                     /// </summary>
                     else if (videoGameScreenChoice == "2")
                     {
+                        Console.Write("Title:\n");
+                        string title = Console.ReadLine();
 
+                        if (!File.Exists($"{homeDirectory}\\collectibles.json"))
+                        {
+                            Console.WriteLine("JSON data not found. Add new object to file then try again");
+                        }
+                        else
+                        {
+                            string jsonFileData = File.ReadAllText($"{homeDirectory}\\collectibles.json");
+                            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+
+                            foreach (var game in jsonList)
+                            {
+                                if (game.Name == title) Console.WriteLine(game);
+                                else Console.WriteLine($"{title} not found");
+                            }
+                            Console.ReadLine();
+                        }
                     }
 
                     /// <summary>
@@ -105,7 +123,21 @@ namespace CollectibleShopManager
                     /// </summary>
                     else if (videoGameScreenChoice == "3")
                     {
+                        if (!File.Exists($"{homeDirectory}\\collectibles.json"))
+                        {
+                            Console.WriteLine("JSON data not found. Add new object to file then try again");
+                        }
+                        else
+                        {
+                            string jsonFileData = File.ReadAllText($"{homeDirectory}\\collectibles.json");
+                            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
 
+                            foreach (var game in jsonList)
+                            {
+                                Console.WriteLine(game);
+                            }
+                            Console.ReadLine();
+                        }
                     }
                 }
                 else if (mainChoice.ToUpper() == "Q") return;
