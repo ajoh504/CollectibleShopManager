@@ -13,6 +13,16 @@ namespace CollectibleShopManager
         public decimal Cost { get; set; }
         public decimal SellPrice { get; set; }
 
+        public bool IsPropertyFound(CollectibleItem collectibleItem, string property)
+        {
+            return false;
+        }
+
+        public bool IsPropertyFound(CollectibleItem collectibleItem, decimal property)
+        {
+            return false;
+        }
+
         public CollectibleItem() { }
         public CollectibleItem(string name, string desc, decimal cost, decimal sellPrice)
         {
