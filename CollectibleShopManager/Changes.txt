@@ -1,5 +1,5 @@
 ﻿Short term:
-- Write static method to read from JSON file (static class to perform this function? )
+- Write static method to read from JSON file (static class to perform this function?)
 - Add other collectible item classes, such as coin and comic
 
 Long term:

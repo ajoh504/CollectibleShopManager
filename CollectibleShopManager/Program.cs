@@ -89,7 +89,6 @@ namespace CollectibleShopManager
                             string serializedList = JsonSerializer.Serialize(jsonList, jsonSettings);
                             File.WriteAllText($"{homeDirectory}\\collectibles.json", serializedList);
                         }
-                        
                     }
 
                     /// <summary>
