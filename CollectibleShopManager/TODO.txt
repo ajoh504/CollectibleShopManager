@@ -1,0 +1,12 @@
+﻿Short term:
+- 
+- Add other collectible item classes, such as coin, comic, magazine
+- Rewrite CollectibleItem class to not be abstract. All child classes will 
+be considered "special" classes. The CollectibleItem class will be for any 
+non-specialized inventory items.
+
+Long term:
+- Create GUI
+- Rewrite to use SQL database
+- Create task to back up the database
+- Allow for Excel import to allow user to rewrite to database?
