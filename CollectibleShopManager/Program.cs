@@ -27,7 +27,7 @@ namespace CollectibleShopManager
                 {
                     Console.Clear();
                     Console.WriteLine("Selection: Video Games");
-                    Console.Write("Press 1 to add a new game, 2 to view a single game, or 3 to view all games\n");
+                    Console.Write("Press 1 to add a new game, 2 to view a single game, 3 to view all games, or Q to quit\n");
                     string videoGameScreenChoice = Console.ReadLine();
 
                     /// <summary>
@@ -80,7 +80,7 @@ namespace CollectibleShopManager
                             string jsonData = JsonSerializer.Serialize<List<VideoGame>>(gameToAdd, jsonSettings);
                             File.WriteAllText($"{homeDirectory}\\collectibles.json", jsonData);
                         }
-                        else 
+                        else
                         {
                             string jsonFileData = File.ReadAllText($"{homeDirectory}\\collectibles.json");
                             List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
@@ -146,11 +146,12 @@ namespace CollectibleShopManager
                                 Console.WriteLine($"Description: {game.Description}");
                                 Console.WriteLine($"Cost: {game.Cost}");
                                 Console.WriteLine($"Sell price: {game.SellPrice}");
-                                Console.WriteLine("\n"); 
+                                Console.WriteLine("\n");
                             }
                             Console.ReadLine();
                         }
                     }
+                    else if (videoGameScreenChoice.ToUpper() == "Q") return;
                 }
                 else if (mainChoice.ToUpper() == "Q") return;
             }
