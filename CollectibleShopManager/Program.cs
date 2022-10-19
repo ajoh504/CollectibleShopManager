@@ -8,6 +8,7 @@ namespace CollectibleShopManager
     {
         static void Main(string[] args)
         {
+            /// Test remote git settings
             JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
             jsonSettings.WriteIndented = true;
             string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
