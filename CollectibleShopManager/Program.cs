@@ -27,7 +27,7 @@ namespace CollectibleShopManager
                 {
                     Console.Clear();
                     Console.WriteLine("Selection: Video Games");
-                    Console.Write("Press 1 to add a new game, 2 to view a single game, 3 to view all games, or Q to quit\n");
+                    Console.Write("Press 1 to add a new game, 2 to view a single game, 3 to view all games, B to go back, or Q to quit\n");
                     string videoGameScreenChoice = Console.ReadLine();
 
                     /// <summary>
@@ -151,6 +151,7 @@ namespace CollectibleShopManager
                             Console.ReadLine();
                         }
                     }
+                    else if (videoGameScreenChoice.ToUpper() == "B") continue;
                     else if (videoGameScreenChoice.ToUpper() == "Q") return;
                 }
                 else if (mainChoice.ToUpper() == "Q") return;
