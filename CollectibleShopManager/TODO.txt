@@ -1,12 +1,17 @@
 ﻿Short term:
-- 
+- Fix error in Program.cs where "{title} not found" prints when it shouldn't
+- Find a way to reuse the Main method logic for other collectible items
+- Update code comments on all files.
 - Add other collectible item classes, such as coin, comic, magazine
-- Rewrite CollectibleItem class to not be abstract. All child classes will 
-be considered "special" classes. The CollectibleItem class will be for any 
-non-specialized inventory items.
+- Refactor CollectibleItem class. Make it a non-abstract class so that it can be instantiated. Rename this class as Inventory 
+to reflect its generic purpose. All child classes of Inventory will be considered "special" classes, i.e. collectible items 
+that have unique properties or methods. Any object instantiated directly as Inventory will be considered a generic item, i.e. 
+an item with no special properties. 
 
 Long term:
-- Create GUI
 - Rewrite to use SQL database
+- Create GUI
 - Create task to back up the database
 - Allow for Excel import to allow user to rewrite to database?
+- Decide on public APIs for integration: ebay, Amazon, Facebook Marketplace, Newegg? Any online retail site that will allow the
+user to gather sales data for storage and tracking purposes
