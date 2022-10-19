@@ -8,11 +8,15 @@ namespace CollectibleShopManager
     {
         static void Main(string[] args)
         {
-            /// Test remote git settings
             JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
             jsonSettings.WriteIndented = true;
             string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            
+
+            MainMenuFlow();
+        }
+
+        static void MainMenuFlow()
+        {
             while (true)
             {
                 Console.Clear();
@@ -113,6 +117,7 @@ namespace CollectibleShopManager
                             {
                                 if (game.Name == title)
                                 {
+                                    Console.Clear();
                                     Console.WriteLine($"Title: {game.Name}");
                                     Console.WriteLine($"Platform: {game.Platform}");
                                     Console.WriteLine($"Description: {game.Description}");
@@ -122,6 +127,7 @@ namespace CollectibleShopManager
                                 }
                                 else Console.WriteLine($"{title} not found");
                             }
+                            Console.WriteLine("Press enter to return to the main menu");
                             Console.ReadLine();
                         }
                     }
@@ -149,6 +155,7 @@ namespace CollectibleShopManager
                                 Console.WriteLine($"Sell price: {game.SellPrice}");
                                 Console.WriteLine("\n");
                             }
+                            Console.WriteLine("Press enter to return to the main menu");
                             Console.ReadLine();
                         }
                     }
