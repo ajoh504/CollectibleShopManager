@@ -19,15 +19,29 @@ namespace CollectibleShopManager
             return jsonSettings;
         }
 
+        private static string GetJsonAsString(string filePath)
+        {
+            if (!File.Exists(filePath))
+            {
+                Console.WriteLine("JSON data not found. Add new object to file then try again");
+                return "";
+            }
+            else
+            {
+                string jsonFileData = File.ReadAllText(filePath);
+                return jsonFileData;
+            }
+        }
+
         private static void WriteToFile(string filePath, VideoGame videoGame)
         {
-            if (!File.Exists($"{homeDirectory}\\collectibles.json"))
+            if (!File.Exists(filePath))
             {
                 Console.WriteLine("JSON data not found. Add new object to file then try again");
             }
             else
             {
-                string jsonFileData = File.ReadAllText($"{homeDirectory}\\collectibles.json");
+                string jsonFileData = File.ReadAllText(filePath);
                 List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
 
                 foreach (var game in jsonList)
