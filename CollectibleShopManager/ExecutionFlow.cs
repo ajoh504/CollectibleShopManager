@@ -10,6 +10,7 @@ namespace CollectibleShopManager
     internal static class ExecutionFlow
     {
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
+        
         /// <summary>
         /// Returns the JSON settings to format a JSON file with white spaces
         /// </summary>
