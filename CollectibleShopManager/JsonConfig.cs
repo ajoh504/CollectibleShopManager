@@ -29,8 +29,8 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
-        /// If JSON file does not exist, pass the VideoGame object into a new List, serialize it,
-        /// then write it to a new JSON file.
+        /// Pass the VideoGame object into a new List, serialize it into a string, then write the string 
+        /// to a new JSON file.
         /// </summary>
         /// <param name="filePath"> file path for Video Game JSON data </param>
         /// <param name="videoGame"> new VideoGame object to write to JSON file </param>
@@ -41,21 +41,22 @@ namespace CollectibleShopManager
             File.WriteAllText(filePath, jsonData);
         }
 
+        /// <summary>
+        /// Call GetJsonAsString() to retrieve the JSON file data. Deserialize the string into a 
+        /// List of VideoGame objects, append the new VideoGame object to the list. Then, re-serialize
+        /// the List and overwrite the JSON file. 
+        /// </summary>
+        /// <param name="filePath"> path to JSON file </param>
+        /// <param name="videoGame"> new VideoGame object to add to the file </param>
         public void WriteToFile(string filePath, VideoGame videoGame)
         {
             string? jsonFileData = GetJsonAsString(filePath);
-            if (jsonFileData is null)
-            {
 
-            }
-            else
-            {
-                List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
-                jsonList.Add(videoGame);
+            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+            jsonList.Add(videoGame);
 
-                string serializedList = JsonSerializer.Serialize(jsonList, this.GetSettings());
-                File.WriteAllText(filePath, serializedList);
-            }
+            string serializedList = JsonSerializer.Serialize(jsonList, this.GetSettings());
+            File.WriteAllText(filePath, serializedList);
         }
     }
 }
