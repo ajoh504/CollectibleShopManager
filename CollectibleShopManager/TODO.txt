@@ -1,5 +1,5 @@
 ﻿Short term:
-- Make inventory fields private (must rewrite code to construct an Inventory object when deserializing JSON file)
+- Create an iterator to loop over the Inventory properties (method must be overriden by its child classes)
 - Find a way to reuse the Main method logic for other collectible items
 - Update code comments on all files.
 - Add other collectible item classes, such as coin, comic, magazine
