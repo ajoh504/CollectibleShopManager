@@ -24,7 +24,7 @@ namespace CollectibleShopManager
             if (!File.Exists(filePath))
             {
                 Console.WriteLine("JSON data not found. Add new object to file then try again");
-                return "";
+                return null;
             }
             else
             {
