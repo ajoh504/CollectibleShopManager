@@ -33,6 +33,7 @@ namespace CollectibleShopManager
         /// </summary>
         private void VideoGameSelectionScreen()
         {
+            JsonConfig jsonConfig = new JsonConfig();
             while (true)
             {
                 Console.Clear();
@@ -84,7 +85,6 @@ namespace CollectibleShopManager
                     VideoGame videoGame = new VideoGame(gameTitle, gamePlatform,
                         gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
 
-                    JsonConfig jsonConfig = new JsonConfig();
                     if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
                         jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", videoGame);
@@ -100,34 +100,16 @@ namespace CollectibleShopManager
                 /// </summary>
                 else if (videoGameScreenChoice == "2")
                 {
-                    Console.Write("Title:\n");
+                    Console.Write("Enter the title of the game that you wish to view:\n");
                     string title = Console.ReadLine();
 
-                    if (!File.Exists($"{homeDirectory}\\collectibles.json"))
+                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
-                        Console.WriteLine("JSON data not found. Add new object to file then try again");
+                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
                     }
                     else
                     {
-                        string jsonFileData = File.ReadAllText($"{homeDirectory}\\collectibles.json");
-                        List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
-
-                        foreach (var game in jsonList)
-                        {
-                            if (game.Name == title)
-                            {
-                                Console.Clear();
-                                Console.WriteLine($"Title: {game.Name}");
-                                Console.WriteLine($"Platform: {game.Platform}");
-                                Console.WriteLine($"Description: {game.Description}");
-                                Console.WriteLine($"Cost: {game.Cost}");
-                                Console.WriteLine($"Sell price: {game.SellPrice}");
-                                Console.WriteLine("\n");
-                            }
-                            else Console.WriteLine($"{title} not found");
-                        }
-                        Console.WriteLine("Press enter to return to the main menu");
-                        Console.ReadLine();
+                        jsonConfig.PrintSingleObject($"{homeDirectory}\\videogames.json", title);
                     }
                 }
 
@@ -138,28 +120,15 @@ namespace CollectibleShopManager
                 {
                     if (!File.Exists($"{homeDirectory}\\collectibles.json"))
                     {
-                        Console.WriteLine("JSON data not found. Add new object to file then try again");
+                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
                     }
                     else
                     {
-                        string jsonFileData = File.ReadAllText($"{homeDirectory}\\collectibles.json");
-                        List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
-
-                        foreach (var game in jsonList)
-                        {
-                            Console.WriteLine($"Title: {game.Name}");
-                            Console.WriteLine($"Platform: {game.Platform}");
-                            Console.WriteLine($"Description: {game.Description}");
-                            Console.WriteLine($"Cost: {game.Cost}");
-                            Console.WriteLine($"Sell price: {game.SellPrice}");
-                            Console.WriteLine("\n");
-                        }
-                        Console.WriteLine("Press enter to return to the main menu");
-                        Console.ReadLine();
+                        jsonConfig.PrintAllObjects($"{homeDirectory}\\videogames.json");
                     }
                 }
                 else if (videoGameScreenChoice.ToUpper() == "B") continue;
-                else if (videoGameScreenChoice.ToUpper() == "Q") return;
+                else if (videoGameScreenChoice.ToUpper() == "Q") Environment.Exit(0);
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace CollectibleShopManager
 {
@@ -26,6 +25,53 @@ namespace CollectibleShopManager
         {
             string jsonFileData = File.ReadAllText(filePath);
             return jsonFileData;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <param name="videoGame"></param>
+        /// <param name="title"></param>
+        public void PrintSingleObject(string filePath, string title)
+        {
+            string jsonFileData = File.ReadAllText(filePath);
+            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+
+            foreach (var game in jsonList)
+            {
+                if (game.Name.ToUpper() == title.ToUpper())
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Title: {game.Name}");
+                    Console.WriteLine($"Platform: {game.Platform}");
+                    Console.WriteLine($"Description: {game.Description}");
+                    Console.WriteLine($"Cost: {game.Cost}");
+                    Console.WriteLine($"Sell price: {game.SellPrice}");
+                    Console.WriteLine("\n");
+                }
+                else Console.WriteLine($"{title} not found");
+            }
+            Console.WriteLine("Press enter to return to the main menu");
+            Console.ReadLine();
+        }
+
+        public void PrintAllObjects(string filePath)
+        {
+            string jsonFileData = File.ReadAllText(filePath);
+            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+
+            foreach (var game in jsonList)
+            {
+                Console.WriteLine($"Title: {game.Name}");
+                Console.WriteLine($"Platform: {game.Platform}");
+                Console.WriteLine($"Description: {game.Description}");
+                Console.WriteLine($"Cost: {game.Cost}");
+                Console.WriteLine($"Sell price: {game.SellPrice}");
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("Press enter to return to the main menu");
+            Console.ReadLine();
         }
 
         /// <summary>
