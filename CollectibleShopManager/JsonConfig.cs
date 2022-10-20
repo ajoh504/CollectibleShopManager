@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 
 namespace CollectibleShopManager
 {
@@ -26,7 +21,7 @@ namespace CollectibleShopManager
 
         /// <summary>
         /// If JSON file exists, read all text into a string then return the string. If file
-        /// path does not exists, print a warning message to the console and return null.
+        /// path does not exists, return null.
         /// </summary>
         /// <param name="filePath">file path to JSON file</param>
         /// <returns>
@@ -36,7 +31,6 @@ namespace CollectibleShopManager
         {
             if (!File.Exists(filePath))
             {
-                Console.WriteLine("JSON data not found. ");
                 return null;
             }
             else
@@ -48,26 +42,20 @@ namespace CollectibleShopManager
 
         private void WriteToFile(string filePath, VideoGame videoGame)
         {
-            if (!File.Exists(filePath))
+            string? jsonFileData = GetJsonAsString(filePath);
+            if (jsonFileData is null)
             {
-                Console.WriteLine("JSON data not found. Add new object to file then try again");
+                List<VideoGame> gameToAdd = new List<VideoGame>() { videoGame };
+                string jsonData = JsonSerializer.Serialize<List<VideoGame>>(gameToAdd, this.GetSettings());
+                File.WriteAllText(filePath, jsonData);
             }
             else
             {
-                string jsonFileData = File.ReadAllText(filePath);
                 List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+                jsonList.Add(videoGame);
 
-                foreach (var game in jsonList)
-                {
-                    Console.WriteLine($"Title: {game.Name}");
-                    Console.WriteLine($"Platform: {game.Platform}");
-                    Console.WriteLine($"Description: {game.Description}");
-                    Console.WriteLine($"Cost: {game.Cost}");
-                    Console.WriteLine($"Sell price: {game.SellPrice}");
-                    Console.WriteLine("\n");
-                }
-                Console.WriteLine("Press enter to return to the main menu");
-                Console.ReadLine();
+                string serializedList = JsonSerializer.Serialize(jsonList, this.GetSettings());
+                File.WriteAllText(filePath, serializedList);
             }
         }
     }
