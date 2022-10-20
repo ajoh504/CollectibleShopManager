@@ -2,10 +2,10 @@
 {
     internal class Inventory
     {
-        public string? Name { get; set; }
-        public string? Description { get; set; }
-        public decimal Cost { get; set; }
-        public decimal SellPrice { get; set; }
+        public string? Name { get; private set; }
+        public string? Description { get; private set; }
+        public decimal Cost { get; private set; }
+        public decimal SellPrice { get; private set; }
 
         public bool IsPropertyFound(Inventory inventory, string property)
         {
