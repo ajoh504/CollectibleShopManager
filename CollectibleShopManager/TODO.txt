@@ -1,5 +1,6 @@
 ﻿Short term:
 - Fix error in Program.cs where "{title} not found" prints when it shouldn't
+- Make inventory fields private (must rewrite code to construct an Inventory object when deserializing JSON file)
 - Find a way to reuse the Main method logic for other collectible items
 - Update code comments on all files.
 - Add other collectible item classes, such as coin, comic, magazine

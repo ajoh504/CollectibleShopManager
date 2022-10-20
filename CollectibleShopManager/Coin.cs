@@ -7,7 +7,7 @@ using System.Xml.Linq;
 
 namespace CollectibleShopManager
 {
-    internal class Coin : CollectibleItem
+    internal class Coin : Inventory
     {
         public int Year { get; set; }
 

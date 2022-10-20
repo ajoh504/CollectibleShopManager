@@ -6,25 +6,25 @@ using System.Threading.Tasks;
 
 namespace CollectibleShopManager
 {
-    internal abstract class CollectibleItem
+    internal class Inventory
     {
         public string? Name { get; set; }
         public string? Description { get; set; }
         public decimal Cost { get; set; }
         public decimal SellPrice { get; set; }
 
-        public bool IsPropertyFound(CollectibleItem collectibleItem, string property)
+        public bool IsPropertyFound(Inventory inventory, string property)
         {
             return false;
         }
 
-        public bool IsPropertyFound(CollectibleItem collectibleItem, decimal property)
+        public bool IsPropertyFound(Inventory inventory, decimal property)
         {
             return false;
         }
 
-        public CollectibleItem() { }
-        public CollectibleItem(string name, string desc, decimal cost, decimal sellPrice)
+        public Inventory() { }
+        public Inventory(string name, string desc, decimal cost, decimal sellPrice)
         {
             Name = name;
             Description = desc;

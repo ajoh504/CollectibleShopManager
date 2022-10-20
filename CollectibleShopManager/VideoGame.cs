@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CollectibleShopManager
 {
-    internal class VideoGame : CollectibleItem
+    internal class VideoGame : Inventory
     {
         public string? Platform { get; set; }
         public VideoGame() { }
