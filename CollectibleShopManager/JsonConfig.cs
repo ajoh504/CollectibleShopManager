@@ -40,7 +40,7 @@ namespace CollectibleShopManager
             }
         }
 
-        private void WriteToFile(string filePath, VideoGame videoGame)
+        public void WriteToFile(string filePath, VideoGame videoGame)
         {
             string? jsonFileData = GetJsonAsString(filePath);
             if (jsonFileData is null)
