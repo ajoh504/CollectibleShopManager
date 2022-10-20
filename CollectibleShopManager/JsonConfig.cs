@@ -9,16 +9,29 @@ namespace CollectibleShopManager
 {
     internal static class JsonConfig
     {
+        /// <summary>
+        /// Instantiate an object of type JsonSerializerOptions. Set WriteIndented property
+        /// to true in order to format any serialized / deserialized JSON data with white
+        /// spaces.
+        /// </summary>
+        /// <returns>
+        /// JsonSerializerOptions object to format a JSON file with white spaces.
+        /// </returns>
         private static JsonSerializerOptions GetSettings()
         {
-            /// <summary>
-            /// Returns JSON settings to format a JSON file with white spaces
-            /// </summary>
             JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
             jsonSettings.WriteIndented = true;
             return jsonSettings;
         }
 
+        /// <summary>
+        /// If JSON file exists, read all text into a string then return the string. If file
+        /// path does not exists, print a warning message to the console and return null.
+        /// </summary>
+        /// <param name="filePath">file path to JSON file</param>
+        /// <returns>
+        /// String containing JSON file data, or null if file path does not exist
+        /// </returns>
         private static string GetJsonAsString(string filePath)
         {
             if (!File.Exists(filePath))
