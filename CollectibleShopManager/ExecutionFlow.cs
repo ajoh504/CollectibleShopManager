@@ -7,19 +7,12 @@ using System.Threading.Tasks;
 
 namespace CollectibleShopManager
 {
+    /// <summary>
+    /// Defines the logic for the main program execution flow.
+    /// </summary>
     internal static class ExecutionFlow
     {
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        
-        /// <summary>
-        /// Returns the JSON settings to format a JSON file with white spaces
-        /// </summary>
-        private static JsonSerializerOptions GetJsonSettings()
-        {
-            JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
-            jsonSettings.WriteIndented = true;
-            return jsonSettings;
-        }
 
         /// <summary>
         /// Defines the main menu execution flow
@@ -95,21 +88,8 @@ namespace CollectibleShopManager
                     VideoGame videoGame = new VideoGame(gameTitle, gamePlatform,
                         gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
 
-                    if (!File.Exists($"{homeDirectory}\\collectibles.json"))
-                    {
-                        List<VideoGame> gameToAdd = new List<VideoGame>() { videoGame };
-                        string jsonData = JsonSerializer.Serialize<List<VideoGame>>(gameToAdd, GetJsonSettings());
-                        File.WriteAllText($"{homeDirectory}\\collectibles.json", jsonData);
-                    }
-                    else
-                    {
-                        string jsonFileData = File.ReadAllText($"{homeDirectory}\\collectibles.json");
-                        List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
-                        jsonList.Add(videoGame);
-
-                        string serializedList = JsonSerializer.Serialize(jsonList, GetJsonSettings());
-                        File.WriteAllText($"{homeDirectory}\\collectibles.json", serializedList);
-                    }
+                    JsonConfig jsonConfig = new JsonConfig();
+                    jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", videoGame);
                 }
 
                 /// <summary>
