@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CollectibleShopManager
 {
-    internal static class JsonConfig
+    internal class JsonConfig
     {
         /// <summary>
         /// Instantiate an object of type JsonSerializerOptions. Set WriteIndented property
@@ -17,7 +17,7 @@ namespace CollectibleShopManager
         /// <returns>
         /// JsonSerializerOptions object to format a JSON file with white spaces.
         /// </returns>
-        private static JsonSerializerOptions GetSettings()
+        private JsonSerializerOptions GetSettings()
         {
             JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
             jsonSettings.WriteIndented = true;
@@ -32,11 +32,11 @@ namespace CollectibleShopManager
         /// <returns>
         /// String containing JSON file data, or null if file path does not exist
         /// </returns>
-        private static string GetJsonAsString(string filePath)
+        private string GetJsonAsString(string filePath)
         {
             if (!File.Exists(filePath))
             {
-                Console.WriteLine("JSON data not found. Add new object to file then try again");
+                Console.WriteLine("JSON data not found. ");
                 return null;
             }
             else
@@ -46,7 +46,7 @@ namespace CollectibleShopManager
             }
         }
 
-        private static void WriteToFile(string filePath, VideoGame videoGame)
+        private void WriteToFile(string filePath, VideoGame videoGame)
         {
             if (!File.Exists(filePath))
             {
