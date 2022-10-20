@@ -1,43 +1,25 @@
-﻿using System.Text.Json;
-
-
-namespace CollectibleShopManager
+﻿namespace CollectibleShopManager
 {
     /// <summary>
-    /// Defines the logic for the main program execution flow.
+    /// Defines the video game selection screen. User may add new games or view existing games.
     /// </summary>
-    internal class ExecutionFlow
+    internal class VideoGameMenu
     {
+        /// <summary>
+        /// Get the user's home directory. Video game data will be stored at homeDirectory\\videogames.json
+        /// </summary>
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
         /// <summary>
-        /// Defines the main menu execution flow
+        /// Main execution logic for the Video Game menu screen
         /// </summary>
-        public void MainMenuFlow()
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine("This utility can be used to store your collectibles.");
-                Console.Write("Press 1 for video games or Q to quit\n");
-                string mainChoice = Console.ReadLine();
-
-                if (mainChoice == "1") VideoGameSelectionScreen();
-                else if (mainChoice.ToUpper() == "Q") return;
-            }
-        }
-
-        /// <summary>
-        /// Defines the video game selection screen. User may add new games
-        /// or view existing games.
-        /// </summary>
-        private void VideoGameSelectionScreen()
+        public void Execute()
         {
             JsonConfig jsonConfig = new JsonConfig();
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Selection: Video Games");
+                Console.WriteLine("Selection: Video Game Menu Screen");
                 Console.Write("Press 1 to add a new game, 2 to view a single game, 3 to view all games, B to go back, or Q to quit\n");
                 string videoGameScreenChoice = Console.ReadLine();
 
@@ -76,15 +58,16 @@ namespace CollectibleShopManager
                     }
 
                     /// <summary>
-                    /// Construct a VideoGame object with all the arguments supplied by the user. First, check to see 
-                    /// if the JSON file exists in the user's home directory. If it does not exist, create it, add
-                    /// the VideoGame object to a new list, then write the list to the JSON file. If the file does 
-                    /// exist, open it, append the new VideoGame object to the list, then save over the previous
-                    /// file. 
+                    /// Construct a VideoGame object with all the arguments supplied by the user. 
                     /// </summary>
                     VideoGame videoGame = new VideoGame(gameTitle, gamePlatform,
                         gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
 
+                    /// <summary>
+                    /// Check to see if the JSON file exists in the user's home directory. If it does not exist, 
+                    /// call jsonConfig.CreateNewFile() to create it. If it does exist, call jsonConfig.WriteToFile()
+                    /// to write the new VideoGame object to the JSON file. 
+                    /// </summary>
                     if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
                         jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", videoGame);
@@ -118,7 +101,7 @@ namespace CollectibleShopManager
                 /// </summary>
                 else if (videoGameScreenChoice == "3")
                 {
-                    if (!File.Exists($"{homeDirectory}\\collectibles.json"))
+                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
                         Console.WriteLine("JSON data not found. Add a new Video Game then try again");
                     }
@@ -127,7 +110,7 @@ namespace CollectibleShopManager
                         jsonConfig.PrintAllObjects($"{homeDirectory}\\videogames.json");
                     }
                 }
-                else if (videoGameScreenChoice.ToUpper() == "B") continue;
+                else if (videoGameScreenChoice.ToUpper() == "B") return;
                 else if (videoGameScreenChoice.ToUpper() == "Q") Environment.Exit(0);
             }
         }

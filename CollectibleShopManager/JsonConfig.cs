@@ -2,6 +2,9 @@
 
 namespace CollectibleShopManager
 {
+    /// <summary>
+    /// Defines all methods for reading from and writing to the JSON program files in the user's home directory.
+    /// </summary>
     internal class JsonConfig
     {
         /// <summary>
@@ -17,26 +20,26 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
-        /// Read all JSON text into a string then return the string.
+        /// Read all JSON text into a string. Deserialize the string into a List of VideoGame objects, then
+        /// return the List.
         /// </summary>
-        /// <param name="filePath"> file path to JSON file </param>
-        /// <returns> String containing JSON file data </returns>
-        private string GetJsonAsString(string filePath)
+        /// <param name="videoGameFilePath"> File path to videogames.json </param>
+        /// <returns> List of VideoGame objects from videogames.json </returns>
+        private List<VideoGame> GetDeserializedList(string videoGameFilePath)
         {
-            string jsonFileData = File.ReadAllText(filePath);
-            return jsonFileData;
+            string jsonFileData = File.ReadAllText(videoGameFilePath);
+            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+            return jsonList;
         }
 
         /// <summary>
-        /// 
+        /// Prints a single VideoGame object to the console as specified by the user.
         /// </summary>
-        /// <param name="filePath"></param>
-        /// <param name="videoGame"></param>
-        /// <param name="title"></param>
-        public void PrintSingleObject(string filePath, string title)
+        /// <param name="videoGameFilePath"> Path to videogames.json </param>
+        /// <param name="title"> Title of the game to print </param>
+        public void PrintSingleObject(string videoGameFilePath, string title)
         {
-            string jsonFileData = File.ReadAllText(filePath);
-            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+            List<VideoGame> jsonList = GetDeserializedList(videoGameFilePath);
 
             foreach (var game in jsonList)
             {
@@ -56,10 +59,13 @@ namespace CollectibleShopManager
             Console.ReadLine();
         }
 
-        public void PrintAllObjects(string filePath)
+        /// <summary>
+        /// Print all VideoGame objects and their properties to the console.
+        /// </summary>
+        /// <param name="videoGameFilePath"> File path to videogames.json </param>
+        public void PrintAllObjects(string videoGameFilePath)
         {
-            string jsonFileData = File.ReadAllText(filePath);
-            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+            List<VideoGame> jsonList = GetDeserializedList(videoGameFilePath);
 
             foreach (var game in jsonList)
             {
@@ -75,34 +81,32 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
-        /// Pass the VideoGame object into a new List, serialize it into a string, then write the string 
-        /// to a new JSON file.
+        /// Create the file videogames.json. Pass the VideoGame object into a new List, serialize it into a string, 
+        /// then write the string to a new JSON file.
         /// </summary>
-        /// <param name="filePath"> file path for Video Game JSON data </param>
-        /// <param name="videoGame"> new VideoGame object to write to JSON file </param>
-        public void CreateNewFile(string filePath, VideoGame videoGame)
+        /// <param name="filePath"> File path to create the new JSON file </param>
+        /// <param name="videoGame"> New VideoGame object to write to JSON file </param>
+        public void CreateNewFile(string videoGameFilePath, VideoGame videoGame)
         {
             List<VideoGame> gameToAdd = new List<VideoGame>() { videoGame };
-            string jsonData = JsonSerializer.Serialize<List<VideoGame>>(gameToAdd, this.GetSettings());
-            File.WriteAllText(filePath, jsonData);
+            string jsonData = JsonSerializer.Serialize(gameToAdd, this.GetSettings());
+            File.WriteAllText(videoGameFilePath, jsonData);
         }
 
         /// <summary>
-        /// Call GetJsonAsString() to retrieve the JSON file data. Deserialize the string into a 
-        /// List of VideoGame objects, append the new VideoGame object to the list. Then, re-serialize
-        /// the List and overwrite the JSON file. 
+        /// Write a new VideoGame object to videogames.json. First call GetJsonAsString() to retrieve the JSON file data. 
+        /// Deserialize the string into a List of VideoGame objects, append the new VideoGame object to the list. Then, 
+        /// re-serialize the List and save over the file videogames.json. 
         /// </summary>
-        /// <param name="filePath"> path to JSON file </param>
-        /// <param name="videoGame"> new VideoGame object to add to the file </param>
-        public void WriteToFile(string filePath, VideoGame videoGame)
+        /// <param name="videoGameFilePath"> File path to videogames.json </param>
+        /// <param name="videoGame"> New VideoGame object to add to the file </param>
+        public void WriteToFile(string videoGameFilePath, VideoGame videoGame)
         {
-            string? jsonFileData = GetJsonAsString(filePath);
-
-            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+            List<VideoGame> jsonList = GetDeserializedList(videoGameFilePath);
             jsonList.Add(videoGame);
 
             string serializedList = JsonSerializer.Serialize(jsonList, this.GetSettings());
-            File.WriteAllText(filePath, serializedList);
+            File.WriteAllText(videoGameFilePath, serializedList);
         }
     }
 }
