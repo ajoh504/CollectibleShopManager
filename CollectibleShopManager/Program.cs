@@ -8,7 +8,8 @@ namespace CollectibleShopManager
     {
         static void Main(string[] args)
         {
-            ExecutionFlow.MainMenuFlow();
+            ExecutionFlow flow = new ExecutionFlow();
+            flow.MainMenuFlow();
         }
     }
 }

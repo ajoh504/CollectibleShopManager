@@ -18,22 +18,14 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
-        /// If JSON file exists, read all text into a string then return the string. If file path does 
-        /// not exists, return null.
+        /// Read all JSON text into a string then return the string.
         /// </summary>
-        /// <param name="filePath">file path to JSON file</param>
-        /// <returns> String containing JSON file data, or null if file path does not exist. </returns>
+        /// <param name="filePath"> file path to JSON file </param>
+        /// <returns> String containing JSON file data </returns>
         private string GetJsonAsString(string filePath)
         {
-            if (!File.Exists(filePath))
-            {
-                return null;
-            }
-            else
-            {
-                string jsonFileData = File.ReadAllText(filePath);
-                return jsonFileData;
-            }
+            string jsonFileData = File.ReadAllText(filePath);
+            return jsonFileData;
         }
 
         /// <summary>
@@ -42,7 +34,7 @@ namespace CollectibleShopManager
         /// </summary>
         /// <param name="filePath"> file path for Video Game JSON data </param>
         /// <param name="videoGame"> new VideoGame object to write to JSON file </param>
-        private void CreateNewFile(string filePath, VideoGame videoGame)
+        public void CreateNewFile(string filePath, VideoGame videoGame)
         {
             List<VideoGame> gameToAdd = new List<VideoGame>() { videoGame };
             string jsonData = JsonSerializer.Serialize<List<VideoGame>>(gameToAdd, this.GetSettings());

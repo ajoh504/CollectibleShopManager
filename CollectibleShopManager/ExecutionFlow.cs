@@ -89,7 +89,14 @@ namespace CollectibleShopManager
                         gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
 
                     JsonConfig jsonConfig = new JsonConfig();
-                    jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", videoGame);
+                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
+                    {
+                        jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", videoGame);
+                    }
+                    else
+                    {
+                        jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", videoGame);
+                    }
                 }
 
                 /// <summary>
