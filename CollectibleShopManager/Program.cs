@@ -1,8 +1,4 @@
-﻿using System.Diagnostics;
-using System.Text.Json;
-using System.IO;
-
-namespace CollectibleShopManager
+﻿namespace CollectibleShopManager
 {
     internal class Program
     {
