@@ -52,9 +52,11 @@ namespace CollectibleShopManager
                     Console.WriteLine($"Cost: {game.Cost}");
                     Console.WriteLine($"Sell price: {game.SellPrice}");
                     Console.WriteLine("\n");
+                    goto returnToMainMenu;
                 }
-                else Console.WriteLine($"{title} not found");
             }
+            Console.WriteLine($"{title} was not found as a stored Video Game");
+            returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
         }
