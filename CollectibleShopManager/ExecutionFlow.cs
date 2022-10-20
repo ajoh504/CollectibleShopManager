@@ -10,14 +10,14 @@ namespace CollectibleShopManager
     /// <summary>
     /// Defines the logic for the main program execution flow.
     /// </summary>
-    internal static class ExecutionFlow
+    internal class ExecutionFlow
     {
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
         /// <summary>
         /// Defines the main menu execution flow
         /// </summary>
-        static public void MainMenuFlow()
+        public void MainMenuFlow()
         {
             while (true)
             {
@@ -35,7 +35,7 @@ namespace CollectibleShopManager
         /// Defines the video game selection screen. User may add new games
         /// or view existing games.
         /// </summary>
-        static private void VideoGameSelectionScreen()
+        private void VideoGameSelectionScreen()
         {
             while (true)
             {
