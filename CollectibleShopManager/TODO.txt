@@ -2,15 +2,13 @@
 - Create an iterator to loop over the Inventory properties (method must be overriden by its child classes)
 - Find a way to reuse the Main method logic for other collectible items
 - Update code comments on all files.
-- Add other collectible item classes, such as coin, comic, magazine
-- Refactor CollectibleItem class. Make it a non-abstract class so that it can be instantiated. Rename this class as Inventory 
-to reflect its generic purpose. All child classes of Inventory will be considered "special" classes, i.e. collectible items 
-that have unique properties or methods. Any object instantiated directly as Inventory will be considered a generic item, i.e. 
-an item with no special properties. 
+- Add other collectible item classes, such as coin, comic, magazine, book
+- Refactor CollectibleItem class. Make it a non-abstract class so that it can be instantiated. Rename this class as Inventory  
 
 Long term:
 - Rewrite to use SQL database
 - Create GUI
+- Create fullstack web application for an online storefront
 - Create task to back up the database
 - Allow for Excel import to allow user to rewrite to database?
 - Decide on public APIs for integration: ebay, Amazon, Facebook Marketplace, Newegg? Any online retail site that will allow the
