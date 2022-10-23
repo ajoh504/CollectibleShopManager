@@ -22,10 +22,10 @@
 
             foreach (var game in jsonList)
             {
-                if (game.Name.ToUpper() == title.ToUpper())
+                if (game.PartNumber.ToUpper() == title.ToUpper())
                 {
                     Console.Clear();
-                    Console.WriteLine($"Title: {game.Name}");
+                    Console.WriteLine($"Title: {game.PartNumber}");
                     Console.WriteLine($"Platform: {game.Platform}");
                     Console.WriteLine($"Description: {game.Description}");
                     Console.WriteLine($"Cost: {game.Cost}");
@@ -50,7 +50,7 @@
 
             foreach (var game in jsonList)
             {
-                Console.WriteLine($"Title: {game.Name}");
+                Console.WriteLine($"Title: {game.PartNumber}");
                 Console.WriteLine($"Platform: {game.Platform}");
                 Console.WriteLine($"Description: {game.Description}");
                 Console.WriteLine($"Cost: {game.Cost}");
@@ -84,6 +84,19 @@
                     Console.Write("Add a platform for the game or press Enter to skip\n");
                     string gamePlatform = Console.ReadLine();
 
+                    Console.Write("Add a part number for the game or press Enter to skip\n");
+                    string gamePartNumber = Console.ReadLine();
+
+                    Console.Write("Add a UPC for the game or press Enter to skip\n");
+                    string gameUpc = Console.ReadLine();
+
+                    if (int.TryParse(gameUpc, out int gameUpcAsInteger)) { }
+                    else
+                    {
+                        Console.WriteLine($"{gameUpc} is not a valid UPC!");
+                        gameUpcAsInteger = 0;
+                    }
+
                     Console.Write("Add a description for the game or press Enter to skip\n");
                     string gameDesc = Console.ReadLine();
 
@@ -110,7 +123,8 @@
                     /// <summary>
                     /// Construct a VideoGame object with all the arguments supplied by the user. 
                     /// </summary>
-                    VideoGame videoGame = new VideoGame(gameTitle, gamePlatform,
+
+                    VideoGame videoGame = new VideoGame(gameTitle, gamePlatform, gamePartNumber, gameUpcAsInteger,
                         gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
 
                     /// <summary>

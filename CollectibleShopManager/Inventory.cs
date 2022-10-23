@@ -9,7 +9,8 @@
     /// </remarks>
     internal class Inventory
     {
-        public string? Name { get; private set; }
+        public string? PartNumber { get; private set; }
+        public int UPC { get; private set; }
         public string? Description { get; private set; }
         public decimal Cost { get; private set; }
         public decimal SellPrice { get; private set; }
@@ -25,9 +26,11 @@
         }
 
         public Inventory() { }
-        public Inventory(string name, string desc, decimal cost, decimal sellPrice)
+        public Inventory(string partNumber, int upc, string desc, decimal cost, decimal sellPrice)
         {
-            Name = name;
+
+            PartNumber = partNumber;
+            UPC = upc;
             Description = desc;
             Cost = cost;
             SellPrice = sellPrice;

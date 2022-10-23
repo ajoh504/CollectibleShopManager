@@ -1,5 +1,4 @@
 ﻿Short term:
-- Refactor Inventory class, and all current subclasses. What properties are most necessary for a generic inventory item? The class will need a PartNumber and UPC property. 
 - Create an iterator to loop over the Inventory properties (method must be overriden by its child classes)
 - Find a way to reuse the Main method logic for other collectible items
 - Update code comments on all files.
