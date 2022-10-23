@@ -1,5 +1,9 @@
 ﻿namespace CollectibleShopManager
 {
+    /// <summary>
+    /// Defines a Video Game inventory item. This class inherits from the Inventory base class.
+    /// It contains one unique property: Platform, i.e. Sega Dreamcast, PlayStation, etc.
+    /// </summary>
     internal class VideoGame : Inventory
     {
         public string? Platform { get; private set; }

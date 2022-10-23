@@ -1,5 +1,12 @@
 ﻿namespace CollectibleShopManager
 {
+    /// <summary>
+    /// Defines a generic inventory item with no special properties. 
+    /// </summary>
+    /// <remarks>
+    /// Provides a base class to inherit from. Any inventory item with unique or special properties
+    /// cam inherit from the Inventory class. 
+    /// </remarks>
     internal class Inventory
     {
         public string? Name { get; private set; }
