@@ -1,11 +1,12 @@
-﻿Short term:
-- Create an iterator to loop over the Inventory properties (method must be overriden by its child classes)
+﻿Short-term changes:
+- Create an iterator to loop over the Inventory properties (method must be overriden by its child classes -- update: implement 
+the GetProperties() method and the PropertyInfo class to achieve this)
 - Find a way to reuse the Main method logic for other collectible items
 - Update code comments on all files.
 - Add other collectible item classes, such as coin, comic, magazine, book
 - Refactor CollectibleItem class. Make it a non-abstract class so that it can be instantiated. Rename this class as Inventory  
 
-Long term:
+Long-term changes:
 - Rewrite to use SQL database
 - Create GUI
 - Create fullstack web application for an online storefront
