@@ -16,17 +16,19 @@
         /// </summary>
         /// <param name="videoGameFilePath"> Path to videogames.json </param>
         /// <param name="title"> Title of the game to print </param>
-        private void PrintSingleObject(string videoGameFilePath, string title)
+        private void PrintVideoGame(string videoGameFilePath, string title)
         {
             List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
 
             foreach (var game in jsonList)
             {
-                if (game.PartNumber.ToUpper() == title.ToUpper())
+                if (game.Title.ToUpper() == title.ToUpper())
                 {
                     Console.Clear();
-                    Console.WriteLine($"Title: {game.PartNumber}");
+                    Console.WriteLine($"Title: {game.Title}");
                     Console.WriteLine($"Platform: {game.Platform}");
+                    Console.WriteLine($"Part Number: {game.PartNumber}");
+                    Console.WriteLine($"UPC: {game.UPC}");
                     Console.WriteLine($"Description: {game.Description}");
                     Console.WriteLine($"Cost: {game.Cost}");
                     Console.WriteLine($"Sell price: {game.SellPrice}");
@@ -44,14 +46,17 @@
         /// Print all VideoGame objects and their properties to the console.
         /// </summary>
         /// <param name="videoGameFilePath"> File path to videogames.json </param>
-        private void PrintAllObjects(string videoGameFilePath)
+        private void PrintAllVideoGames(string videoGameFilePath)
         {
             List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
 
             foreach (var game in jsonList)
             {
-                Console.WriteLine($"Title: {game.PartNumber}");
+                Console.Clear();
+                Console.WriteLine($"Title: {game.Title}");
                 Console.WriteLine($"Platform: {game.Platform}");
+                Console.WriteLine($"Part Number: {game.PartNumber}");
+                Console.WriteLine($"UPC: {game.UPC}");
                 Console.WriteLine($"Description: {game.Description}");
                 Console.WriteLine($"Cost: {game.Cost}");
                 Console.WriteLine($"Sell price: {game.SellPrice}");
@@ -156,7 +161,7 @@
                     }
                     else
                     {
-                        PrintSingleObject($"{homeDirectory}\\videogames.json", title);
+                        PrintVideoGame($"{homeDirectory}\\videogames.json", title);
                     }
                 }
 
@@ -171,7 +176,7 @@
                     }
                     else
                     {
-                        PrintAllObjects($"{homeDirectory}\\videogames.json");
+                        PrintAllVideoGames($"{homeDirectory}\\videogames.json");
                     }
                 }
                 else if (videoGameScreenChoice.ToUpper() == "B") return;
