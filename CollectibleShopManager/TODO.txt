@@ -1,15 +1,17 @@
 ﻿Short-term changes:
-- error: jsonConfig.GetDeserializedList( ) returns a list of objects with null properties. 
+- error: jsonConfig.GetDeserializedList() returns a list of objects with null properties. 
 - Create an iterator to loop over the Inventory properties (method must be overriden by its child classes -- update: implement 
 the GetProperties() method and the PropertyInfo class to achieve this)
 - Find a way to reuse the Main method logic for other collectible items
 - Update code comments on all files.
-- Add other collectible item classes, such as coin, comic, magazine, book
-- Refactor CollectibleItem class. Make it a non-abstract class so that it can be instantiated. Rename this class as Inventory  
+- Add other collectible item classes, such as coin, comic, magazine, book 
+- Create server side program to eventually write to / read from the database. Unix-like or Windows?
 
 Long-term changes:
 - Rewrite to use SQL database
 - Create GUI
+- Create HTTP endpoints for client / server communication
+- Work with HTTP error codes to inform user if data is invalid
 - Create fullstack web application for an online storefront
 - Create task to back up the database
 - Allow for Excel import to allow user to rewrite to database?
