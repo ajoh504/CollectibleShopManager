@@ -22,7 +22,11 @@
 
             foreach (var game in jsonList)
             {
-                if (game.Title.ToUpper() == title.ToUpper())
+                if (game.Title is null)
+                {
+                    continue;
+                }
+                else if (game.Title.ToUpper() == title.ToUpper())
                 {
                     Console.Clear();
                     Console.WriteLine($"Title: {game.Title}");
