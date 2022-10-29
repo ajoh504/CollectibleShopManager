@@ -1,5 +1,5 @@
 ﻿Short-term changes:
-- error: jsonConfig.GetDeserializedList() returns a list of objects with null properties. 
+- error: PrintAllVideoGames() does not print all!
 - Create an iterator to loop over the Inventory properties (method must be overriden by its child classes -- update: implement 
 the GetProperties() method and the PropertyInfo class to achieve this)
 - Find a way to reuse the Main method logic for other collectible items
