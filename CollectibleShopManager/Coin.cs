@@ -2,7 +2,7 @@
 {
     internal class Coin : Inventory
     {
-        public int Year { get; private set; }
+        public int Year { get; set; }
 
         public Coin() { }
 
