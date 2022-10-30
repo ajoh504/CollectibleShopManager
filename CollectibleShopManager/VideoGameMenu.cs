@@ -12,64 +12,6 @@
         static JsonConfig jsonConfig = new JsonConfig();
 
         /// <summary>
-        /// Prints a single VideoGame object to the console as specified by the user.
-        /// </summary>
-        /// <param name="videoGameFilePath"> Path to videogames.json </param>
-        /// <param name="title"> Title of the game to print </param>
-        private void PrintVideoGame(string videoGameFilePath, string title)
-        {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
-
-            foreach (var game in jsonList)
-            {
-                if (game.Title is null)
-                {
-                    continue;
-                }
-                else if (game.Title.ToUpper() == title.ToUpper())
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Title: {game.Title}");
-                    Console.WriteLine($"Platform: {game.Platform}");
-                    Console.WriteLine($"Part Number: {game.PartNumber}");
-                    Console.WriteLine($"UPC: {game.UPC}");
-                    Console.WriteLine($"Description: {game.Description}");
-                    Console.WriteLine($"Cost: {game.Cost}");
-                    Console.WriteLine($"Sell price: {game.SellPrice}");
-                    Console.WriteLine("\n");
-                    goto returnToMainMenu;
-                }
-            }
-            Console.WriteLine($"{title} was not found as a stored Video Game");
-            returnToMainMenu:
-            Console.WriteLine("Press enter to return to the main menu");
-            Console.ReadLine();
-        }
-
-        /// <summary>
-        /// Print all VideoGame objects and their properties to the console.
-        /// </summary>
-        /// <param name="videoGameFilePath"> File path to videogames.json </param>
-        private void PrintAllVideoGames(string videoGameFilePath)
-        {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
-
-            foreach (var game in jsonList)
-            {
-                Console.WriteLine($"Title: {game.Title}");
-                Console.WriteLine($"Platform: {game.Platform}");
-                Console.WriteLine($"Part Number: {game.PartNumber}");
-                Console.WriteLine($"UPC: {game.UPC}");
-                Console.WriteLine($"Description: {game.Description}");
-                Console.WriteLine($"Cost: {game.Cost}");
-                Console.WriteLine($"Sell price: {game.SellPrice}");
-                Console.WriteLine("\n");
-            }
-            Console.WriteLine("Press enter to return to the main menu");
-            Console.ReadLine();
-        }
-
-        /// <summary>
         /// Main execution logic for the Video Game menu screen
         /// </summary>
         public void Execute()
@@ -196,6 +138,64 @@ Quit to Desktop .......... Q
                 else if (videoGameScreenChoice.ToUpper() == "B") return;
                 else if (videoGameScreenChoice.ToUpper() == "Q") Environment.Exit(0);
             }
+        }
+
+        /// <summary>
+        /// Prints a single VideoGame object to the console as specified by the user.
+        /// </summary>
+        /// <param name="videoGameFilePath"> Path to videogames.json </param>
+        /// <param name="title"> Title of the game to print </param>
+        private void PrintVideoGame(string videoGameFilePath, string title)
+        {
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
+
+            foreach (var game in jsonList)
+            {
+                if (game.Title is null)
+                {
+                    continue;
+                }
+                else if (game.Title.ToUpper() == title.ToUpper())
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Title: {game.Title}");
+                    Console.WriteLine($"Platform: {game.Platform}");
+                    Console.WriteLine($"Part Number: {game.PartNumber}");
+                    Console.WriteLine($"UPC: {game.UPC}");
+                    Console.WriteLine($"Description: {game.Description}");
+                    Console.WriteLine($"Cost: {game.Cost}");
+                    Console.WriteLine($"Sell price: {game.SellPrice}");
+                    Console.WriteLine("\n");
+                    goto returnToMainMenu;
+                }
+            }
+            Console.WriteLine($"{title} was not found as a stored Video Game");
+        returnToMainMenu:
+            Console.WriteLine("Press enter to return to the main menu");
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Print all VideoGame objects and their properties to the console.
+        /// </summary>
+        /// <param name="videoGameFilePath"> File path to videogames.json </param>
+        private void PrintAllVideoGames(string videoGameFilePath)
+        {
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
+
+            foreach (var game in jsonList)
+            {
+                Console.WriteLine($"Title: {game.Title}");
+                Console.WriteLine($"Platform: {game.Platform}");
+                Console.WriteLine($"Part Number: {game.PartNumber}");
+                Console.WriteLine($"UPC: {game.UPC}");
+                Console.WriteLine($"Description: {game.Description}");
+                Console.WriteLine($"Cost: {game.Cost}");
+                Console.WriteLine($"Sell price: {game.SellPrice}");
+                Console.WriteLine("\n");
+            }
+            Console.WriteLine("Press enter to return to the main menu");
+            Console.ReadLine();
         }
     }
 }
