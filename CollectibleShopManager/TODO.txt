@@ -1,5 +1,4 @@
 ﻿Short-term changes:
-- error: PrintAllVideoGames() does not print all!
 - Allow user to remove items from the command line
 - Rewrite menu screens to be more readable
 - Create an iterator to loop over the Inventory properties (method must be overriden by its child classes -- update: implement 

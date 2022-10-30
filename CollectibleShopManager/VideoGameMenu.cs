@@ -56,7 +56,6 @@
 
             foreach (var game in jsonList)
             {
-                Console.Clear();
                 Console.WriteLine($"Title: {game.Title}");
                 Console.WriteLine($"Platform: {game.Platform}");
                 Console.WriteLine($"Part Number: {game.PartNumber}");
