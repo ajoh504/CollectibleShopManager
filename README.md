@@ -1,6 +1,6 @@
 # Collectible Shop Manager
 
-An inventory tracking system with an emphasis on collectable items, such as books, comic books, coins, and more. 
+An inventory tracking system with an emphasis on collectible items, such as books, comic books, coins, and more. 
 
 The main purpose of this project is as a learning tool.
 
