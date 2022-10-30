@@ -24,18 +24,13 @@ Quit to Desktop .......... Q
 ");
 
                 string videoGameScreenChoice = Console.ReadLine();
-
-                /// <summary>
-                /// Add a new game
-                /// </summary>
-                if (videoGameScreenChoice == "1")
+                if (videoGameScreenChoice == "1") /// Add a new game
                 {
                     /// <summary>
                     /// Check to see if the JSON file exists in the user's home directory. If it does not exist, 
                     /// call jsonConfig.CreateNewFile() to create it. If it does exist, call jsonConfig.WriteToFile()
                     /// to write the new VideoGame object to the JSON file. 
                     /// </summary>
-
                     VideoGame videoGame = GetNewVideoGame();
                     if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
@@ -47,10 +42,7 @@ Quit to Desktop .......... Q
                     }
                 }
 
-                /// <summary>
-                /// View a single game
-                /// </summary>
-                else if (videoGameScreenChoice == "2")
+                else if (videoGameScreenChoice == "2") /// View a single game
                 {
                     Console.Write("Enter the title of the game that you wish to view:\n");
                     string title = Console.ReadLine();
@@ -65,10 +57,7 @@ Quit to Desktop .......... Q
                     }
                 }
 
-                /// <summary>
-                /// View all existing games
-                /// </summary>
-                else if (videoGameScreenChoice == "3")
+                else if (videoGameScreenChoice == "3") /// View all existing games
                 {
                     if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
