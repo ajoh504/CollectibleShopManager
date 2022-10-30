@@ -5,9 +5,6 @@
     /// </summary>
     internal class VideoGameMenu
     {
-        /// <summary>
-        /// Get the user's home directory. Video game data will be stored at homeDirectory\\videogames.json
-        /// </summary>
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         static JsonConfig jsonConfig = new JsonConfig();
 
