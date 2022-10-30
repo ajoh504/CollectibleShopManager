@@ -73,6 +73,10 @@ Quit to Desktop .......... Q
             }
         }
 
+        /// <summary>
+        /// Prompt to enter information about the Video Game. Construct a VideoGame object from the information supplied by the user.
+        /// </summary>
+        /// <returns> A new video game object with data supplied by the user </returns>
         private VideoGame GetNewVideoGame()
         {
             Console.Write("Add a title for the game or press Enter to skip\n");
@@ -90,7 +94,7 @@ Quit to Desktop .......... Q
             if (int.TryParse(gameUpc, out int gameUpcAsInteger)) { }
             else
             {
-                Console.WriteLine($"{gameUpc} is not a valid UPC! A default value of 0 will be used.");
+                Console.WriteLine($"{gameUpc} is not a valid UPC! A default value of 0 will be used.\n");
                 gameUpcAsInteger = 0;
             }
 
@@ -103,7 +107,7 @@ Quit to Desktop .......... Q
             if (decimal.TryParse(gameCost, out decimal gameCostAsDecimal)) { }
             else
             {
-                Console.WriteLine($"{gameCost} is not a valid cost! A default value of 0 will be used.");
+                Console.WriteLine($"{gameCost} is not a valid cost! A default value of 0 will be used.\n");
                 gameCostAsDecimal = 0;
             }
 
@@ -113,7 +117,7 @@ Quit to Desktop .......... Q
             if (decimal.TryParse(gamePrice, out decimal gamePriceAsDecimal)) { }
             else
             {
-                Console.WriteLine($"{gamePrice} is not a valid sell price! A default value of 0 will be used.");
+                Console.WriteLine($"{gamePrice} is not a valid sell price! A default value of 0 will be used.\n");
                 gamePriceAsDecimal = 0;
             }
 
