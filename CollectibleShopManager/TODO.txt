@@ -1,10 +1,17 @@
 ﻿Short-term changes:
 - error: PrintAllVideoGames() does not print all!
+- Allow user to remove items from the command line
+- Rewrite menu screens to be more readable
 - Create an iterator to loop over the Inventory properties (method must be overriden by its child classes -- update: implement 
 the GetProperties() method and the PropertyInfo class to achieve this)
 - Find a way to reuse the Main method logic for other collectible items
 - Update code comments on all files.
-- Add other collectible item classes, such as coin, comic, magazine, book 
+- Add other collectible item classes, such as coin, comic, magazine, book. 
+- Add a menu class for each collectible item class
+- Refactor with different project directories / namespaces?
+- Add an invoice class.
+- Add a DateStamp class for invoices 
+- Add a DateStamp class for changes to inventory items, such as sale price or cost
 - Create server side program to eventually write to / read from the database. Unix-like or Windows?
 
 Long-term changes:
@@ -12,6 +19,7 @@ Long-term changes:
 - Create GUI
 - Create HTTP endpoints for client / server communication
 - Work with HTTP error codes to inform user if data is invalid
+- Write code to account for SQL injections
 - Create fullstack web application for an online storefront
 - Create task to back up the database
 - Allow for Excel import to allow user to rewrite to database?
