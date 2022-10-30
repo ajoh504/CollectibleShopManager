@@ -98,13 +98,13 @@ Quit to Desktop .......... Q
                 if (videoGameScreenChoice == "1")
                 {
                     Console.Write("Add a title for the game or press Enter to skip\n");
-                    string gameTitle = Console.ReadLine();
+                    string gameTitle = Console.ReadLine().ToUpper();
 
                     Console.Write("Add a platform for the game or press Enter to skip\n");
-                    string gamePlatform = Console.ReadLine();
+                    string gamePlatform = Console.ReadLine().ToUpper();
 
                     Console.Write("Add a part number for the game or press Enter to skip\n");
-                    string gamePartNumber = Console.ReadLine();
+                    string gamePartNumber = Console.ReadLine().ToUpper();
 
                     Console.Write("Add a UPC for the game or press Enter to skip\n");
                     string gameUpc = Console.ReadLine();
@@ -117,7 +117,7 @@ Quit to Desktop .......... Q
                     }
 
                     Console.Write("Add a description for the game or press Enter to skip\n");
-                    string gameDesc = Console.ReadLine();
+                    string gameDesc = Console.ReadLine().ToUpper();
 
                     Console.Write("Add a cost for the game or press Enter to skip\n");
                     string gameCost = Console.ReadLine();
