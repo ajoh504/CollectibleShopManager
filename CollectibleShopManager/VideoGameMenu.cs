@@ -77,8 +77,19 @@
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("Selection: Video Game Menu Screen");
-                Console.Write("Press 1 to add a new game, 2 to view a single game, 3 to view all games, B to go back, or Q to quit\n");
+                Console.WriteLine(@"
+Selection: Video Game Menu Screen
+Please select one of the following:
+");
+
+                Console.Write(@"
+Add a new game ........... 1
+View a single game ....... 2
+View all games ........... 3
+Go back .................. B
+Quit to Desktop .......... Q
+");
+
                 string videoGameScreenChoice = Console.ReadLine();
 
                 /// <summary>

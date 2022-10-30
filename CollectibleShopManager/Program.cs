@@ -10,8 +10,15 @@
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine("This utility can be used to store your collectibles.");
-                Console.Write("Press 1 for video games or Q to quit\n");
+                Console.WriteLine(@"
+This utility can be used to store your collectibles. 
+Please select one of the following:");
+
+                Console.Write(@"
+Video Game Menu Screen .... 1 
+Quit to Desktop ........... Q
+");
+
                 string mainChoice = Console.ReadLine();
 
                 if (mainChoice == "1")
