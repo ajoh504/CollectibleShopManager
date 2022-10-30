@@ -170,6 +170,7 @@ Quit to Desktop .......... Q
 
             foreach (var game in jsonList)
             {
+                Console.WriteLine("\n");
                 Console.WriteLine($"Title: {game.Title}");
                 Console.WriteLine($"Platform: {game.Platform}");
                 Console.WriteLine($"Part Number: {game.PartNumber}");
@@ -177,7 +178,6 @@ Quit to Desktop .......... Q
                 Console.WriteLine($"Description: {game.Description}");
                 Console.WriteLine($"Cost: {game.Cost}");
                 Console.WriteLine($"Sell price: {game.SellPrice}");
-                Console.WriteLine("\n");
             }
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
