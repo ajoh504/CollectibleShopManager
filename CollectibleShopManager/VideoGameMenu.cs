@@ -1,17 +1,11 @@
 ﻿namespace CollectibleShopManager
 {
-    /// <summary>
-    /// Defines the video game selection screen. User may add new games or view existing games.
-    /// </summary>
-    internal class VideoGameMenu
+    internal class VideoGameMenu /// Defines the Video Game Selection Screen
     {
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         static JsonConfig jsonConfig = new JsonConfig();
 
-        /// <summary>
-        /// Main execution logic for the Video Game menu screen
-        /// </summary>
-        public void Execute()
+        public void Execute() /// Defines all logic for the menu execution flow
         {
             while (true)
             {
