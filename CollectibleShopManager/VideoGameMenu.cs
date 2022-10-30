@@ -112,7 +112,7 @@ Quit to Desktop .......... Q
                     if (int.TryParse(gameUpc, out int gameUpcAsInteger)) { }
                     else
                     {
-                        Console.WriteLine($"{gameUpc} is not a valid UPC!");
+                        Console.WriteLine($"{gameUpc} is not a valid UPC! A default value of 0 will be used.");
                         gameUpcAsInteger = 0;
                     }
 
@@ -125,7 +125,7 @@ Quit to Desktop .......... Q
                     if (decimal.TryParse(gameCost, out decimal gameCostAsDecimal)) { }
                     else
                     {
-                        Console.WriteLine($"{gameCost} is not a valid cost!");
+                        Console.WriteLine($"{gameCost} is not a valid cost! A default value of 0 will be used.");
                         gameCostAsDecimal = 0;
                     }
 
@@ -135,7 +135,7 @@ Quit to Desktop .......... Q
                     if (decimal.TryParse(gamePrice, out decimal gamePriceAsDecimal)) { }
                     else
                     {
-                        Console.WriteLine($"{gamePrice} is not a valid sell price!");
+                        Console.WriteLine($"{gamePrice} is not a valid sell price! A default value of 0 will be used.");
                         gamePriceAsDecimal = 0;
                     }
 
