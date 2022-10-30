@@ -30,60 +30,13 @@ Quit to Desktop .......... Q
                 /// </summary>
                 if (videoGameScreenChoice == "1")
                 {
-                    Console.Write("Add a title for the game or press Enter to skip\n");
-                    string gameTitle = Console.ReadLine().ToUpper();
-
-                    Console.Write("Add a platform for the game or press Enter to skip\n");
-                    string gamePlatform = Console.ReadLine().ToUpper();
-
-                    Console.Write("Add a part number for the game or press Enter to skip\n");
-                    string gamePartNumber = Console.ReadLine().ToUpper();
-
-                    Console.Write("Add a UPC for the game or press Enter to skip\n");
-                    string gameUpc = Console.ReadLine();
-
-                    if (int.TryParse(gameUpc, out int gameUpcAsInteger)) { }
-                    else
-                    {
-                        Console.WriteLine($"{gameUpc} is not a valid UPC! A default value of 0 will be used.");
-                        gameUpcAsInteger = 0;
-                    }
-
-                    Console.Write("Add a description for the game or press Enter to skip\n");
-                    string gameDesc = Console.ReadLine().ToUpper();
-
-                    Console.Write("Add a cost for the game or press Enter to skip\n");
-                    string gameCost = Console.ReadLine();
-
-                    if (decimal.TryParse(gameCost, out decimal gameCostAsDecimal)) { }
-                    else
-                    {
-                        Console.WriteLine($"{gameCost} is not a valid cost! A default value of 0 will be used.");
-                        gameCostAsDecimal = 0;
-                    }
-
-                    Console.Write("Add a sell price for the game or press Enter to skip\n");
-                    string gamePrice = Console.ReadLine();
-
-                    if (decimal.TryParse(gamePrice, out decimal gamePriceAsDecimal)) { }
-                    else
-                    {
-                        Console.WriteLine($"{gamePrice} is not a valid sell price! A default value of 0 will be used.");
-                        gamePriceAsDecimal = 0;
-                    }
-
-                    /// <summary>
-                    /// Construct a VideoGame object with all the arguments supplied by the user. 
-                    /// </summary>
-
-                    VideoGame videoGame = new VideoGame(gameTitle, gamePlatform, gamePartNumber, gameUpcAsInteger,
-                        gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
-
                     /// <summary>
                     /// Check to see if the JSON file exists in the user's home directory. If it does not exist, 
                     /// call jsonConfig.CreateNewFile() to create it. If it does exist, call jsonConfig.WriteToFile()
                     /// to write the new VideoGame object to the JSON file. 
                     /// </summary>
+
+                    VideoGame videoGame = GetNewVideoGame();
                     if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
                         jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", videoGame);
@@ -129,6 +82,54 @@ Quit to Desktop .......... Q
                 else if (videoGameScreenChoice.ToUpper() == "B") return;
                 else if (videoGameScreenChoice.ToUpper() == "Q") Environment.Exit(0);
             }
+        }
+
+        private VideoGame GetNewVideoGame()
+        {
+            Console.Write("Add a title for the game or press Enter to skip\n");
+            string gameTitle = Console.ReadLine().ToUpper();
+
+            Console.Write("Add a platform for the game or press Enter to skip\n");
+            string gamePlatform = Console.ReadLine().ToUpper();
+
+            Console.Write("Add a part number for the game or press Enter to skip\n");
+            string gamePartNumber = Console.ReadLine().ToUpper();
+
+            Console.Write("Add a UPC for the game or press Enter to skip\n");
+            string gameUpc = Console.ReadLine();
+
+            if (int.TryParse(gameUpc, out int gameUpcAsInteger)) { }
+            else
+            {
+                Console.WriteLine($"{gameUpc} is not a valid UPC! A default value of 0 will be used.");
+                gameUpcAsInteger = 0;
+            }
+
+            Console.Write("Add a description for the game or press Enter to skip\n");
+            string gameDesc = Console.ReadLine().ToUpper();
+
+            Console.Write("Add a cost for the game or press Enter to skip\n");
+            string gameCost = Console.ReadLine();
+
+            if (decimal.TryParse(gameCost, out decimal gameCostAsDecimal)) { }
+            else
+            {
+                Console.WriteLine($"{gameCost} is not a valid cost! A default value of 0 will be used.");
+                gameCostAsDecimal = 0;
+            }
+
+            Console.Write("Add a sell price for the game or press Enter to skip\n");
+            string gamePrice = Console.ReadLine();
+
+            if (decimal.TryParse(gamePrice, out decimal gamePriceAsDecimal)) { }
+            else
+            {
+                Console.WriteLine($"{gamePrice} is not a valid sell price! A default value of 0 will be used.");
+                gamePriceAsDecimal = 0;
+            }
+
+            return new VideoGame(gameTitle, gamePlatform, gamePartNumber, gameUpcAsInteger,
+                gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
         }
 
         /// <summary>
