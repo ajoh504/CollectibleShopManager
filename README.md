@@ -4,4 +4,4 @@ An inventory tracking system with an emphasis on collectible items, such as book
 
 The main purpose of this project is as a learning tool.
 
-For a list of errors, proposed fixes, and long-term changes, please view the [todo.txt file.](https://github.com/ajoh504/CollectibleShopManager/blob/master/CollectibleShopManager/TODO.txt) 
+For a list of errors, proposed fixes, and long-term changes, please view the [TODO.txt file.](https://github.com/ajoh504/CollectibleShopManager/blob/master/CollectibleShopManager/TODO.txt) 
