@@ -46,8 +46,8 @@ Quit to Desktop ........... Q
             static void PrintObjectProperties(Object obj)
             {
                 Type t = obj.GetType();
-                PropertyInfo[] gameProperties = t.GetProperties();
-                foreach (var prop in gameProperties)
+                PropertyInfo[] properties = t.GetProperties();
+                foreach (var prop in properties)
                 {
                     Console.WriteLine(prop.GetValue(obj));
                 }
