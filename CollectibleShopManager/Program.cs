@@ -37,7 +37,6 @@ Quit to Desktop ........... Q
 
                     foreach (var game in gamesList)
                     {
-                        // PrintObjectProperties(game);
                         PropertyInfo[] videoGameProperties = game.GetPropertyInfo();
                         Object[] videoGamePropertyValues = game.GetPropertyValues();
 
@@ -51,16 +50,6 @@ Quit to Desktop ........... Q
                 }
                 else if (mainChoice.ToUpper() == "Q") Environment.Exit(0);
             }
-
-            //static void PrintObjectProperties(Object obj)
-            //{
-            //    Type t = obj.GetType();
-            //    PropertyInfo[] properties = t.GetProperties();
-            //    foreach (var prop in properties)
-            //    {
-            //        Console.WriteLine(prop.GetValue(obj));
-            //    }
-            //}
         }
     }
 }

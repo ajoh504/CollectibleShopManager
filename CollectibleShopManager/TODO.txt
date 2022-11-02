@@ -1,12 +1,9 @@
 ﻿Short-term changes:
 - Allow user to remove items from the command line
-- Rewrite menu screens to be more readable
-- Create an iterator to loop over the Inventory properties (method must be overriden by its child classes -- update: implement 
-the GetProperties() method and the PropertyInfo class to achieve this)
-- Find a way to reuse the Main method logic for other collectible items
+- Rewrite menu screens for reusability. Goal: write a single menu screen
+- Create an iterator to loop over the Inventory properties?
 - Update code comments on all files.
 - Add other collectible item classes, such as coin, comic, magazine, book. 
-- Add a menu class for each collectible item class
 - Refactor with different project directories / namespaces?
 - Add an invoice class.
 - Add a DateStamp class for invoices 
