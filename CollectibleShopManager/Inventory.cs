@@ -28,31 +28,32 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
-        /// Given an object as an argument, get an array of its properties as PropertyInfo 
-        /// objects.
+        /// A method that returns a collection of PropertyInfo objects from this instance of 
+        /// the Inventory class.
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns> An array of PropertyInfo[] objects. </returns>
-        public PropertyInfo[] GetObjectProperties(Object obj)
+        /// <returns> A PropertyInfo[] array with all the properties from this instance. </returns>
+        public PropertyInfo[] GetPropertyInfo()
         {
-            Type t = obj.GetType();
+            Type t = this.GetType();
             PropertyInfo[] properties = t.GetProperties();
             return properties;
         }
 
         /// <summary>
-        /// Given an array of PropertyInfo objects, return an array that contains the values of 
-        /// each property.
+        /// A method that returns a collection of property values from this instance of 
+        /// the Inventory class.
         /// </summary>
-        /// <param name="properties"></param>
-        /// <returns> Object[] containing all property values. </returns>
-        public Object[] GetPropertyValues(PropertyInfo[] properties)
+        /// <returns> An Object[] array containing all property values from this instance. </returns>
+        public Object[] GetPropertyValues()
         {
+            PropertyInfo[] properties = this.GetPropertyInfo();
             Object[] propertyValues = new object[properties.Length];
+
             for (int i = 0; i < propertyValues.Length; i++)
             {
-                propertyValues[i] = properties[i].GetValue();
+                propertyValues[i] = properties[i].GetValue(this);
             }
+            return propertyValues;
         } 
 
         public Inventory() { }
