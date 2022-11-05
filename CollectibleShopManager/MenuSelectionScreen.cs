@@ -130,34 +130,29 @@ Quit to Desktop .......... Q
         /// <summary>
         /// Prints a single Inventory object to the console as specified by the user.
         /// </summary>
-        /// <param name="videoGameFilePath"> Path to videogames.json </param>
+        /// <param name="filePath"> Path to videogames.json </param>
         /// <param name="title"> Title of the game to print </param>
-        private void PrintSingleInventoryObject(string videoGameFilePath, string title)
+        private void PrintSingleInventoryObject(string filePath, string title)
         {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
 
-            foreach (var game in jsonList)
+            foreach (var inventoryObject in jsonList)
             {
-                if (game.Title is null)
+                if (inventoryObject.Title.ToUpper() == title.ToUpper())
                 {
-                    continue;
-                }
-                else if (game.Title.ToUpper() == title.ToUpper())
-                {
-                    Console.Clear();
-                    Console.WriteLine($"Title: {game.Title}");
-                    Console.WriteLine($"Platform: {game.Platform}");
-                    Console.WriteLine($"Part Number: {game.PartNumber}");
-                    Console.WriteLine($"UPC: {game.UPC}");
-                    Console.WriteLine($"Description: {game.Description}");
-                    Console.WriteLine($"Cost: {game.Cost}");
-                    Console.WriteLine($"Sell price: {game.SellPrice}");
-                    Console.WriteLine("\n");
+                    PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
+                    Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
+                    for (int i = 0; i < inventoryPropertyValues.Length; i++)
+                    {
+                        Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
+                    }
+                    Console.WriteLine('\n');
                     goto returnToMainMenu;
                 }
             }
             Console.WriteLine($"{title} was not found as a stored Video Game");
-        returnToMainMenu:
+
+            returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
         }
