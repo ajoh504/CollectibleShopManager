@@ -14,6 +14,58 @@ namespace CollectibleShopManager
             InventoryItem = inventoryItem;
         }
 
+                /// <summary>
+        /// Prints a single Inventory object to the console as specified by the user.
+        /// </summary>
+        /// <param name="filePath"> Path to videogames.json </param>
+        /// <param name="title"> Title of the game to print </param>
+        private void PrintSingleInventoryObject(string filePath, string title)
+        {
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
+
+            foreach (var inventoryObject in jsonList)
+            {
+                if (inventoryObject.Title.ToUpper() == title.ToUpper())
+                {
+                    PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
+                    Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
+                    for (int i = 0; i < inventoryPropertyValues.Length; i++)
+                    {
+                        Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
+                    }
+                    Console.WriteLine('\n');
+                    goto returnToMainMenu;
+                }
+            }
+            Console.WriteLine($"{title} was not found as a stored Video Game");
+
+            returnToMainMenu:
+            Console.WriteLine("Press enter to return to the main menu");
+            Console.ReadLine();
+        }
+
+        /// <summary>
+        /// Print all Inventory objects and their properties to the console.
+        /// </summary>
+        /// <param name="filePath"> File path to videogames.json </param>
+        private void PrintAllInventoryObjects(string filePath)
+        {
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
+
+            foreach (var inventoryObject in jsonList)
+            {
+                PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
+                Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
+                for (int i = 0; i < inventoryPropertyValues.Length; i++)
+                {
+                    Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
+                }
+                Console.WriteLine('\n');
+            }
+            Console.WriteLine("Press enter to return to the main menu");
+            Console.ReadLine();
+        }
+
         public void Execute() /// Defines all logic for the menu execution flow
         {
             while (true)
@@ -139,58 +191,6 @@ ___________________________________");
 
             return new VideoGame(gameTitle, gamePlatform, gamePartNumber, gameUpcAsInteger,
                 gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
-        }
-
-        /// <summary>
-        /// Prints a single Inventory object to the console as specified by the user.
-        /// </summary>
-        /// <param name="filePath"> Path to videogames.json </param>
-        /// <param name="title"> Title of the game to print </param>
-        private void PrintSingleInventoryObject(string filePath, string title)
-        {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
-
-            foreach (var inventoryObject in jsonList)
-            {
-                if (inventoryObject.Title.ToUpper() == title.ToUpper())
-                {
-                    PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
-                    Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
-                    for (int i = 0; i < inventoryPropertyValues.Length; i++)
-                    {
-                        Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
-                    }
-                    Console.WriteLine('\n');
-                    goto returnToMainMenu;
-                }
-            }
-            Console.WriteLine($"{title} was not found as a stored Video Game");
-
-            returnToMainMenu:
-            Console.WriteLine("Press enter to return to the main menu");
-            Console.ReadLine();
-        }
-
-        /// <summary>
-        /// Print all Inventory objects and their properties to the console.
-        /// </summary>
-        /// <param name="filePath"> File path to videogames.json </param>
-        private void PrintAllInventoryObjects(string filePath)
-        {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
-
-            foreach (var inventoryObject in jsonList)
-            {
-                PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
-                Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
-                for (int i = 0; i < inventoryPropertyValues.Length; i++)
-                {
-                    Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
-                }
-                Console.WriteLine('\n');
-            }
-            Console.WriteLine("Press enter to return to the main menu");
-            Console.ReadLine();
         }
     }
 }
