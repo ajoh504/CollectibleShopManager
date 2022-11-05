@@ -7,30 +7,39 @@ namespace CollectibleShopManager
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
 
-        public string InventoryType { get; private set; }
+        public string InventoryItem { get; private set; }
+        private int menuScreenLength = 0;
 
-        MenuSelectionScreen(string inventoryType)
+        public MenuSelectionScreen(string inventoryItem)
         {
-            InventoryType = inventoryType;
+            InventoryItem = inventoryItem;
         }
 
         public void Execute() /// Defines all logic for the menu execution flow
         {
+            /// Set the length of the menu screen
+            int tempLengthOne = $"Selection: {InventoryItem} Menu Screen".Length;
+            int tempLengthTwo = "Please select one of the following:".Length;
+            if (tempLengthOne > tempLengthTwo) menuScreenLength = tempLengthOne;
+            else menuScreenLength = tempLengthTwo;
+
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(@"
-Selection: Video Game Menu Screen
+                Console.WriteLine($@"
+---------------------------------------
+Selection: {InventoryItem} Menu Screen
 Please select one of the following:
-");
+---------------------------------------");
 
-                Console.Write(@"
-Add a new game ........... 1
-View a single game ....... 2
-View all games ........... 3
-Go back .................. B
-Quit to Desktop .......... Q
-");
+                Console.Write(String.Format($@"
+{"Add a new " + InventoryItem, -30} {"1", 0}
+{"View a single " + InventoryItem, -30} {"2", 0}
+{"View all " + InventoryItem + "s", -30} {"3", 0}
+{"Go back", -30} {"B", 0}
+{"Quit to Desktop",-30} {"Q", 0}
+---------------------------------------
+"));
 
                 string videoGameScreenChoice = Console.ReadLine();
                 if (videoGameScreenChoice == "1") /// Add a new game
