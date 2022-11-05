@@ -1,4 +1,6 @@
-﻿namespace CollectibleShopManager
+﻿using System.Reflection;
+
+namespace CollectibleShopManager
 {
     internal class MenuSelectionScreen /// Defines the Inventory Selection Screen
     {
@@ -53,7 +55,7 @@ Quit to Desktop .......... Q
                     }
                     else
                     {
-                        PrintVideoGame($"{homeDirectory}\\videogames.json", title);
+                        PrintSingleInventoryObject($"{homeDirectory}\\videogames.json", title);
                     }
                 }
 
@@ -65,7 +67,7 @@ Quit to Desktop .......... Q
                     }
                     else
                     {
-                        PrintAllVideoGames($"{homeDirectory}\\videogames.json");
+                        PrintAllInventoryObjects($"{homeDirectory}\\videogames.json");
                     }
                 }
                 else if (videoGameScreenChoice.ToUpper() == "B") return;
@@ -126,11 +128,11 @@ Quit to Desktop .......... Q
         }
 
         /// <summary>
-        /// Prints a single VideoGame object to the console as specified by the user.
+        /// Prints a single Inventory object to the console as specified by the user.
         /// </summary>
         /// <param name="videoGameFilePath"> Path to videogames.json </param>
         /// <param name="title"> Title of the game to print </param>
-        private void PrintVideoGame(string videoGameFilePath, string title)
+        private void PrintSingleInventoryObject(string videoGameFilePath, string title)
         {
             List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
 
@@ -161,23 +163,22 @@ Quit to Desktop .......... Q
         }
 
         /// <summary>
-        /// Print all VideoGame objects and their properties to the console.
+        /// Print all Inventory objects and their properties to the console.
         /// </summary>
-        /// <param name="videoGameFilePath"> File path to videogames.json </param>
-        private void PrintAllVideoGames(string videoGameFilePath)
+        /// <param name="filePath"> File path to videogames.json </param>
+        private void PrintAllInventoryObjects(string filePath)
         {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(videoGameFilePath);
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
 
-            foreach (var game in jsonList)
+            foreach (var inventoryObject in jsonList)
             {
-                Console.WriteLine("\n");
-                Console.WriteLine($"Title: {game.Title}");
-                Console.WriteLine($"Platform: {game.Platform}");
-                Console.WriteLine($"Part Number: {game.PartNumber}");
-                Console.WriteLine($"UPC: {game.UPC}");
-                Console.WriteLine($"Description: {game.Description}");
-                Console.WriteLine($"Cost: {game.Cost}");
-                Console.WriteLine($"Sell price: {game.SellPrice}");
+                PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
+                Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
+                for (int i = 0; i < inventoryPropertyValues.Length; i++)
+                {
+                    Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
+                }
+                Console.WriteLine('\n');
             }
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
