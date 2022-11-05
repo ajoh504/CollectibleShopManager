@@ -8,7 +8,6 @@ namespace CollectibleShopManager
         static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
 
         public string InventoryItem { get; private set; }
-        private int menuScreenLength = 0;
 
         public MenuSelectionScreen(string inventoryItem)
         {
@@ -17,29 +16,22 @@ namespace CollectibleShopManager
 
         public void Execute() /// Defines all logic for the menu execution flow
         {
-            /// Set the length of the menu screen
-            int tempLengthOne = $"Selection: {InventoryItem} Menu Screen".Length;
-            int tempLengthTwo = "Please select one of the following:".Length;
-            if (tempLengthOne > tempLengthTwo) menuScreenLength = tempLengthOne;
-            else menuScreenLength = tempLengthTwo;
-
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine($@"
----------------------------------------
+------------------------------------
 Selection: {InventoryItem} Menu Screen
 Please select one of the following:
----------------------------------------");
+------------------------------------");
 
                 Console.Write(String.Format($@"
-{"Add a new " + InventoryItem, -30} {"1", 0}
-{"View a single " + InventoryItem, -30} {"2", 0}
-{"View all " + InventoryItem + "s", -30} {"3", 0}
-{"Go back", -30} {"B", 0}
-{"Quit to Desktop",-30} {"Q", 0}
----------------------------------------
-"));
+{"Add a new " + InventoryItem, -32} {"1", 3}
+{"View a single " + InventoryItem, -32} {"2", 3}
+{"View all " + InventoryItem + "s", -32} {"3", 3}
+{"Go back", -32} {"B", 3}
+{"Quit to Desktop",-32} {"Q", 3}
+------------------------------------"));
 
                 string videoGameScreenChoice = Console.ReadLine();
                 if (videoGameScreenChoice == "1") /// Add a new game
