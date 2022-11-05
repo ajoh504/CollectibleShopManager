@@ -37,7 +37,7 @@ namespace CollectibleShopManager
                     goto returnToMainMenu;
                 }
             }
-            Console.WriteLine($"{title} was not found as a stored Video Game");
+            Console.WriteLine($"{title} was not found as a stored {InventoryItem}");
 
             returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
