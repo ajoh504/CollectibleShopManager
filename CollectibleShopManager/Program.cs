@@ -21,14 +21,14 @@ Video Game Menu Screen .... 1
 Quit to Desktop ........... Q
 ");
 
-                string mainChoice = Console.ReadLine();
+                string mainMenuChoice = Console.ReadLine();
 
-                if (mainChoice == "1")
+                if (mainMenuChoice == "1")
                 {
                     MenuSelectionScreen videoGameMenu = new MenuSelectionScreen();
                     videoGameMenu.Execute();
                 }
-                else if (mainChoice.ToUpper() == "Q") Environment.Exit(0);
+                else if (mainMenuChoice.ToUpper() == "Q") Environment.Exit(0);
             }
         }
     }
