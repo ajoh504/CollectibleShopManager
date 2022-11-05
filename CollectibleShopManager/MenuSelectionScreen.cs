@@ -7,6 +7,13 @@ namespace CollectibleShopManager
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
 
+        public string InventoryType { get; private set; }
+
+        MenuSelectionScreen(string inventoryType)
+        {
+            InventoryType = inventoryType;
+        }
+
         public void Execute() /// Defines all logic for the menu execution flow
         {
             while (true)
