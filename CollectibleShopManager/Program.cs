@@ -25,7 +25,7 @@ Quit to Desktop ........... Q
 
                 if (mainMenuChoice == "1")
                 {
-                    MenuSelectionScreen videoGameMenu = new MenuSelectionScreen();
+                    MenuSelectionScreen videoGameMenu = new MenuSelectionScreen("Video Game");
                     videoGameMenu.Execute();
                 }
                 else if (mainMenuChoice.ToUpper() == "Q") Environment.Exit(0);
