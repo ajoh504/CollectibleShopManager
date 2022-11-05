@@ -3,7 +3,7 @@
     internal class VideoGameMenu /// Defines the Video Game Selection Screen
     {
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-        static JsonConfig jsonConfig = new JsonConfig();
+        static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
 
         public void Execute() /// Defines all logic for the menu execution flow
         {

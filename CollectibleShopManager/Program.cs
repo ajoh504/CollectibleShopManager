@@ -32,7 +32,7 @@ Quit to Desktop ........... Q
                 else if(mainChoice == "2") /// TEST: get object properties
                 {
                     string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-                    JsonConfig jsonConfig = new JsonConfig();
+                    JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
                     List<VideoGame> gamesList = jsonConfig.GetDeserializedList($"{homeDirectory}\\videogames.json");
 
                     foreach (var game in gamesList)
