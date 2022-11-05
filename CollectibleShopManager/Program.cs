@@ -26,7 +26,7 @@ Quit to Desktop ........... Q
 
                 if (mainChoice == "1")
                 {
-                    VideoGameMenu videoGameMenu = new VideoGameMenu();
+                    MenuSelectionScreen videoGameMenu = new MenuSelectionScreen();
                     videoGameMenu.Execute();
                 }
                 else if(mainChoice == "2") /// TEST: get object properties

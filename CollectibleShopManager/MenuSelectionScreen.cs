@@ -1,6 +1,6 @@
 ﻿namespace CollectibleShopManager
 {
-    internal class VideoGameMenu /// Defines the Video Game Selection Screen
+    internal class MenuSelectionScreen /// Defines the Inventory Selection Screen
     {
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
