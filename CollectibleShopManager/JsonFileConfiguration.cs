@@ -5,14 +5,14 @@ namespace CollectibleShopManager
     /// <summary>
     /// Defines all methods for reading from and writing to the JSON program files in the user's home directory.
     /// </summary>
-    internal class JsonConfig
+    internal class JsonFileConfiguration
     {
         /// <summary>
         /// Instantiate an object of type JsonSerializerOptions. Set WriteIndented property to true 
         /// in order to format any serialized / deserialized JSON data with white spaces.
         /// </summary>
         /// <returns> JsonSerializerOptions object to format a JSON file with white spaces. </returns>
-        private JsonSerializerOptions GetSettings()
+        private JsonSerializerOptions GetWhiteSpaceFormatting()
         {
             JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
             jsonSettings.WriteIndented = true;
@@ -41,7 +41,7 @@ namespace CollectibleShopManager
         public void CreateNewFile(string videoGameFilePath, VideoGame videoGame)
         {
             List<VideoGame> gameToAdd = new List<VideoGame>() { videoGame };
-            string jsonData = JsonSerializer.Serialize(gameToAdd, this.GetSettings());
+            string jsonData = JsonSerializer.Serialize(gameToAdd, this.GetWhiteSpaceFormatting());
             File.WriteAllText(videoGameFilePath, jsonData);
         }
 
@@ -57,7 +57,7 @@ namespace CollectibleShopManager
             List<VideoGame> jsonList = GetDeserializedList(videoGameFilePath);
             jsonList.Add(videoGame);
 
-            string serializedList = JsonSerializer.Serialize(jsonList, this.GetSettings());
+            string serializedList = JsonSerializer.Serialize(jsonList, this.GetWhiteSpaceFormatting());
             File.WriteAllText(videoGameFilePath, serializedList);
         }
     }

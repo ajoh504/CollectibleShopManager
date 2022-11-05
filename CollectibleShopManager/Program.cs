@@ -1,4 +1,6 @@
-﻿namespace CollectibleShopManager
+﻿using System.Reflection;
+
+namespace CollectibleShopManager
 {
     internal class Program
     {
@@ -23,7 +25,7 @@ Quit to Desktop ........... Q
 
                 if (mainChoice == "1")
                 {
-                    VideoGameMenu videoGameMenu = new VideoGameMenu();
+                    MenuSelectionScreen videoGameMenu = new MenuSelectionScreen();
                     videoGameMenu.Execute();
                 }
                 else if (mainChoice.ToUpper() == "Q") Environment.Exit(0);

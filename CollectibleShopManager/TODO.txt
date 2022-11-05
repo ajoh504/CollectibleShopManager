@@ -1,4 +1,5 @@
 ﻿Short-term changes:
+- Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
 - Allow user to remove items from the command line
 - Rewrite menu screens for reusability. Goal: write a single menu screen
 - Create an iterator to loop over the Inventory properties?
