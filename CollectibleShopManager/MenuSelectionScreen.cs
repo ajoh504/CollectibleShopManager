@@ -25,13 +25,6 @@ Selection: {InventoryItem} Menu Screen
 Please select one of the following:
 ___________________________________");
 
-                //                Console.Write(String.Format($@"
-                //{"Add a new " + InventoryItem, -32} {"1", 3}
-                //{"View a single " + InventoryItem, -32} {"2", 3}
-                //{"View all " + InventoryItem + "s", -32} {"3", 3}
-                //{"Go back", -32} {"B", 3}
-                //{"Quit to Desktop",-32} {"Q", 3}
-                //------------------------------------"));
                 string lineOne = $"Add a new { InventoryItem }";
                 string lineTwo = $"View a single  {InventoryItem}";
                 string lineThree = $"View all {InventoryItem}";
