@@ -12,13 +12,15 @@ namespace CollectibleShopManager
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(@"
+                Console.WriteLine(@"____________________________________________________
+
 This utility can be used to store your collectibles. 
-Please select one of the following:");
+Please select one of the following:
+____________________________________________________");
 
                 Console.Write(@"
-Video Game Menu Screen .... 1 
-Quit to Desktop ........... Q
+Video Game Menu Screen .......... 1 
+Quit to Desktop ................. Q
 ");
 
                 string mainMenuChoice = Console.ReadLine();
