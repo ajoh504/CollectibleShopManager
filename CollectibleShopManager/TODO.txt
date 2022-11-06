@@ -1,10 +1,12 @@
 ﻿Short-term changes:
+- Fix: check for Json file only once, then store the filepath as a field in the JsonFileConfiguration class
+- Rewrite Json file to contain all inventory types
 - Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
 - Allow user to remove items from the command line
 - Rewrite menu screens for reusability. Goal: write a single menu screen
 - Create an iterator to loop over the Inventory properties?
-- Update code comments on all files.
-- Add other collectible item classes, such as coin, comic, magazine, book. 
+- Update code comments on all files. Reference the Microsoft docs for XML code
+- Add other collectible item classes, such as coin, comic book, magazine, book, stamp. 
 - Refactor with different project directories / namespaces?
 - Add an invoice class.
 - Add a DateStamp class for invoices 
