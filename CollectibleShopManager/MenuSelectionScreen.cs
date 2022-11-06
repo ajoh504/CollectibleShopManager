@@ -7,6 +7,11 @@ namespace CollectibleShopManager
         static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
 
+        /// <summary>
+        /// Specifies the inventory item for this instance of the menu screen. Use this property
+        /// to print the appropriate questions to the console. For example, InventoryItem = "Video Game"
+        /// will prompt the user to enter the appropriate information for that item.
+        /// </summary>
         public string InventoryItem { get; private set; }
 
         public MenuSelectionScreen(string inventoryItem)
@@ -14,18 +19,18 @@ namespace CollectibleShopManager
             InventoryItem = inventoryItem;
         }
 
-                /// <summary>
+        /// <summary>
         /// Prints a single Inventory object to the console as specified by the user.
         /// </summary>
         /// <param name="filePath"> Path to videogames.json </param>
-        /// <param name="title"> Title of the game to print </param>
-        private void PrintSingleInventoryObject(string filePath, string title)
+        /// <param name="name"> Title of the Inventory object to print </param>
+        private void PrintSingleInventoryObject(string filePath, string name)
         {
             List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
 
             foreach (var inventoryObject in jsonList)
             {
-                if (inventoryObject.Title.ToUpper() == title.ToUpper())
+                if (inventoryObject.Title.ToUpper() == name.ToUpper())
                 {
                     PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
                     Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
@@ -37,7 +42,7 @@ namespace CollectibleShopManager
                     goto returnToMainMenu;
                 }
             }
-            Console.WriteLine($"{title} was not found as a stored {InventoryItem}");
+            Console.WriteLine($"{name} was not found as a stored {InventoryItem}");
 
             returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
@@ -66,86 +71,10 @@ namespace CollectibleShopManager
             Console.ReadLine();
         }
 
-        public void Execute() /// Defines all logic for the menu execution flow
-        {
-            while (true)
-            {
-                Console.Clear();
-                Console.WriteLine($@"___________________________________
-
-Selection: {InventoryItem} Menu Screen
-Please select one of the following:
-___________________________________");
-
-                string lineOne = $"Add a new { InventoryItem }";
-                string lineTwo = $"View a single  {InventoryItem}";
-                string lineThree = $"View all {InventoryItem}";
-                string lineFour = "Go Back";
-                string lineFive = "Quit to Desktop";
-
-                Console.Write($@"
-{lineOne.PadRight(32, '.')} 1
-{lineTwo.PadRight(32, '.')} 2
-{lineThree.PadRight(32, '.')} 3
-{lineFour.PadRight(32, '.')} B
-{lineFive.PadRight(32, '.')} Q
-___________________________________");
-
-                string videoGameScreenChoice = Console.ReadLine();
-                if (videoGameScreenChoice == "1") /// Add a new game
-                {
-                    /// <summary>
-                    /// Check to see if the JSON file exists in the user's home directory. If it does not exist, 
-                    /// call jsonConfig.CreateNewFile() to create it. If it does exist, call jsonConfig.WriteToFile()
-                    /// to write the new VideoGame object to the JSON file. 
-                    /// </summary>
-                    VideoGame videoGame = GetNewVideoGame();
-                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
-                    {
-                        jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", videoGame);
-                    }
-                    else
-                    {
-                        jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", videoGame);
-                    }
-                }
-
-                else if (videoGameScreenChoice == "2") /// View a single game
-                {
-                    Console.Write("Enter the title of the game that you wish to view:\n");
-                    string title = Console.ReadLine();
-
-                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
-                    {
-                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
-                    }
-                    else
-                    {
-                        PrintSingleInventoryObject($"{homeDirectory}\\videogames.json", title);
-                    }
-                }
-
-                else if (videoGameScreenChoice == "3") /// View all existing games
-                {
-                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
-                    {
-                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
-                    }
-                    else
-                    {
-                        PrintAllInventoryObjects($"{homeDirectory}\\videogames.json");
-                    }
-                }
-                else if (videoGameScreenChoice.ToUpper() == "B") return;
-                else if (videoGameScreenChoice.ToUpper() == "Q") Environment.Exit(0);
-            }
-        }
-
         /// <summary>
-        /// Prompt to enter information about the Video Game. Construct a VideoGame object from the information supplied by the user.
+        /// Construct an Inventory object from the information supplied by the user.
         /// </summary>
-        /// <returns> A new video game object with data supplied by the user </returns>
-        private VideoGame GetNewVideoGame()
+        private VideoGame GetNewInventoryObject()
         {
             Console.Write("Add a title for the game or press Enter to skip\n");
             string gameTitle = Console.ReadLine().ToUpper();
@@ -191,6 +120,81 @@ ___________________________________");
 
             return new VideoGame(gameTitle, gamePlatform, gamePartNumber, gameUpcAsInteger,
                 gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
+        }
+
+        public void Execute() /// Defines all logic for the menu execution flow
+        {
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine($@"___________________________________
+
+Selection: {InventoryItem} Menu Screen
+Please select one of the following:
+___________________________________");
+
+                string lineOne = $"Add a new {InventoryItem }";
+                string lineTwo = $"View a single  {InventoryItem}";
+                string lineThree = $"View all {InventoryItem}s";
+                string lineFour = "Go Back";
+                string lineFive = "Quit to Desktop";
+
+                Console.Write($@"
+{lineOne.PadRight(32, '.')} 1
+{lineTwo.PadRight(32, '.')} 2
+{lineThree.PadRight(32, '.')} 3
+{lineFour.PadRight(32, '.')} B
+{lineFive.PadRight(32, '.')} Q
+___________________________________");
+
+                string menuScreenChoice = Console.ReadLine();
+                if (menuScreenChoice == "1") /// Add a new inventory object
+                {
+                    /// <summary>
+                    /// Check to see if the JSON file exists in the user's home directory. If it does not exist, 
+                    /// call jsonConfig.CreateNewFile() to create it. If it does exist, call jsonConfig.WriteToFile()
+                    /// to write the new VideoGame object to the JSON file. 
+                    /// </summary>
+                    VideoGame videoGame = GetNewInventoryObject();
+                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
+                    {
+                        jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", videoGame);
+                    }
+                    else
+                    {
+                        jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", videoGame);
+                    }
+                }
+
+                else if (menuScreenChoice == "2") /// View a single game
+                {
+                    Console.Write("Enter the title of the game that you wish to view:\n");
+                    string title = Console.ReadLine();
+
+                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
+                    {
+                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
+                    }
+                    else
+                    {
+                        PrintSingleInventoryObject($"{homeDirectory}\\videogames.json", title);
+                    }
+                }
+
+                else if (menuScreenChoice == "3") /// View all existing games
+                {
+                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
+                    {
+                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
+                    }
+                    else
+                    {
+                        PrintAllInventoryObjects($"{homeDirectory}\\videogames.json");
+                    }
+                }
+                else if (menuScreenChoice.ToUpper() == "B") return;
+                else if (menuScreenChoice.ToUpper() == "Q") Environment.Exit(0);
+            }
         }
     }
 }
