@@ -145,7 +145,8 @@ ___________________________________");
 {lineThree.PadRight(32, '.')} 3
 {lineFour.PadRight(32, '.')} B
 {lineFive.PadRight(32, '.')} Q
-___________________________________");
+___________________________________
+");
 
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new inventory object
@@ -155,14 +156,14 @@ ___________________________________");
                     /// call jsonConfig.CreateNewFile() to create it. If it does exist, call jsonConfig.WriteToFile()
                     /// to write the new VideoGame object to the JSON file. 
                     /// </summary>
-                    VideoGame videoGame = GetNewInventoryObject();
+                    VideoGame inventoryObject = GetNewInventoryObject();
                     if (!File.Exists($"{homeDirectory}\\videogames.json"))
                     {
-                        jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", videoGame);
+                        jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", inventoryObject);
                     }
                     else
                     {
-                        jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", videoGame);
+                        jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", inventoryObject);
                     }
                 }
 
@@ -177,6 +178,7 @@ ___________________________________");
                     }
                     else
                     {
+                        Console.WriteLine("\n");
                         PrintSingleInventoryObject($"{homeDirectory}\\videogames.json", title);
                     }
                 }
