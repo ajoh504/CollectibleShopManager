@@ -2,7 +2,8 @@
 - Fix: check for Json file only once, then store the filepath as a field in the JsonFileConfiguration class
 - Rewrite Json file to contain all inventory types
 - Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
-- Allow user to remove items from the command line
+- Allow user to remove inventory objects from the command line.
+- Allow user to edit individual properties
 - Rewrite menu screens for reusability. Goal: write a single menu screen
 - Create an iterator to loop over the Inventory properties?
 - Update code comments on all files. Reference the Microsoft docs for XML code
@@ -11,6 +12,7 @@
 - Add an invoice class.
 - Add a DateStamp class for invoices 
 - Add a DateStamp class for changes to inventory items, such as sale price or cost
+- NOTE: date stamp information should be marked as readonly
 - Create server side program to eventually write to / read from the database. Unix-like or Windows?
 
 Long-term changes:
