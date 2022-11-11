@@ -3,7 +3,8 @@
 namespace CollectibleShopManager
 {
     /// <summary>
-    /// Defines all methods for reading from and writing to the JSON program files in the user's home directory.
+    /// Defines all methods for reading from and writing to the inventory.json file. This file is stored in the 
+    /// user's home directory.
     /// </summary>
     internal class JsonFileConfiguration
     {
@@ -20,45 +21,44 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
-        /// Read all JSON text into a string. Deserialize the string into a List of VideoGame objects, then
-        /// return the List.
+        /// Read all JSON text into a string. Deserialize the string, then return the List as specified by the user
         /// </summary>
-        /// <param name="videoGameFilePath"> File path to videogames.json </param>
-        /// <returns> List of VideoGame objects from videogames.json </returns>
-        public List<VideoGame> GetDeserializedList(string videoGameFilePath)
+        /// <param name="filePath"> File path to inventory.json </param>
+        /// <returns> List of Inventory objects from inventory.json </returns>
+        public List<VideoGame> GetDeserializedList(string filePath)
         {
-            string jsonFileData = File.ReadAllText(videoGameFilePath);
+            string jsonFileData = File.ReadAllText(filePath);
             List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
             return jsonList;
         }
 
         /// <summary>
-        /// Create the file videogames.json. Pass the VideoGame object into a new List, serialize it into a string, 
+        /// Create the inventory.json file. Pass the Inventory object into a new List, serialize it into a string, 
         /// then write the string to a new JSON file.
         /// </summary>
         /// <param name="filePath"> File path to create the new JSON file </param>
-        /// <param name="videoGame"> New VideoGame object to write to JSON file </param>
-        public void CreateNewFile(string videoGameFilePath, VideoGame videoGame)
+        /// <param name="inventory"> New Inventory object to write to JSON file </param>
+        public void CreateNewFile(string filePath, VideoGame videoGame)
         {
             List<VideoGame> gameToAdd = new List<VideoGame>() { videoGame };
             string jsonData = JsonSerializer.Serialize(gameToAdd, this.GetWhiteSpaceFormatting());
-            File.WriteAllText(videoGameFilePath, jsonData);
+            File.WriteAllText(filePath, jsonData);
         }
 
         /// <summary>
-        /// Write a new VideoGame object to videogames.json. First call GetJsonAsString() to retrieve the JSON file data. 
-        /// Deserialize the string into a List of VideoGame objects, append the new VideoGame object to the list. Then, 
-        /// re-serialize the List and save over the file videogames.json. 
+        /// Write a new Inventory object to inventory.json. First call GetJsonAsString() to retrieve the JSON file data. 
+        /// Deserialize the string into a List of Inventory objects, append the new Inventory object to the list. Then, 
+        /// re-serialize the List and save over the inventory.json file. 
         /// </summary>
-        /// <param name="videoGameFilePath"> File path to videogames.json </param>
-        /// <param name="videoGame"> New VideoGame object to add to the file </param>
-        public void WriteToFile(string videoGameFilePath, VideoGame videoGame)
+        /// <param name="filePath"> File path to inventory.json </param>
+        /// <param name="inventory"> New Inventory object to add to the file </param>
+        public void WriteToFile(string filePath, VideoGame videoGame)
         {
-            List<VideoGame> jsonList = GetDeserializedList(videoGameFilePath);
+            List<VideoGame> jsonList = GetDeserializedList(filePath);
             jsonList.Add(videoGame);
 
             string serializedList = JsonSerializer.Serialize(jsonList, this.GetWhiteSpaceFormatting());
-            File.WriteAllText(videoGameFilePath, serializedList);
+            File.WriteAllText(filePath, serializedList);
         }
     }
 }
