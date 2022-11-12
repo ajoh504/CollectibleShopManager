@@ -22,13 +22,13 @@ namespace CollectibleShopManager
         /// Prints a single Inventory object to the console as specified by the user.
         /// </summary>
         /// <param name="name"> Title of the Inventory object to print </param>
-        private void PrintSingleInventoryObject(string name)
+        private void PrintSingleInventoryObject(int ID)
         {
             List<VideoGame> jsonList = JsonConfig.GetDeserializedList();
 
             foreach (var inventoryObject in jsonList)
             {
-                if (inventoryObject.Title.ToUpper() == name.ToUpper())
+                if (inventoryObject.InventoryID == ID)
                 {
                     PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
                     Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
@@ -40,7 +40,7 @@ namespace CollectibleShopManager
                     goto returnToMainMenu;
                 }
             }
-            Console.WriteLine($"{name} was not found as a stored {InventoryItem}");
+            Console.WriteLine($"{ID} is not associate with an {InventoryItem}");
 
         returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
@@ -104,6 +104,15 @@ namespace CollectibleShopManager
             Console.Write("Add a platform for the game or press Enter to skip\n");
             string gamePlatform = Console.ReadLine().ToUpper();
 
+            Console.WriteLine("Add an ID for the game or press Enter to skip. ID must be an integer");
+            string gameID = Console.ReadLine();
+
+            if (int.TryParse(gameID, out int gameIDAsInteger)) { }
+            else
+            {
+                Console.WriteLine("Invalid ID. Please try again.");
+            }
+
             Console.Write("Add a part number for the game or press Enter to skip\n");
             string gamePartNumber = Console.ReadLine().ToUpper();
 
@@ -140,7 +149,7 @@ namespace CollectibleShopManager
                 gamePriceAsDecimal = 0;
             }
 
-            return new VideoGame(gameTitle, gamePlatform, gamePartNumber, gameUpcAsInteger,
+            return new VideoGame(gameTitle, gamePlatform, gameIDAsInteger, gamePartNumber, gameUpcAsInteger,
                 gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
         }
 
@@ -179,11 +188,14 @@ ___________________________________
 
                 else if (menuScreenChoice == "2") /// View a single game
                 {
-                    Console.Write("Enter the title of the game that you wish to view:\n");
-                    string title = Console.ReadLine();
-
-                    Console.WriteLine("\n");
-                    PrintSingleInventoryObject(title);
+                    Console.Write("Enter the ID of the game that you wish to view:\n");
+                    string ID = Console.ReadLine();
+                    if (int.TryParse(ID, out int IDAsInt))
+                    {
+                        Console.WriteLine("\n");
+                        PrintSingleInventoryObject(IDAsInt);
+                    }
+                    else Console.WriteLine($"{ID} is invalid");
                 }
 
                 else if (menuScreenChoice == "3") /// View all existing games

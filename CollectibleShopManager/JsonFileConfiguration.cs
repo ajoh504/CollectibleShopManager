@@ -18,31 +18,9 @@ namespace CollectibleShopManager
         /// </summary>
         public void CreateNewFile()
         {
-            List<VideoGame> newFile = new List<VideoGame>();
+            List<object> newFile = new List<object>();
             string jsonData = JsonSerializer.Serialize(newFile, this.GetWhiteSpaceFormatting());
             File.WriteAllText(jsonFilePath, jsonData);
-        }
-
-        /// <summary>
-        /// Provides an implementation for the inventory.json file to be deserialized to.
-        /// </summary>
-        /// <remarks>
-        /// File structure: a Dictionary with string keys that represent each inventory subclass.
-        /// The keys contain a List of that particular subclass. The list contains each instance 
-        /// of the specified subclass.
-        /// 
-        /// Example:
-        /// 
-        /// {
-        ///     "InventoryType1": 
-        ///         [{first instance}, {second instance}],
-        ///     "InventoryType2": 
-        ///         [{first instance}, {second instance}]
-        /// }
-        /// </remarks>
-        private class InventoryJsonFile
-        {
-            private Dictionary<string, List<Inventory>> inventoryJsonFile = new Dictionary<string, List<Inventory>>();
         }
 
         /// <summary>
@@ -75,7 +53,7 @@ namespace CollectibleShopManager
         /// re-serialize the List and save over the inventory.json file. 
         /// </summary>
         /// <param name="filePath"> File path to inventory.json </param>
-        /// <param name="inventory"> New Inventory object to add to the file </param>
+        /// <param name="videoGame"> New Inventory object to add to the file </param>
         public void WriteToFile(VideoGame videoGame)
         {
             List<VideoGame> jsonList = GetDeserializedList();

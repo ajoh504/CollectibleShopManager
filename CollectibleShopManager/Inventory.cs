@@ -11,6 +11,7 @@ namespace CollectibleShopManager
     /// </remarks>
     internal class Inventory
     {
+        public int InventoryID { get; set; }
         public string? PartNumber { get; set; }
         public int UPC { get; set; }
         public string? Description { get; set; }
@@ -57,9 +58,9 @@ namespace CollectibleShopManager
         } 
 
         public Inventory() { }
-        public Inventory(string partNumber, int upc, string desc, decimal cost, decimal sellPrice)
+        public Inventory(int inventoryID, string partNumber, int upc, string desc, decimal cost, decimal sellPrice)
         {
-
+            InventoryID = inventoryID;
             PartNumber = partNumber;
             UPC = upc;
             Description = desc;
