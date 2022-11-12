@@ -9,6 +9,28 @@ namespace CollectibleShopManager
     internal class JsonFileConfiguration
     {
         /// <summary>
+        /// Provides an implementation for the inventory.json file to be deserialized to.
+        /// </summary>
+        /// <remarks>
+        /// File structure: a Dictionary with string keys that represent each inventory subclass.
+        /// The keys contain a List of that particular subclass. The list contains each instance 
+        /// of the specified subclass.
+        /// 
+        /// Example:
+        /// 
+        /// {
+        ///     "InventoryType1": 
+        ///         [{first instance}, {second instance}],
+        ///     "InventoryType2": 
+        ///         [{first instance}, {second instance}]
+        /// }
+        /// </remarks>
+        private class InventoryJsonFile
+        {
+            private Dictionary<string, List<Inventory>> inventoryJsonFile = new Dictionary<string, List<Inventory>>();
+        }
+
+        /// <summary>
         /// File path to inventory.json, stored in the user's home directory.
         /// </summary>
         public static readonly string jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\inventory.json";
