@@ -24,6 +24,28 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
+        /// Provides an implementation for the inventory.json file to be deserialized to.
+        /// </summary>
+        /// <remarks>
+        /// File structure: a Dictionary with string keys that represent each inventory subclass.
+        /// The keys contain a List of that particular subclass. The list contains each instance 
+        /// of the specified subclass.
+        /// 
+        /// Example:
+        /// 
+        /// {
+        ///     "InventoryType1": 
+        ///         [{first instance}, {second instance}],
+        ///     "InventoryType2": 
+        ///         [{first instance}, {second instance}]
+        /// }
+        /// </remarks>
+        private class InventoryJsonFile
+        {
+            private Dictionary<string, List<Inventory>> inventoryJsonFile = new Dictionary<string, List<Inventory>>();
+        }
+
+        /// <summary>
         /// Instantiate an object of type JsonSerializerOptions. Set WriteIndented property to true 
         /// in order to format any serialized / deserialized JSON data with white spaces.
         /// </summary>
