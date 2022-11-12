@@ -9,6 +9,21 @@ namespace CollectibleShopManager
     internal class JsonFileConfiguration
     {
         /// <summary>
+        /// File path to inventory.json, stored in the user's home directory.
+        /// </summary>
+        public static readonly string jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\inventory.json";
+
+        /// <summary>
+        /// Create the inventory.json file. 
+        /// </summary>
+        public void CreateNewFile()
+        {
+            List<VideoGame> newFile = new List<VideoGame>();
+            string jsonData = JsonSerializer.Serialize(newFile, this.GetWhiteSpaceFormatting());
+            File.WriteAllText(jsonFilePath, jsonData);
+        }
+
+        /// <summary>
         /// Provides an implementation for the inventory.json file to be deserialized to.
         /// </summary>
         /// <remarks>
@@ -29,11 +44,6 @@ namespace CollectibleShopManager
         {
             private Dictionary<string, List<Inventory>> inventoryJsonFile = new Dictionary<string, List<Inventory>>();
         }
-
-        /// <summary>
-        /// File path to inventory.json, stored in the user's home directory.
-        /// </summary>
-        public static readonly string jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\inventory.json";
 
         /// <summary>
         /// Instantiate an object of type JsonSerializerOptions. Set WriteIndented property to true 
@@ -57,19 +67,6 @@ namespace CollectibleShopManager
             string jsonFileData = File.ReadAllText(jsonFilePath);
             List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
             return jsonList;
-        }
-
-        /// <summary>
-        /// Create the inventory.json file. Pass the Inventory object into a new List, serialize it into a string, 
-        /// then write the string to a new JSON file.
-        /// </summary>
-        /// <param name="filePath"> File path to create the new JSON file </param>
-        /// <param name="inventory"> New Inventory object to write to JSON file </param>
-        public void CreateNewFile(VideoGame videoGame)
-        {
-            List<VideoGame> gameToAdd = new List<VideoGame>() { videoGame };
-            string jsonData = JsonSerializer.Serialize(gameToAdd, this.GetWhiteSpaceFormatting());
-            File.WriteAllText(jsonFilePath, jsonData);
         }
 
         /// <summary>

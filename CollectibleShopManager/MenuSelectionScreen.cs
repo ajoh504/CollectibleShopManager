@@ -4,18 +4,18 @@ namespace CollectibleShopManager
 {
     internal class MenuSelectionScreen /// Defines the Inventory Selection Screen
     {
-        static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
-
         /// <summary>
         /// Specifies the inventory item for this instance of the menu screen. Use this property
         /// to print the appropriate questions to the console. For example, InventoryItem = "Video Game"
         /// will prompt the user to enter the appropriate information for that item.
         /// </summary>
         public string InventoryItem { get; private set; }
+        private JsonFileConfiguration JsonConfig { get;  set; }
 
-        public MenuSelectionScreen(string inventoryItem)
+        public MenuSelectionScreen(string inventoryItem, ref JsonFileConfiguration jsonConfig)
         {
             InventoryItem = inventoryItem;
+            JsonConfig = jsonConfig;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace CollectibleShopManager
         /// <param name="name"> Title of the Inventory object to print </param>
         private void PrintSingleInventoryObject(string name)
         {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList();
+            List<VideoGame> jsonList = JsonConfig.GetDeserializedList();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -48,7 +48,7 @@ namespace CollectibleShopManager
         }
         //private void PrintSingleInventoryObject(string name)
         //{
-        //    List<VideoGame> jsonList = jsonConfig.GetDeserializedList();
+        //    List<VideoGame> jsonList = JsonConfig.GetDeserializedList();
 
         //    foreach (var inventoryObject in jsonList)
         //    {
@@ -77,7 +77,7 @@ namespace CollectibleShopManager
         /// <param name="filePath"> File path to videogames.json </param>
         private void PrintAllInventoryObjects()
         {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList();
+            List<VideoGame> jsonList = JsonConfig.GetDeserializedList();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -173,20 +173,8 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new inventory object
                 {
-                    /// <summary>
-                    /// Check to see if the JSON file exists in the user's home directory. If it does not exist, 
-                    /// call jsonConfig.CreateNewFile() to create it. If it does exist, call jsonConfig.WriteToFile()
-                    /// to write the new VideoGame object to the JSON file. 
-                    /// </summary>
                     VideoGame inventoryObject = GetNewInventoryObject();
-                    if (!File.Exists(JsonFileConfiguration.jsonFilePath))
-                    {
-                        jsonConfig.CreateNewFile(inventoryObject);
-                    }
-                    else
-                    {
-                        jsonConfig.WriteToFile(inventoryObject);
-                    }
+                    JsonConfig.WriteToFile(inventoryObject);
                 }
 
                 else if (menuScreenChoice == "2") /// View a single game
@@ -194,27 +182,13 @@ ___________________________________
                     Console.Write("Enter the title of the game that you wish to view:\n");
                     string title = Console.ReadLine();
 
-                    if (!File.Exists(JsonFileConfiguration.jsonFilePath))
-                    {
-                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
-                    }
-                    else
-                    {
-                        Console.WriteLine("\n");
-                        PrintSingleInventoryObject(title);
-                    }
+                    Console.WriteLine("\n");
+                    PrintSingleInventoryObject(title);
                 }
 
                 else if (menuScreenChoice == "3") /// View all existing games
                 {
-                    if (!File.Exists(JsonFileConfiguration.jsonFilePath))
-                    {
-                        Console.WriteLine("JSON data not found. Add a new Video Game then try again");
-                    }
-                    else
-                    {
-                        PrintAllInventoryObjects();
-                    }
+                    PrintAllInventoryObjects();
                 }
                 else if (menuScreenChoice.ToUpper() == "B") return;
                 else if (menuScreenChoice.ToUpper() == "Q") Environment.Exit(0);
