@@ -1,7 +1,7 @@
 ﻿Short-term changes:
-- Rewrite Json file to contain all inventory types. Use Dynamic objects for the inventory class?
-- 
-- Rewrite menu screens for reusability. Goal: write a single menu screen
+- Issue 1: JsonFileConfiguration class needs to handle any inventory type. How to achieve?
+- Issue 2: MenuSelectionScreen class needs to handle any inventory type. How to achieve?
+
 - Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
