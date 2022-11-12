@@ -1,10 +1,10 @@
 ﻿Short-term changes:
+- Rewrite Json file to contain all inventory types. Use Dynamic objects for the inventory class?
 - Fix: check for Json file only once, then store the filepath as a field in the JsonFileConfiguration class
-- Rewrite Json file to contain all inventory types
+- Rewrite menu screens for reusability. Goal: write a single menu screen
 - Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
-- Rewrite menu screens for reusability. Goal: write a single menu screen
 - Create an iterator to loop over the Inventory properties?
 - Update code comments on all files. Reference the Microsoft docs for XML code
 - Add other collectible item classes, such as coin, comic book, magazine, book, stamp. 

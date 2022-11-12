@@ -4,7 +4,6 @@ namespace CollectibleShopManager
 {
     internal class MenuSelectionScreen /// Defines the Inventory Selection Screen
     {
-        static string homeDirectory = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
         static JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
 
         /// <summary>
@@ -22,11 +21,10 @@ namespace CollectibleShopManager
         /// <summary>
         /// Prints a single Inventory object to the console as specified by the user.
         /// </summary>
-        /// <param name="filePath"> Path to videogames.json </param>
         /// <param name="name"> Title of the Inventory object to print </param>
-        private void PrintSingleInventoryObject(string filePath, string name)
+        private void PrintSingleInventoryObject(string name)
         {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -44,18 +42,42 @@ namespace CollectibleShopManager
             }
             Console.WriteLine($"{name} was not found as a stored {InventoryItem}");
 
-            returnToMainMenu:
+        returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
         }
+        //private void PrintSingleInventoryObject(string name)
+        //{
+        //    List<VideoGame> jsonList = jsonConfig.GetDeserializedList();
+
+        //    foreach (var inventoryObject in jsonList)
+        //    {
+        //        if (inventoryObject.Title.ToUpper() == name.ToUpper())
+        //        {
+        //            PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
+        //            Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
+        //            for (int i = 0; i < inventoryPropertyValues.Length; i++)
+        //            {
+        //                Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
+        //            }
+        //            Console.WriteLine('\n');
+        //            goto returnToMainMenu;
+        //        }
+        //    }
+        //    Console.WriteLine($"{name} was not found as a stored {InventoryItem}");
+
+        //returnToMainMenu:
+        //    Console.WriteLine("Press enter to return to the main menu");
+        //    Console.ReadLine();
+        //}
 
         /// <summary>
         /// Print all Inventory objects and their properties to the console.
         /// </summary>
         /// <param name="filePath"> File path to videogames.json </param>
-        private void PrintAllInventoryObjects(string filePath)
+        private void PrintAllInventoryObjects()
         {
-            List<VideoGame> jsonList = jsonConfig.GetDeserializedList(filePath);
+            List<VideoGame> jsonList = jsonConfig.GetDeserializedList();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -157,13 +179,13 @@ ___________________________________
                     /// to write the new VideoGame object to the JSON file. 
                     /// </summary>
                     VideoGame inventoryObject = GetNewInventoryObject();
-                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
+                    if (!File.Exists(JsonFileConfiguration.jsonFilePath))
                     {
-                        jsonConfig.CreateNewFile($"{homeDirectory}\\videogames.json", inventoryObject);
+                        jsonConfig.CreateNewFile(inventoryObject);
                     }
                     else
                     {
-                        jsonConfig.WriteToFile($"{homeDirectory}\\videogames.json", inventoryObject);
+                        jsonConfig.WriteToFile(inventoryObject);
                     }
                 }
 
@@ -172,26 +194,26 @@ ___________________________________
                     Console.Write("Enter the title of the game that you wish to view:\n");
                     string title = Console.ReadLine();
 
-                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
+                    if (!File.Exists(JsonFileConfiguration.jsonFilePath))
                     {
                         Console.WriteLine("JSON data not found. Add a new Video Game then try again");
                     }
                     else
                     {
                         Console.WriteLine("\n");
-                        PrintSingleInventoryObject($"{homeDirectory}\\videogames.json", title);
+                        PrintSingleInventoryObject(title);
                     }
                 }
 
                 else if (menuScreenChoice == "3") /// View all existing games
                 {
-                    if (!File.Exists($"{homeDirectory}\\videogames.json"))
+                    if (!File.Exists(JsonFileConfiguration.jsonFilePath))
                     {
                         Console.WriteLine("JSON data not found. Add a new Video Game then try again");
                     }
                     else
                     {
-                        PrintAllInventoryObjects($"{homeDirectory}\\videogames.json");
+                        PrintAllInventoryObjects();
                     }
                 }
                 else if (menuScreenChoice.ToUpper() == "B") return;
