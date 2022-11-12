@@ -1,6 +1,6 @@
 ﻿Short-term changes:
 - Rewrite Json file to contain all inventory types. Use Dynamic objects for the inventory class?
-- Fix: check for Json file only once, then store the filepath as a field in the JsonFileConfiguration class
+- 
 - Rewrite menu screens for reusability. Goal: write a single menu screen
 - Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
 - Allow user to remove inventory objects from the command line.
