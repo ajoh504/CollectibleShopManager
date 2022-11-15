@@ -38,12 +38,11 @@ namespace CollectibleShopManager
         /// <summary>
         /// Read all JSON text into a string. Deserialize the string, then return the List as specified by the user
         /// </summary>
-        /// <param name="filePath"> File path to inventory.json </param>
         /// <returns> List of Inventory objects from inventory.json </returns>
-        public List<VideoGame> GetDeserializedList()
+        public List<T> GetDeserializedList<T>()
         {
             string jsonFileData = File.ReadAllText(jsonFilePath);
-            List<VideoGame> jsonList = JsonSerializer.Deserialize<List<VideoGame>>(jsonFileData);
+            List<T> jsonList = JsonSerializer.Deserialize<List<T>>(jsonFileData);
             return jsonList;
         }
 
@@ -52,12 +51,10 @@ namespace CollectibleShopManager
         /// Deserialize the string into a List of Inventory objects, append the new Inventory object to the list. Then, 
         /// re-serialize the List and save over the inventory.json file. 
         /// </summary>
-        /// <param name="filePath"> File path to inventory.json </param>
-        /// <param name="videoGame"> New Inventory object to add to the file </param>
-        public void WriteToFile(VideoGame videoGame)
+        public void WriteToFile<T>(T inventory)
         {
-            List<VideoGame> jsonList = GetDeserializedList();
-            jsonList.Add(videoGame);
+            List<T> jsonList = GetDeserializedList<T>();   
+            jsonList.Add(inventory);
 
             string serializedList = JsonSerializer.Serialize(jsonList, this.GetWhiteSpaceFormatting());
             File.WriteAllText(jsonFilePath, serializedList);

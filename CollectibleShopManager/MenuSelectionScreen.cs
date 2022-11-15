@@ -29,7 +29,7 @@ namespace CollectibleShopManager
         /// <param name="name"> Title of the Inventory object to print </param>
         private void PrintSingleInventoryObject(int ID)
         {
-            List<VideoGame> jsonList = JsonConfig.GetDeserializedList();
+            List<VideoGame> jsonList = JsonConfig.GetDeserializedList<VideoGame>();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -82,7 +82,7 @@ namespace CollectibleShopManager
         /// <param name="filePath"> File path to videogames.json </param>
         private void PrintAllInventoryObjects()
         {
-            List<VideoGame> jsonList = JsonConfig.GetDeserializedList();
+            List<VideoGame> jsonList = JsonConfig.GetDeserializedList<VideoGame>();
 
             foreach (var inventoryObject in jsonList)
             {

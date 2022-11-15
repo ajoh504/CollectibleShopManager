@@ -3,9 +3,11 @@ Issue 1:
 - JsonFileConfiguration class needs to handle any inventory type. 
 - CreateNewFile() needs to be restructured because the JSON object also needs to be restructured
 - Write a new method: private bool DoesInventoryArrayExist() to see if the type is already contained in the json file. If it does not, have another method called private void AddInventoryArrayToJson()
+- WriteToFile() must account for the restructured JSON object. 
 
 Issue 2: MenuSelectionScreen class needs to handle any inventory type. How to achieve?
 
+- Implement checks for inventory property construction, i.e. string length, integer length, etc
 - Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
