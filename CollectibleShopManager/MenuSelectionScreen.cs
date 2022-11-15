@@ -12,6 +12,11 @@ namespace CollectibleShopManager
         public string InventoryItem { get; private set; }
         private JsonFileConfiguration JsonConfig { get;  set; }
 
+        /// <summary>
+        ///  Defines the class constructor
+        /// </summary>
+        /// <param name="inventoryItem"> A string property that refers to this menu instance. </param>
+        /// <param name="jsonConfig"> Pass by reference from Program.cs </param>
         public MenuSelectionScreen(string inventoryItem, ref JsonFileConfiguration jsonConfig)
         {
             InventoryItem = inventoryItem;
