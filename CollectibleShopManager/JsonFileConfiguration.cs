@@ -18,8 +18,8 @@ namespace CollectibleShopManager
         /// </summary>
         public void CreateNewFile()
         {
-            List<object> newFile = new List<object>();
-            string jsonData = JsonSerializer.Serialize(newFile, this.GetWhiteSpaceFormatting());
+            Object emptyFile = new Object();
+            string jsonData = JsonSerializer.Serialize(emptyFile, this.GetWhiteSpaceFormatting());
             File.WriteAllText(jsonFilePath, jsonData);
         }
 
