@@ -9,12 +9,6 @@ namespace CollectibleShopManager
         /// </summary>
         static void Main(string[] args)
         {
-            /// Create the inventory.json file if it does not exist
-            JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
-            if (!File.Exists(JsonFileConfiguration.jsonFilePath))
-            {
-                jsonConfig.CreateNewFile();
-            }
             while (true)
             {
                 Console.Clear();
