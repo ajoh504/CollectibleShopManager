@@ -14,16 +14,6 @@ namespace CollectibleShopManager
         public static readonly string jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\inventory.json";
 
         /// <summary>
-        /// Create the inventory.json file. 
-        /// </summary>
-        public void CreateNewFile()
-        {
-            Object emptyFile = new Object();
-            string jsonData = JsonSerializer.Serialize(emptyFile, this.GetWhiteSpaceFormatting());
-            File.WriteAllText(jsonFilePath, jsonData);
-        }
-
-        /// <summary>
         /// Instantiate an object of type JsonSerializerOptions. Set WriteIndented property to true 
         /// in order to format any serialized / deserialized JSON data with white spaces.
         /// </summary>
@@ -33,6 +23,16 @@ namespace CollectibleShopManager
             JsonSerializerOptions jsonSettings = new JsonSerializerOptions();
             jsonSettings.WriteIndented = true;
             return jsonSettings;
+        }
+
+        /// <summary>
+        /// Create the inventory.json file. 
+        /// </summary>
+        public void CreateNewFile<T>()
+        {
+            List<T> emptyFile = new List<T>();
+            string jsonData = JsonSerializer.Serialize(emptyFile, this.GetWhiteSpaceFormatting());
+            File.WriteAllText(jsonFilePath, jsonData);
         }
 
         /// <summary>
