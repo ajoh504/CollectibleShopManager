@@ -5,25 +5,6 @@ namespace CollectibleShopManager
     internal class MenuSelectionScreen /// Defines the Inventory Selection Screen
     {
         /// <summary>
-        /// Specifies the inventory item for this instance of the menu screen. Use this property
-        /// to print the appropriate questions to the console. For example, InventoryItem = "Video Game"
-        /// will prompt the user to enter the appropriate information for that item.
-        /// </summary>
-        public string InventoryItem { get; private set; }
-        private JsonFileConfiguration JsonConfig { get;  set; }
-
-        /// <summary>
-        ///  Defines the class constructor
-        /// </summary>
-        /// <param name="inventoryItem"> A string property that refers to this menu instance. </param>
-        /// <param name="jsonConfig"> Pass by reference from Program.cs </param>
-        public MenuSelectionScreen(string inventoryItem, ref JsonFileConfiguration jsonConfig)
-        {
-            InventoryItem = inventoryItem;
-            JsonConfig = jsonConfig;
-        }
-
-        /// <summary>
         /// Prints a single Inventory object to the console as specified by the user.
         /// </summary>
         /// <param name="name"> Title of the Inventory object to print </param>
