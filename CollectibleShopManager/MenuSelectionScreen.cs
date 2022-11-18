@@ -2,8 +2,22 @@
 
 namespace CollectibleShopManager
 {
-    internal class MenuSelectionScreen /// Defines the Inventory Selection Screen
+
+    internal class MenuSelectionScreen<T> /// Defines the Inventory Selection Screen
     {
+        public JsonFileConfiguration<T> JsonConfig { get; set; } 
+
+        /// <summary>
+        ///  Class Constructor
+        /// </summary>
+        /// <param name="jsonConfig"></param>
+        public MenuSelectionScreen(ref JsonFileConfiguration<T> jsonConfig)
+        {
+            JsonConfig = jsonConfig;
+        }
+
+        string InventoryItem = "Test";
+
         /// <summary>
         /// Prints a single Inventory object to the console as specified by the user.
         /// </summary>

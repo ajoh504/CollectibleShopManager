@@ -6,12 +6,10 @@ namespace CollectibleShopManager
     /// Defines all methods for reading from and writing to the inventory.json file. This file is stored in the 
     /// user's home directory.
     /// </summary>
-    internal class JsonFileConfiguration
+    internal class JsonFileConfiguration<T>
     {
-        /// <summary>
-        /// File path to inventory.json, stored in the user's home directory.
-        /// </summary>
-        public static readonly string jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\inventory.json";
+        public T ObjectType { get { return ObjectType; } set { ObjectType = value; } }
+        public string jsonFilePath;
 
         /// <summary>
         /// Instantiate an object of type JsonSerializerOptions. Set WriteIndented property to true 
@@ -28,9 +26,9 @@ namespace CollectibleShopManager
         /// <summary>
         /// Create the inventory.json file. 
         /// </summary>
-        public void CreateNewFile<T>()
+        private void CreateNewFile<ObjectType>()
         {
-            List<T> emptyFile = new List<T>();
+            List<ObjectType> emptyFile = new List<ObjectType>();
             string jsonData = JsonSerializer.Serialize(emptyFile, this.GetWhiteSpaceFormatting());
             File.WriteAllText(jsonFilePath, jsonData);
         }
@@ -39,10 +37,10 @@ namespace CollectibleShopManager
         /// Read all JSON text into a string. Deserialize the string, then return the List as specified by the user
         /// </summary>
         /// <returns> List of Inventory objects from inventory.json </returns>
-        public List<T> GetDeserializedList<T>()
+        public List<ObjectType> GetDeserializedList<ObjectType>()
         {
             string jsonFileData = File.ReadAllText(jsonFilePath);
-            List<T> jsonList = JsonSerializer.Deserialize<List<T>>(jsonFileData);
+            List<ObjectType> jsonList = JsonSerializer.Deserialize<List<ObjectType>>(jsonFileData);
             return jsonList;
         }
 
@@ -51,9 +49,14 @@ namespace CollectibleShopManager
         /// Deserialize the string into a List of Inventory objects, append the new Inventory object to the list. Then, 
         /// re-serialize the List and save over the inventory.json file. 
         /// </summary>
-        public void WriteToFile<T>(T inventory)
+        public void WriteToFile<ObjectType>(ObjectType inventory)
         {
-            List<T> jsonList = GetDeserializedList<T>();   
+            if (!File.Exists(jsonFilePath))
+            {
+                CreateNewFile<ObjectType>();
+            }
+
+            List<ObjectType > jsonList = GetDeserializedList<ObjectType>();   
             jsonList.Add(inventory);
 
             string serializedList = JsonSerializer.Serialize(jsonList, this.GetWhiteSpaceFormatting());
