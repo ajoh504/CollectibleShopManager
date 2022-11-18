@@ -46,30 +46,6 @@ namespace CollectibleShopManager
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
         }
-        //private void PrintSingleInventoryObject(string name)
-        //{
-        //    List<VideoGame> jsonList = JsonConfig.GetDeserializedList();
-
-        //    foreach (var inventoryObject in jsonList)
-        //    {
-        //        if (inventoryObject.Title.ToUpper() == name.ToUpper())
-        //        {
-        //            PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
-        //            Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
-        //            for (int i = 0; i < inventoryPropertyValues.Length; i++)
-        //            {
-        //                Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
-        //            }
-        //            Console.WriteLine('\n');
-        //            goto returnToMainMenu;
-        //        }
-        //    }
-        //    Console.WriteLine($"{name} was not found as a stored {InventoryItem}");
-
-        //returnToMainMenu:
-        //    Console.WriteLine("Press enter to return to the main menu");
-        //    Console.ReadLine();
-        //}
 
         /// <summary>
         /// Print all Inventory objects and their properties to the console.

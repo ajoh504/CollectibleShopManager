@@ -18,16 +18,6 @@ namespace CollectibleShopManager
         public decimal Cost { get; set; }
         public decimal SellPrice { get; set; }
 
-        public bool IsPropertyFound(Inventory inventory, string property)
-        {
-            return false;
-        }
-
-        public bool IsPropertyFound(Inventory inventory, decimal property)
-        {
-            return false;
-        }
-
         /// <summary>
         /// A method that returns a collection of PropertyInfo objects from this instance of 
         /// the Inventory class.
