@@ -9,12 +9,6 @@ namespace CollectibleShopManager
         /// </summary>
         static void Main(string[] args)
         {
-            /// Create the inventory.json file if it does not exist
-            JsonFileConfiguration jsonConfig = new JsonFileConfiguration();
-            if (!File.Exists(JsonFileConfiguration.jsonFilePath))
-            {
-                jsonConfig.CreateNewFile();
-            }
             while (true)
             {
                 Console.Clear();
@@ -33,7 +27,7 @@ Quit to Desktop ................. Q
 
                 if (mainMenuChoice == "1")
                 {
-                    MenuSelectionScreen videoGameMenu = new MenuSelectionScreen("Video Game", ref jsonConfig);
+                    MenuSelectionScreen videoGameMenu = new MenuSelectionScreen();
                     videoGameMenu.Execute();
                 }
                 else if (mainMenuChoice.ToUpper() == "Q") Environment.Exit(0);
