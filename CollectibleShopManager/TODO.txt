@@ -1,11 +1,6 @@
 ﻿Short-term changes:
-Issue 4: MenuSelectionScreen class needs to handle any inventory type. How to achieve?
-
-- Implement checks for inventory property construction, i.e. string length, integer length, etc
-- Allow user to skip entering any "decimal" properties. If user skips these properties then set the default value to 0
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
-- Create an iterator to loop over the Inventory properties?
 - Update code comments on all files. Reference the Microsoft docs for XML code
 - Add other collectible item classes, such as coin, comic book, magazine, book, stamp. 
 - Refactor with different project directories / namespaces?
