@@ -3,20 +3,22 @@
 namespace CollectibleShopManager
 {
 
-    internal class MenuSelectionScreen<T> /// Defines the Inventory Selection Screen
+    internal class MenuSelectionScreen<T> where T : Inventory /// Defines the Inventory Selection Screen
     {
-        public JsonFileConfiguration<T> JsonConfig { get; set; } 
+        private JsonFileConfiguration<T> JsonConfig { get; set; } 
+        private T InventoryObject { get; set; }
+        private string InventoryMenuItem;
 
         /// <summary>
         ///  Class Constructor
         /// </summary>
         /// <param name="jsonConfig"></param>
-        public MenuSelectionScreen(ref JsonFileConfiguration<T> jsonConfig)
+        public MenuSelectionScreen(ref JsonFileConfiguration<T> jsonConfig, ref T inventoryObject, string inventoryMenuItem)
         {
             JsonConfig = jsonConfig;
+            InventoryObject = inventoryObject;
+            InventoryMenuItem = inventoryMenuItem;
         }
-
-        string InventoryItem = "Test";
 
         /// <summary>
         /// Prints a single Inventory object to the console as specified by the user.
@@ -24,7 +26,7 @@ namespace CollectibleShopManager
         /// <param name="name"> Title of the Inventory object to print </param>
         private void PrintSingleInventoryObject(int ID)
         {
-            List<VideoGame> jsonList = JsonConfig.GetDeserializedList<VideoGame>();
+            List<T> jsonList = JsonConfig.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -40,9 +42,9 @@ namespace CollectibleShopManager
                     goto returnToMainMenu;
                 }
             }
-            Console.WriteLine($"{ID} is not associate with an {InventoryItem}");
+            Console.WriteLine($"{ID} is not associate with an {InventoryMenuItem}");
 
-        returnToMainMenu:
+            returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
         }
@@ -53,7 +55,7 @@ namespace CollectibleShopManager
         /// <param name="filePath"> File path to videogames.json </param>
         private void PrintAllInventoryObjects()
         {
-            List<VideoGame> jsonList = JsonConfig.GetDeserializedList<VideoGame>();
+            List<T> jsonList = JsonConfig.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -69,66 +71,6 @@ namespace CollectibleShopManager
             Console.ReadLine();
         }
 
-        /// <summary>
-        /// Construct an Inventory object from the information supplied by the user.
-        /// </summary>
-        private VideoGame GetNewInventoryObject()
-        {
-            Console.Write("Add a title for the game or press Enter to skip\n");
-            string gameTitle = Console.ReadLine().ToUpper();
-
-            Console.Write("Add a platform for the game or press Enter to skip\n");
-            string gamePlatform = Console.ReadLine().ToUpper();
-
-            Console.WriteLine("Add an ID for the game or press Enter to skip. ID must be an integer");
-            string gameID = Console.ReadLine();
-
-            if (int.TryParse(gameID, out int gameIDAsInteger)) { }
-            else
-            {
-                Console.WriteLine("Invalid ID. Please try again.");
-            }
-
-            Console.Write("Add a part number for the game or press Enter to skip\n");
-            string gamePartNumber = Console.ReadLine().ToUpper();
-
-            Console.Write("Add a UPC for the game or press Enter to skip\n");
-            string gameUpc = Console.ReadLine();
-
-            if (int.TryParse(gameUpc, out int gameUpcAsInteger)) { }
-            else
-            {
-                Console.WriteLine($"{gameUpc} is not a valid UPC! A default value of 0 will be used.\n");
-                gameUpcAsInteger = 0;
-            }
-
-            Console.Write("Add a description for the game or press Enter to skip\n");
-            string gameDesc = Console.ReadLine().ToUpper();
-
-            Console.Write("Add a cost for the game or press Enter to skip\n");
-            string gameCost = Console.ReadLine();
-
-            if (decimal.TryParse(gameCost, out decimal gameCostAsDecimal)) { }
-            else
-            {
-                Console.WriteLine($"{gameCost} is not a valid cost! A default value of 0 will be used.\n");
-                gameCostAsDecimal = 0;
-            }
-
-            Console.Write("Add a sell price for the game or press Enter to skip\n");
-            string gamePrice = Console.ReadLine();
-
-            if (decimal.TryParse(gamePrice, out decimal gamePriceAsDecimal)) { }
-            else
-            {
-                Console.WriteLine($"{gamePrice} is not a valid sell price! A default value of 0 will be used.\n");
-                gamePriceAsDecimal = 0;
-            }
-
-            return new VideoGame(gameTitle, gamePlatform, gameIDAsInteger, gamePartNumber, gameUpcAsInteger,
-                gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
-        }
-
         public void Execute() /// Defines all logic for the menu execution flow
         {
             while (true)
@@ -136,13 +78,13 @@ namespace CollectibleShopManager
                 Console.Clear();
                 Console.WriteLine($@"___________________________________
 
-Selection: {InventoryItem} Menu Screen
+Selection: {InventoryMenuItem} Menu Screen
 Please select one of the following:
 ___________________________________");
 
-                string lineOne = $"Add a new {InventoryItem }";
-                string lineTwo = $"View a single  {InventoryItem}";
-                string lineThree = $"View all {InventoryItem}s";
+                string lineOne = $"Add a new {InventoryMenuItem }";
+                string lineTwo = $"View a single {InventoryMenuItem}";
+                string lineThree = $"View all {InventoryMenuItem}s";
                 string lineFour = "Go Back";
                 string lineFive = "Quit to Desktop";
 
@@ -158,8 +100,8 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new inventory object
                 {
-                    VideoGame inventoryObject = GetNewInventoryObject();
-                    JsonConfig.WriteToFile(inventoryObject);
+                    InventoryObject.SetPropertyValues(InventoryMenuItem);
+                    JsonConfig.WriteToFile(InventoryObject);
                 }
 
                 else if (menuScreenChoice == "2") /// View a single game

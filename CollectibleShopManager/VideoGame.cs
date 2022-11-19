@@ -5,14 +5,54 @@
     /// </summary>
     internal class VideoGame : Inventory
     {
-        public string? Title { get; set; }
-        public string? Platform { get; set; }
-        public VideoGame() { }
-        public VideoGame(string? title, string? platform, int inventoryID, string? partNumber, int upc, string? desc, decimal cost, decimal sellPrice) 
-            : base(inventoryID, partNumber, upc, desc, cost, sellPrice) // Inherited from Inventory class
+        private string? title;
+        private string? platform;
+
+        public string? Title
         {
-            Title = title;
-            Platform = platform;
+            get
+            {
+                return title;
+            }
+            set
+            {
+                if (value == null)
+                {
+                    platform = null;
+                }
+                else if (value.Length > 50)
+                {
+                    Console.WriteLine("Invalid title length. Default value set to null");
+                    title = null;
+                }
+                else
+                {
+                    title = value;
+                }
+            }
+        }
+        public string? Platform
+        {
+            get
+            {
+                return platform;
+            }
+            set
+            {
+                if(value == null)
+                {
+                    platform = null;
+                }
+                else if(value.Length > 20)
+                {
+                    Console.WriteLine("Invalid platform length. Default value set to null");
+                    platform = null;
+                }
+                else
+                {
+                    platform = value;
+                }
+            }
         }
     }
 }
