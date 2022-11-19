@@ -26,7 +26,7 @@ namespace CollectibleShopManager
         /// <param name="name"> Title of the Inventory object to print </param>
         private void PrintSingleInventoryObject(int ID)
         {
-            List<VideoGame> jsonList = JsonConfig.GetDeserializedList<VideoGame>();
+            List<T> jsonList = JsonConfig.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -44,7 +44,7 @@ namespace CollectibleShopManager
             }
             Console.WriteLine($"{ID} is not associate with an {InventoryMenuItem}");
 
-        returnToMainMenu:
+            returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
         }
@@ -55,7 +55,7 @@ namespace CollectibleShopManager
         /// <param name="filePath"> File path to videogames.json </param>
         private void PrintAllInventoryObjects()
         {
-            List<VideoGame> jsonList = JsonConfig.GetDeserializedList<VideoGame>();
+            List<T> jsonList = JsonConfig.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {
