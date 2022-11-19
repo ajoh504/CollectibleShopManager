@@ -45,7 +45,11 @@ namespace CollectibleShopManager
             }
             set
             {
-                if(PartNumber.Length > 10)
+                if(value == null)
+                {
+                    partNumber = null;
+                }
+                else if (value.Length > 10)
                 {
                     Console.WriteLine("Invalid part number length. Default value set to null");
                     partNumber = null;
@@ -65,7 +69,11 @@ namespace CollectibleShopManager
             }
             set
             {
-                if(AlternatePartNumber.Length > 14)
+                if(value == null)
+                {
+                    alternatePartNumber = null;
+                }
+                else if (value.Length > 14)
                 {
                     Console.WriteLine("Invalid alternate part number length. Default value set to null");
                     alternatePartNumber = null;
@@ -85,7 +93,11 @@ namespace CollectibleShopManager
             }
             set
             {
-                if(Description.Length > 50)
+                if(value == null)
+                {
+                    description = null;
+                }
+                else if (value.Length > 50)
                 {
                     Console.WriteLine("Invalid description length. Default value set to null");
                     description = null;
@@ -96,7 +108,6 @@ namespace CollectibleShopManager
                 }
             }
         }
-
         public decimal Cost
         {
             get
@@ -119,6 +130,51 @@ namespace CollectibleShopManager
                 sellPrice = value;
             }
         }
+
+        public void SetPropertyValues(string item)
+        {
+            List<PropertyInfo> stringProperties = this.GetGenericPropertyInfo<string>();
+            List<PropertyInfo> decimalProperties = this.GetGenericPropertyInfo<decimal>();
+            List<PropertyInfo> intProperties = this.GetGenericPropertyInfo<int>();
+
+            foreach (var prop in stringProperties)
+            {
+                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                prop.SetValue(this, value, null);
+            }
+
+            foreach (var prop in decimalProperties)
+            {
+                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                if(decimal.TryParse(value, out decimal decimalValue))
+                {
+                    prop.SetValue(this, decimalValue, null);
+                }
+                else
+                {
+                    Console.WriteLine("Value set to 0");
+                    prop.SetValue(this, 0M, null);
+                }
+            }
+
+            foreach (var prop in intProperties)
+            {
+                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                if (int.TryParse(value, out int intValue))
+                {
+                    prop.SetValue(this, intValue, null);
+                }
+                else
+                {
+                    Console.WriteLine("Value set to 0");
+                    prop.SetValue(this, 0, null);
+                }
+            }
+        }
+
 
         /// <summary>
         /// A method that returns a collection of PropertyInfo objects from this instance of 
@@ -149,20 +205,23 @@ namespace CollectibleShopManager
             return propertyValues;
         } 
 
-
-
         /// <summary>
-        /// Defines the class constructors
+        /// A method that returns a collection of PropertyInfo objects of a specified generic type T.
         /// </summary>
-        public Inventory() { }
-        public Inventory(int inventoryID, string partNumber, string alternatePartNumber, string desc, decimal cost, decimal sellPrice)
+        /// <returns> A PropertyInfo[] array of only the specified type T </returns>
+        public List<PropertyInfo> GetGenericPropertyInfo<T>()
         {
-            InventoryID = inventoryID;
-            PartNumber = partNumber;
-            AlternatePartNumber = alternatePartNumber;
-            Description = desc;
-            Cost = cost;
-            SellPrice = sellPrice;
+            PropertyInfo[] properties = this.GetPropertyInfo();
+            List<PropertyInfo> genericProperties = new List<PropertyInfo>();
+
+            foreach(var prop in properties)
+            {
+                if (prop.PropertyType == typeof(T))
+                {
+                    genericProperties.Add(prop);
+                }
+            }
+            return genericProperties;
         }
     }
 }

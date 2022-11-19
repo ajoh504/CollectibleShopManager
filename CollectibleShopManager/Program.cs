@@ -29,8 +29,8 @@ Quit to Desktop ................. Q
                 {
                     JsonFileConfiguration<VideoGame> jsonConfig = new JsonFileConfiguration<VideoGame>();
                     jsonConfig.jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\videogames.json";
-
-                    MenuSelectionScreen<VideoGame> videoGameMenu = new MenuSelectionScreen<VideoGame>(ref jsonConfig);
+                    VideoGame videoGame = new VideoGame();
+                    MenuSelectionScreen<VideoGame> videoGameMenu = new MenuSelectionScreen<VideoGame>(ref jsonConfig, ref videoGame, "Video Game");
                     videoGameMenu.Execute();
                 }
                 else if (mainMenuChoice.ToUpper() == "Q") Environment.Exit(0);
