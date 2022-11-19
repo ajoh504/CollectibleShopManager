@@ -72,61 +72,9 @@ namespace CollectibleShopManager
         /// <summary>
         /// Construct an Inventory object from the information supplied by the user.
         /// </summary>
-        private VideoGame GetNewInventoryObject()
+        private T GetNewInventoryObject()
         {
-            Console.Write("Add a title for the game or press Enter to skip\n");
-            string gameTitle = Console.ReadLine().ToUpper();
-
-            Console.Write("Add a platform for the game or press Enter to skip\n");
-            string gamePlatform = Console.ReadLine().ToUpper();
-
-            Console.WriteLine("Add an ID for the game or press Enter to skip. ID must be an integer");
-            string gameID = Console.ReadLine();
-
-            if (int.TryParse(gameID, out int gameIDAsInteger)) { }
-            else
-            {
-                Console.WriteLine("Invalid ID. Please try again.");
-            }
-
-            Console.Write("Add a part number for the game or press Enter to skip\n");
-            string gamePartNumber = Console.ReadLine().ToUpper();
-
-            Console.Write("Add a UPC for the game or press Enter to skip\n");
-            string gameUpc = Console.ReadLine();
-
-            if (int.TryParse(gameUpc, out int gameUpcAsInteger)) { }
-            else
-            {
-                Console.WriteLine($"{gameUpc} is not a valid UPC! A default value of 0 will be used.\n");
-                gameUpcAsInteger = 0;
-            }
-
-            Console.Write("Add a description for the game or press Enter to skip\n");
-            string gameDesc = Console.ReadLine().ToUpper();
-
-            Console.Write("Add a cost for the game or press Enter to skip\n");
-            string gameCost = Console.ReadLine();
-
-            if (decimal.TryParse(gameCost, out decimal gameCostAsDecimal)) { }
-            else
-            {
-                Console.WriteLine($"{gameCost} is not a valid cost! A default value of 0 will be used.\n");
-                gameCostAsDecimal = 0;
-            }
-
-            Console.Write("Add a sell price for the game or press Enter to skip\n");
-            string gamePrice = Console.ReadLine();
-
-            if (decimal.TryParse(gamePrice, out decimal gamePriceAsDecimal)) { }
-            else
-            {
-                Console.WriteLine($"{gamePrice} is not a valid sell price! A default value of 0 will be used.\n");
-                gamePriceAsDecimal = 0;
-            }
-
-            return new VideoGame(gameTitle, gamePlatform, gameIDAsInteger, gamePartNumber, gameUpcAsInteger,
-                gameDesc, gameCostAsDecimal, gamePriceAsDecimal);
+            return T;
         }
 
         public void Execute() /// Defines all logic for the menu execution flow
@@ -158,7 +106,7 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new inventory object
                 {
-                    VideoGame inventoryObject = GetNewInventoryObject();
+                    T inventoryObject = GetNewInventoryObject();
                     JsonConfig.WriteToFile(inventoryObject);
                 }
 
