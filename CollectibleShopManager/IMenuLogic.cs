@@ -8,7 +8,6 @@ namespace CollectibleShopManager
 {
     public interface IMenuLogic
     {
-        List<string> GetAllMenuQuestions();
-        void SetMenuValues(List<string> menuQuestions);
+        public void SetPropertyValues();
     }
 }
