@@ -22,13 +22,5 @@
                 }
             }
         }
-
-        public Coin() { }
-
-        public Coin(int year, int inventoryID, string partNumber, string alternatePartNumber, string desc, decimal cost, decimal sellPrice) 
-            : base(inventoryID, partNumber, alternatePartNumber, desc, cost, sellPrice) // Inherited from Inventory class
-        {
-            Year = year;
-        }
     }
 }
