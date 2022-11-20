@@ -100,7 +100,9 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new inventory object
                 {
-                    InventoryObject.SetPropertyValues(InventoryMenuItem);
+                    InventoryObject.SetIntPropertyValues(InventoryMenuItem);
+                    InventoryObject.SetStringPropertyValues(InventoryMenuItem);
+                    InventoryObject.SetDecimalPropertyValues(InventoryMenuItem);
                     JsonConfig.WriteToFile(InventoryObject);
                 }
 

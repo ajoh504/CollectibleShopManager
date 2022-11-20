@@ -131,33 +131,9 @@ namespace CollectibleShopManager
             }
         }
 
-        public void SetPropertyValues(string item)
+        public void SetIntPropertyValues(string item)
         {
-            List<PropertyInfo> stringProperties = this.GetGenericPropertyInfo<string>();
-            List<PropertyInfo> decimalProperties = this.GetGenericPropertyInfo<decimal>();
             List<PropertyInfo> intProperties = this.GetGenericPropertyInfo<int>();
-
-            foreach (var prop in stringProperties)
-            {
-                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
-                string value = Console.ReadLine();
-                prop.SetValue(this, value, null);
-            }
-
-            foreach (var prop in decimalProperties)
-            {
-                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
-                string value = Console.ReadLine();
-                if(decimal.TryParse(value, out decimal decimalValue))
-                {
-                    prop.SetValue(this, decimalValue, null);
-                }
-                else
-                {
-                    Console.WriteLine("Value set to 0");
-                    prop.SetValue(this, 0M, null);
-                }
-            }
 
             foreach (var prop in intProperties)
             {
@@ -171,6 +147,37 @@ namespace CollectibleShopManager
                 {
                     Console.WriteLine("Value set to 0");
                     prop.SetValue(this, 0, null);
+                }
+            }
+        }
+        public void SetStringPropertyValues(string item)
+        {
+            List<PropertyInfo> stringProperties = this.GetGenericPropertyInfo<string>();
+
+            foreach (var prop in stringProperties)
+            {
+                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                prop.SetValue(this, value, null);
+            }
+        }
+
+        public void SetDecimalPropertyValues(string item)
+        {
+            List<PropertyInfo> decimalProperties = this.GetGenericPropertyInfo<decimal>();
+            
+            foreach (var prop in decimalProperties)
+            {
+                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                if(decimal.TryParse(value, out decimal decimalValue))
+                {
+                    prop.SetValue(this, decimalValue, null);
+                }
+                else
+                {
+                    Console.WriteLine("Value set to 0");
+                    prop.SetValue(this, 0M, null);
                 }
             }
         }
