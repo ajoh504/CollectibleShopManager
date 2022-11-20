@@ -1,4 +1,5 @@
 ﻿Short-term changes:
+- Fix: unhandled exception when skipping "year" for the coin class
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
 - Update code comments on all files. Reference the Microsoft docs for XML code

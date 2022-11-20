@@ -2,8 +2,8 @@
 {
     internal class Coin : Inventory
     {
-        private int? year;
-        public int? Year
+        private int year;
+        public int Year
         {
             get
             {
@@ -13,8 +13,8 @@
             {
                 if (Year.ToString().Length != 4)
                 {
-                    Console.WriteLine("Invalid year. Default value set to null");
-                    year = null;
+                    Console.WriteLine("Invalid year. Default value set to 0");
+                    year = 0;
                 }
                 else
                 {
