@@ -5,9 +5,9 @@ namespace CollectibleShopManager
 
     internal class MenuSelectionScreen<T> where T : Inventory /// Defines the Inventory Selection Screen
     {
-        private JsonFileConfiguration<T> JsonConfig { get; set; } 
-        private T InventoryObject { get; set; }
-        private string InventoryMenuItem;
+        private JsonFileConfiguration<T> jsonConfig { get; set; } 
+        private T inventoryObject { get; set; }
+        private string inventoryMenuItem;
 
         /// <summary>
         ///  Class Constructor
@@ -15,9 +15,9 @@ namespace CollectibleShopManager
         /// <param name="jsonConfig"></param>
         public MenuSelectionScreen(ref JsonFileConfiguration<T> jsonConfig, ref T inventoryObject, string inventoryMenuItem)
         {
-            JsonConfig = jsonConfig;
-            InventoryObject = inventoryObject;
-            InventoryMenuItem = inventoryMenuItem;
+            this.jsonConfig = jsonConfig;
+            this.inventoryObject = inventoryObject;
+            this.inventoryMenuItem = inventoryMenuItem;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace CollectibleShopManager
         /// <param name="name"> Title of the Inventory object to print </param>
         private void PrintSingleInventoryObject(int ID)
         {
-            List<T> jsonList = JsonConfig.GetDeserializedList<T>();
+            List<T> jsonList = jsonConfig.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -42,7 +42,7 @@ namespace CollectibleShopManager
                     goto returnToMainMenu;
                 }
             }
-            Console.WriteLine($"{ID} is not associate with an {InventoryMenuItem}");
+            Console.WriteLine($"{ID} is not associate with an {inventoryMenuItem}");
 
             returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
@@ -55,7 +55,7 @@ namespace CollectibleShopManager
         /// <param name="filePath"> File path to videogames.json </param>
         private void PrintAllInventoryObjects()
         {
-            List<T> jsonList = JsonConfig.GetDeserializedList<T>();
+            List<T> jsonList = jsonConfig.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -78,13 +78,13 @@ namespace CollectibleShopManager
                 Console.Clear();
                 Console.WriteLine($@"___________________________________
 
-Selection: {InventoryMenuItem} Menu Screen
+Selection: {inventoryMenuItem} Menu Screen
 Please select one of the following:
 ___________________________________");
 
-                string lineOne = $"Add a new {InventoryMenuItem }";
-                string lineTwo = $"View a single {InventoryMenuItem}";
-                string lineThree = $"View all {InventoryMenuItem}s";
+                string lineOne = $"Add a new {inventoryMenuItem }";
+                string lineTwo = $"View a single {inventoryMenuItem}";
+                string lineThree = $"View all {inventoryMenuItem}s";
                 string lineFour = "Go Back";
                 string lineFive = "Quit to Desktop";
 
@@ -100,10 +100,10 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new inventory object
                 {
-                    InventoryObject.SetIntPropertyValues(InventoryMenuItem);
-                    InventoryObject.SetStringPropertyValues(InventoryMenuItem);
-                    InventoryObject.SetDecimalPropertyValues(InventoryMenuItem);
-                    JsonConfig.WriteToFile(InventoryObject);
+                    inventoryObject.SetIntPropertyValues(inventoryMenuItem);
+                    inventoryObject.SetStringPropertyValues(inventoryMenuItem);
+                    inventoryObject.SetDecimalPropertyValues(inventoryMenuItem);
+                    jsonConfig.WriteToFile(inventoryObject);
                 }
 
                 else if (menuScreenChoice == "2") /// View a single game
