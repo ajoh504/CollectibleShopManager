@@ -10,7 +10,7 @@ namespace CollectibleShopManager
     /// Provides a base class to inherit from. Any inventory item with unique or special properties
     /// cam inherit from the Inventory class. 
     /// </remarks>
-    internal class Inventory : ISettableProperties
+    internal class Inventory
     {
         /// <summary>
         /// Defines all private fields
@@ -130,71 +130,6 @@ namespace CollectibleShopManager
                 sellPrice = value;
             }
         }
-
-        /// <summary>
-        /// A method for setting any inventory properties of type int
-        /// </summary>
-        /// <param name="item"> A string to print to the console for the user's selection </param>
-        public void SetIntPropertyValues(string item)
-        {
-            List<PropertyInfo> intProperties = this.GetGenericPropertyInfo<int>();
-
-            foreach (var prop in intProperties)
-            {
-                Console.WriteLine($"Add:b {prop.Name} for the {item} or press enter to skip");
-                string value = Console.ReadLine();
-                if (int.TryParse(value, out int intValue))
-                {
-                    prop.SetValue(this, intValue, null);
-                }
-                else
-                {
-                    Console.WriteLine("Value set to 0");
-                    prop.SetValue(this, 0, null);
-                }
-            }
-        }
-
-        /// <summary>
-        /// A method for setting any inventory properties of type string
-        /// </summary>
-        /// <param name="item"> A string to print to the console for the user's selection </param>
-        public void SetStringPropertyValues(string item)
-        {
-            List<PropertyInfo> stringProperties = this.GetGenericPropertyInfo<string>();
-
-            foreach (var prop in stringProperties)
-            {
-                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
-                string value = Console.ReadLine();
-                prop.SetValue(this, value, null);
-            }
-        }
-
-        /// <summary>
-        /// A method for setting any inventory properties of type decimal
-        /// </summary>
-        /// <param name="item"> A string to print to the console for the user's selection </param>
-        public void SetDecimalPropertyValues(string item)
-        {
-            List<PropertyInfo> decimalProperties = this.GetGenericPropertyInfo<decimal>();
-            
-            foreach (var prop in decimalProperties)
-            {
-                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
-                string value = Console.ReadLine();
-                if(decimal.TryParse(value, out decimal decimalValue))
-                {
-                    prop.SetValue(this, decimalValue, null);
-                }
-                else
-                {
-                    Console.WriteLine("Value set to 0");
-                    prop.SetValue(this, 0M, null);
-                }
-            }
-        }
-
 
         /// <summary>
         /// A method that returns a collection of PropertyInfo objects from this instance of the Inventory class.
