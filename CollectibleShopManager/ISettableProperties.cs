@@ -9,10 +9,10 @@ namespace CollectibleShopManager
     /// <summary>
     /// Interface methods for setting object property values from the console menu screen.
     /// </summary>
-    public interface IMenuLogic
+    public interface ISettableProperties
     {
-        public void SetIntPropertyValues();
-        public void SetStringPropertyValues();
-        public void SetDecimalPropertyValues();
+        public void SetIntPropertyValues(string item);
+        public void SetStringPropertyValues(string item);
+        public void SetDecimalPropertyValues(string item);
     }
 }

@@ -4,13 +4,13 @@ using System.Reflection;
 namespace CollectibleShopManager
 {
     /// <summary>
-    /// Defines a generic inventory item with no special properties. 
+    /// Defines a generic inventory item. 
     /// </summary>
     /// <remarks>
     /// Provides a base class to inherit from. Any inventory item with unique or special properties
     /// cam inherit from the Inventory class. 
     /// </remarks>
-    internal class Inventory
+    internal class Inventory : ISettableProperties
     {
         /// <summary>
         /// Defines all private fields
@@ -23,7 +23,7 @@ namespace CollectibleShopManager
         private decimal sellPrice;
 
         /// <summary>
-        /// Defines all property setters. 
+        /// Defines all public properties.
         /// </summary>
         public int InventoryID
         {
