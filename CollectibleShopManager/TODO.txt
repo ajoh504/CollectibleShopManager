@@ -1,9 +1,11 @@
-﻿Short-term changes:
-- Fix: unhandled exception when skipping "year" for the coin class
+﻿Fixes: 
+- unhandled exception when skipping "year" for the coin class
+
+Short-term changes:
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
 - Update code comments on all files. Reference the Microsoft docs for XML code
-- Add other collectible item classes, such as coin, comic book, magazine, book, stamp. 
+- Add other collectible item classes, such as comic book, magazine, book, stamp. 
 - Refactor with different project directories / namespaces?
 - Add an invoice class.
 - Add a DateStamp class for invoices 
@@ -13,7 +15,6 @@
 
 Long-term changes:
 - Rewrite to use SQL database
-- Create GUI
 - Create HTTP endpoints for client / server communication
 - Work with HTTP error codes to inform user if data is invalid
 - Write code to account for SQL injections

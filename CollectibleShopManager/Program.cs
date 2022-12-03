@@ -9,10 +9,15 @@ namespace CollectibleShopManager
         /// </summary>
         static void Main(string[] args)
         {
+            // Create the main program directory in the user's home directory.
+            string mainDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\CollectibleShopManager";
+            Directory.CreateDirectory(mainDir);
+
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(@"____________________________________________________
+                Console.WriteLine(@"
+____________________________________________________
 
 This utility can be used to store your collectibles. 
 Please select one of the following:
@@ -29,7 +34,7 @@ Quit to Desktop ................. Q
                 if(mainMenuChoice == "1")
                 {
                     JsonFileConfiguration<Inventory> jsonConfig = new JsonFileConfiguration<Inventory>();
-                    jsonConfig.jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\inventory.json";
+                    jsonConfig.JsonFilePath = $"{mainDir}\\inventory.json";
                     Inventory inventory = new Inventory();
                     MenuSelectionScreen<Inventory> inventoryMenu = new MenuSelectionScreen<Inventory>(ref jsonConfig, ref inventory, "Inventory Item");
                     inventoryMenu.Execute();
@@ -37,7 +42,7 @@ Quit to Desktop ................. Q
                 else if (mainMenuChoice == "2")
                 {
                     JsonFileConfiguration<VideoGame> jsonConfig = new JsonFileConfiguration<VideoGame>();
-                    jsonConfig.jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\videogames.json";
+                    jsonConfig.JsonFilePath = $"{mainDir}\\videogames.json";
                     VideoGame videoGame = new VideoGame();
                     MenuSelectionScreen<VideoGame> videoGameMenu = new MenuSelectionScreen<VideoGame>(ref jsonConfig, ref videoGame, "Video Game");
                     videoGameMenu.Execute();
@@ -45,7 +50,7 @@ Quit to Desktop ................. Q
                 else if(mainMenuChoice == "3")
                 {
                     JsonFileConfiguration<Coin> jsonConfig = new JsonFileConfiguration<Coin>();
-                    jsonConfig.jsonFilePath = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\coins.json";
+                    jsonConfig.JsonFilePath = $"{mainDir}\\coins.json";
                     Coin coin = new Coin();
                     MenuSelectionScreen<Coin> coinMenu = new MenuSelectionScreen<Coin>(ref jsonConfig, ref coin, "Coin");
                     coinMenu.Execute();
