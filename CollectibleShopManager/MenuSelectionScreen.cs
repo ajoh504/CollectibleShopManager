@@ -72,6 +72,70 @@ namespace CollectibleShopManager
             Console.ReadLine();
         }
 
+        /// <summary>
+        /// A method for setting any inventory properties of type int
+        /// </summary>
+        /// <param name="item"> A string to print to the console for the user's selection </param>
+        private void SetIntPropertyValues(string item)
+        {
+            List<PropertyInfo> intProperties = inventoryObject.GetGenericPropertyInfo<int>();
+
+            foreach (var prop in intProperties)
+            {
+                Console.WriteLine($"Add:b {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                if (int.TryParse(value, out int intValue))
+                {
+                    prop.SetValue(inventoryObject, intValue, null);
+                }
+                else
+                {
+                    Console.WriteLine("Value set to 0");
+                    prop.SetValue(inventoryObject, 0, null);
+                }
+            }
+        }
+
+        /// <summary>
+        /// A method for setting any inventory properties of type string
+        /// </summary>
+        /// <param name="item"> A string to print to the console for the user's selection </param>
+        private void SetStringPropertyValues(string item)
+        {
+            List<PropertyInfo> stringProperties = inventoryObject.GetGenericPropertyInfo<string>();
+
+            foreach (var prop in stringProperties)
+            {
+                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                prop.SetValue(inventoryObject, value, null);
+            }
+        }
+
+        /// <summary>
+        /// A method for setting any inventory properties of type decimal
+        /// </summary>
+        /// <param name="item"> A string to print to the console for the user's selection </param>
+        private void SetDecimalPropertyValues(string item)
+        {
+            List<PropertyInfo> decimalProperties = inventoryObject.GetGenericPropertyInfo<decimal>();
+
+            foreach (var prop in decimalProperties)
+            {
+                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                string value = Console.ReadLine();
+                if (decimal.TryParse(value, out decimal decimalValue))
+                {
+                    prop.SetValue(inventoryObject, decimalValue, null);
+                }
+                else
+                {
+                    Console.WriteLine("Value set to 0");
+                    prop.SetValue(inventoryObject, 0M, null);
+                }
+            }
+        }
+
         public void Execute() /// Defines all logic for the menu execution flow
         {
             while (true)
@@ -102,9 +166,9 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new T inventory object
                 {
-                    inventoryObject.SetIntPropertyValues(inventoryMenuItem);
-                    inventoryObject.SetStringPropertyValues(inventoryMenuItem);
-                    inventoryObject.SetDecimalPropertyValues(inventoryMenuItem);
+                    SetIntPropertyValues(inventoryMenuItem);
+                    SetStringPropertyValues(inventoryMenuItem);
+                    SetDecimalPropertyValues(inventoryMenuItem);
                     jsonConfig.WriteToFile(inventoryObject);
                 }
 
