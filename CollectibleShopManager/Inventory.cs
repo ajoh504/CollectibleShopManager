@@ -131,13 +131,17 @@ namespace CollectibleShopManager
             }
         }
 
+        /// <summary>
+        /// A method for setting any inventory properties of type int
+        /// </summary>
+        /// <param name="item"> A string to print to the console for the user's selection </param>
         public void SetIntPropertyValues(string item)
         {
             List<PropertyInfo> intProperties = this.GetGenericPropertyInfo<int>();
 
             foreach (var prop in intProperties)
             {
-                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                Console.WriteLine($"Add:b {prop.Name} for the {item} or press enter to skip");
                 string value = Console.ReadLine();
                 if (int.TryParse(value, out int intValue))
                 {
@@ -150,6 +154,11 @@ namespace CollectibleShopManager
                 }
             }
         }
+
+        /// <summary>
+        /// A method for setting any inventory properties of type string
+        /// </summary>
+        /// <param name="item"> A string to print to the console for the user's selection </param>
         public void SetStringPropertyValues(string item)
         {
             List<PropertyInfo> stringProperties = this.GetGenericPropertyInfo<string>();
@@ -162,6 +171,10 @@ namespace CollectibleShopManager
             }
         }
 
+        /// <summary>
+        /// A method for setting any inventory properties of type decimal
+        /// </summary>
+        /// <param name="item"> A string to print to the console for the user's selection </param>
         public void SetDecimalPropertyValues(string item)
         {
             List<PropertyInfo> decimalProperties = this.GetGenericPropertyInfo<decimal>();
@@ -184,9 +197,12 @@ namespace CollectibleShopManager
 
 
         /// <summary>
-        /// A method that returns a collection of PropertyInfo objects from this instance of 
-        /// the Inventory class.
+        /// A method that returns a collection of PropertyInfo objects from this instance of the Inventory class.
         /// </summary>
+        /// <remarks>
+        /// This method is used to print object properties to the console so that the user can view information
+        /// about their inventory, or add a new inventory item.
+        /// </remarks>
         /// <returns> A PropertyInfo[] array with all the properties from this instance. </returns>
         public PropertyInfo[] GetPropertyInfo()
         {
@@ -196,9 +212,12 @@ namespace CollectibleShopManager
         }
 
         /// <summary>
-        /// A method that returns a collection of property values from this instance of 
-        /// the Inventory class.
+        /// A method that returns a collection of property values from this instance of the Inventory class.
         /// </summary>
+        /// <remarks>
+        /// This method is specific to retrieving the property values of a given object. The primary purpose
+        /// is to print the current values to the console for the user to see. 
+        /// </remarks>
         /// <returns> An Object[] array containing all property values from this instance. </returns>
         public Object[] GetPropertyValues()
         {
@@ -215,6 +234,9 @@ namespace CollectibleShopManager
         /// <summary>
         /// A method that returns a collection of PropertyInfo objects of a specified generic type T.
         /// </summary>
+        /// <remarks>
+        /// This helper method allows the user to set inventory properties of varying types.
+        /// </remarks>
         /// <returns> A PropertyInfo[] array of only the specified type T </returns>
         public List<PropertyInfo> GetGenericPropertyInfo<T>()
         {

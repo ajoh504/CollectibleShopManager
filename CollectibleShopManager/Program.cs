@@ -24,7 +24,7 @@ Please select one of the following:
 ____________________________________________________");
 
                 Console.Write(@"
-Inventory Menu Screen ........... 1
+Standard Item Menu Screen ....... 1
 Video Game Menu Screen .......... 2
 Coin Menu Screen ................ 3
 Quit to Desktop ................. Q
@@ -36,7 +36,7 @@ Quit to Desktop ................. Q
                     JsonFileConfiguration<Inventory> jsonConfig = new JsonFileConfiguration<Inventory>();
                     jsonConfig.JsonFilePath = $"{mainDir}\\inventory.json";
                     Inventory inventory = new Inventory();
-                    MenuSelectionScreen<Inventory> inventoryMenu = new MenuSelectionScreen<Inventory>(ref jsonConfig, ref inventory, "Inventory Item");
+                    MenuSelectionScreen<Inventory> inventoryMenu = new MenuSelectionScreen<Inventory>(ref jsonConfig, ref inventory, "Standard Item");
                     inventoryMenu.Execute();
                 }
                 else if (mainMenuChoice == "2")

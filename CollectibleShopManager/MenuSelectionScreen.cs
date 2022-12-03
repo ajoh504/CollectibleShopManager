@@ -84,9 +84,9 @@ Selection: {inventoryMenuItem} Menu Screen
 Please select one of the following:
 ___________________________________");
 
-                string lineOne = $"Add a new {inventoryMenuItem }";
-                string lineTwo = $"View a single {inventoryMenuItem}";
-                string lineThree = $"View all {inventoryMenuItem}s";
+                string lineOne = $"Add a New {inventoryMenuItem }";
+                string lineTwo = $"View a Single {inventoryMenuItem}";
+                string lineThree = $"View All {inventoryMenuItem}s";
                 string lineFour = "Go Back";
                 string lineFive = "Quit to Desktop";
 

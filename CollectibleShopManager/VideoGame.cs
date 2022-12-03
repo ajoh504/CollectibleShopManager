@@ -53,6 +53,7 @@
                     platform = value;
                 }
             }
-        }
+        }1
+
     }
 }
