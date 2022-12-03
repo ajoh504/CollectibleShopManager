@@ -100,7 +100,7 @@ ___________________________________
 ");
 
                 string menuScreenChoice = Console.ReadLine();
-                if (menuScreenChoice == "1") /// Add a new inventory object
+                if (menuScreenChoice == "1") /// Add a new T inventory object
                 {
                     inventoryObject.SetIntPropertyValues(inventoryMenuItem);
                     inventoryObject.SetStringPropertyValues(inventoryMenuItem);
@@ -108,7 +108,7 @@ ___________________________________
                     jsonConfig.WriteToFile(inventoryObject);
                 }
 
-                else if (menuScreenChoice == "2") /// View a single inventory object
+                else if (menuScreenChoice == "2") /// View a single T inventory object
                 {
                     Console.Write("Enter the ID of the game that you wish to view:\n");
                     string ID = Console.ReadLine();
@@ -120,7 +120,7 @@ ___________________________________
                     else Console.WriteLine($"{ID} is invalid");
                 }
 
-                else if (menuScreenChoice == "3") /// View all existing inventory object
+                else if (menuScreenChoice == "3") /// View all existing T inventory objects
                 {
                     PrintAllInventoryObjects();
                 }
