@@ -13,14 +13,8 @@ namespace CollectibleShopManager
         private string jsonFilePath;
         public string JsonFilePath
         {
-            get
-            {
-                return jsonFilePath;
-            }
-            set
-            {
-                jsonFilePath = value;
-            }
+            get { return jsonFilePath; } 
+            set { jsonFilePath = value; }
         }
 
         private JsonSerializerOptions GetWhiteSpaceFormatting()
