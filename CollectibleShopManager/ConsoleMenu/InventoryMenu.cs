@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using CollectibleShopManager.Items;
 
-namespace CollectibleShopManager.ConsoleMenus
+namespace CollectibleShopManager.ConsoleMenu
 {
 
     internal class InventoryMenu<T> where T : Inventory /// Defines the Inventory Selection Screen

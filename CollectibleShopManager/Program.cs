@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using CollectibleShopManager.ConsoleMenus;
+using CollectibleShopManager.ConsoleMenu;
 using CollectibleShopManager.Items;
 
 namespace CollectibleShopManager

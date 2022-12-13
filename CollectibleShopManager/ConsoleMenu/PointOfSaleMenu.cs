@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CollectibleShopManager.ConsoleMenus
+namespace CollectibleShopManager.ConsoleMenu
 {
     internal class PointOfSaleMenu
     {
