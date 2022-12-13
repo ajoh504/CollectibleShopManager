@@ -27,22 +27,13 @@ namespace CollectibleShopManager
         /// </summary>
         public int InventoryID
         {
-            get
-            {
-                return inventoryId;
-            }
-            set
-            {
-                inventoryId = value;
-            }
+            get { return inventoryId; } 
+            set { inventoryId = value; }
         }
 
         public string? PartNumber
         {
-            get
-            {
-                return partNumber;
-            }
+            get { return partNumber; }
             set
             {
                 if(value == null)
@@ -63,10 +54,7 @@ namespace CollectibleShopManager
 
         public string? AlternatePartNumber
         {
-            get
-            {
-                return alternatePartNumber;
-            }
+            get { return alternatePartNumber; }
             set
             {
                 if(value == null)
@@ -87,10 +75,7 @@ namespace CollectibleShopManager
 
         public string? Description
         {
-            get
-            {
-                return description;
-            }
+            get { return description; }
             set
             {
                 if(value == null)
@@ -110,25 +95,13 @@ namespace CollectibleShopManager
         }
         public decimal Cost
         {
-            get
-            {
-                return cost;
-            }
-            set
-            {
-                cost = value;
-            }
+            get { return cost; }
+            set { cost = value; }
         }
         public decimal SellPrice
         {
-            get
-            {
-                return sellPrice;
-            }
-            set
-            {
-                sellPrice = value;
-            }
+            get { return sellPrice; }
+            set { sellPrice = value; }
         }
 
         /// <summary>
