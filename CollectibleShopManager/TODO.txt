@@ -1,12 +1,13 @@
 ﻿Fixes: 
 - Print character length limitations to the console
-- Error when trying to access a json file before it was created
+- Fix: error when trying to access a json file before it was created
+- Refactor entire namespace / solution name
+- Refactor Console Menus
 
 Short-term changes:
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
-- Add other collectible item classes, such as comic book, magazine, book, stamp. 
-- Refactor with different project directories / namespaces?
+- Add other collectible item classes 
 - Add an invoice class.
 - Add a DateStamp class for invoices 
 - Add a DateStamp class for changes to inventory items, such as sale price or cost
@@ -18,8 +19,3 @@ Long-term changes:
 - Create HTTP endpoints for client / server communication
 - Work with HTTP error codes to inform user if data is invalid
 - Write code to account for SQL injections
-- Create fullstack web application for an online storefront
-- Create task to back up the database
-- Allow for Excel import to allow user to rewrite to database?
-- Decide on public APIs for integration: ebay, Amazon, Facebook Marketplace, Newegg? Any online retail site that will allow the
-user to gather sales data for storage and tracking purposes
