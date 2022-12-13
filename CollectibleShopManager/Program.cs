@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using CollectibleShopManager.ConsoleMenus;
 
 namespace CollectibleShopManager
 {
@@ -36,7 +37,7 @@ Quit to Desktop ................. Q
                     JsonFileConfiguration<Inventory> jsonConfig = new JsonFileConfiguration<Inventory>();
                     jsonConfig.JsonFilePath = $"{mainDir}\\inventory.json";
                     Inventory inventory = new Inventory();
-                    MenuSelectionScreen<Inventory> inventoryMenu = new MenuSelectionScreen<Inventory>(ref jsonConfig, ref inventory, "Standard Item");
+                    InventoryMenu<Inventory> inventoryMenu = new InventoryMenu<Inventory>(ref jsonConfig, ref inventory, "Standard Item");
                     inventoryMenu.Execute();
                 }
                 else if (mainMenuChoice == "2")
@@ -44,7 +45,7 @@ Quit to Desktop ................. Q
                     JsonFileConfiguration<VideoGame> jsonConfig = new JsonFileConfiguration<VideoGame>();
                     jsonConfig.JsonFilePath = $"{mainDir}\\videogames.json";
                     VideoGame videoGame = new VideoGame();
-                    MenuSelectionScreen<VideoGame> videoGameMenu = new MenuSelectionScreen<VideoGame>(ref jsonConfig, ref videoGame, "Video Game");
+                    InventoryMenu<VideoGame> videoGameMenu = new InventoryMenu<VideoGame>(ref jsonConfig, ref videoGame, "Video Game");
                     videoGameMenu.Execute();
                 }
                 else if(mainMenuChoice == "3")
@@ -52,7 +53,7 @@ Quit to Desktop ................. Q
                     JsonFileConfiguration<Coin> jsonConfig = new JsonFileConfiguration<Coin>();
                     jsonConfig.JsonFilePath = $"{mainDir}\\coins.json";
                     Coin coin = new Coin();
-                    MenuSelectionScreen<Coin> coinMenu = new MenuSelectionScreen<Coin>(ref jsonConfig, ref coin, "Coin");
+                    InventoryMenu<Coin> coinMenu = new InventoryMenu<Coin>(ref jsonConfig, ref coin, "Coin");
                     coinMenu.Execute();
                 }
                 else if (mainMenuChoice.ToUpper() == "Q") Environment.Exit(0);

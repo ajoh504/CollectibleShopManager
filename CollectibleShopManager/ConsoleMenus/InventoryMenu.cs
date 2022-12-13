@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 
-namespace CollectibleShopManager
+namespace CollectibleShopManager.ConsoleMenus
 {
 
-    internal class MenuSelectionScreen<T> where T : Inventory /// Defines the Inventory Selection Screen
+    internal class InventoryMenu<T> where T : Inventory /// Defines the Inventory Selection Screen
     {
         private JsonFileConfiguration<T> jsonConfig;
         private T inventoryObject;
@@ -15,7 +15,7 @@ namespace CollectibleShopManager
         /// <param name="jsonConfig"> An object to read from and write to any inventory JSON files </param>
         /// <param name="inventoryObject"> The inventory type that defines this instance of the menu screen </param>
         /// <param name="inventoryMenuItem"> A string that determines what to print to the console for the user's selection </param>
-        public MenuSelectionScreen(ref JsonFileConfiguration<T> jsonConfig, ref T inventoryObject, string inventoryMenuItem)
+        public InventoryMenu(ref JsonFileConfiguration<T> jsonConfig, ref T inventoryObject, string inventoryMenuItem)
         {
             this.jsonConfig = jsonConfig;
             this.inventoryObject = inventoryObject;
@@ -35,7 +35,7 @@ namespace CollectibleShopManager
                 if (inventoryObject.InventoryID == ID)
                 {
                     PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
-                    Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
+                    object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
                     for (int i = 0; i < inventoryPropertyValues.Length; i++)
                     {
                         Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
@@ -46,7 +46,7 @@ namespace CollectibleShopManager
             }
             Console.WriteLine($"{ID} is not associated with an {inventoryMenuItem}");
 
-            returnToMainMenu:
+        returnToMainMenu:
             Console.WriteLine("Press enter to return to the main menu");
             Console.ReadLine();
         }
@@ -61,7 +61,7 @@ namespace CollectibleShopManager
             foreach (var inventoryObject in jsonList)
             {
                 PropertyInfo[] inventoryPropertyInfo = inventoryObject.GetPropertyInfo();
-                Object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
+                object[] inventoryPropertyValues = inventoryObject.GetPropertyValues();
                 for (int i = 0; i < inventoryPropertyValues.Length; i++)
                 {
                     Console.WriteLine($"{inventoryPropertyInfo[i].Name}: {inventoryPropertyValues[i]}");
@@ -148,7 +148,7 @@ Selection: {inventoryMenuItem} Menu Screen
 Please select one of the following:
 ___________________________________");
 
-                string lineOne = $"Add a New {inventoryMenuItem }";
+                string lineOne = $"Add a New {inventoryMenuItem}";
                 string lineTwo = $"View a Single {inventoryMenuItem}";
                 string lineThree = $"View All {inventoryMenuItem}s";
                 string lineFour = "Go Back";

@@ -1,6 +1,6 @@
 ﻿Fixes: 
-- unhandled exception when skipping "year" for the coin class
 - Print character length limitations to the console
+- Error when trying to access a json file before it was created
 
 Short-term changes:
 - Allow user to remove inventory objects from the command line.
