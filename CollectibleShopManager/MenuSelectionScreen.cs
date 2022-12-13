@@ -82,7 +82,7 @@ namespace CollectibleShopManager
 
             foreach (var prop in intProperties)
             {
-                Console.WriteLine($"Add:b {prop.Name} for the {item} or press enter to skip");
+                Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
                 string value = Console.ReadLine();
                 if (int.TryParse(value, out int intValue))
                 {
@@ -106,7 +106,7 @@ namespace CollectibleShopManager
 
             foreach (var prop in stringProperties)
             {
-                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
                 string value = Console.ReadLine();
                 prop.SetValue(inventoryObject, value, null);
             }
@@ -122,7 +122,7 @@ namespace CollectibleShopManager
 
             foreach (var prop in decimalProperties)
             {
-                Console.WriteLine($"Add a {prop.Name} for the {item} or press enter to skip");
+                Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
                 string value = Console.ReadLine();
                 if (decimal.TryParse(value, out decimal decimalValue))
                 {
