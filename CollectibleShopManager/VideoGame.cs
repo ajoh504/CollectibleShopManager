@@ -10,10 +10,7 @@
 
         public string? Title
         {
-            get
-            {
-                return title;
-            }
+            get { return title; } 
             set
             {
                 if (value == null)
@@ -33,10 +30,7 @@
         }
         public string? Platform
         {
-            get
-            {
-                return platform;
-            }
+            get { return platform; }
             set
             {
                 if(value == null)
