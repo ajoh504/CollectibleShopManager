@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using CollectibleShopManager.Items;
 
 namespace CollectibleShopManager
 {

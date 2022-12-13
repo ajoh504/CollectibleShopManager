@@ -1,4 +1,4 @@
-﻿namespace CollectibleShopManager
+﻿namespace CollectibleShopManager.Items
 {
     internal class Coin : Inventory
     {

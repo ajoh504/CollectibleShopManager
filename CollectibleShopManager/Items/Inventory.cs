@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 
-namespace CollectibleShopManager
+namespace CollectibleShopManager.Items
 {
     /// <summary>
     /// Defines a generic inventory item. 
@@ -27,7 +27,7 @@ namespace CollectibleShopManager
         /// </summary>
         public int InventoryID
         {
-            get { return inventoryId; } 
+            get { return inventoryId; }
             set { inventoryId = value; }
         }
 
@@ -36,7 +36,7 @@ namespace CollectibleShopManager
             get { return partNumber; }
             set
             {
-                if(value == null)
+                if (value == null)
                 {
                     partNumber = null;
                 }
@@ -57,7 +57,7 @@ namespace CollectibleShopManager
             get { return alternatePartNumber; }
             set
             {
-                if(value == null)
+                if (value == null)
                 {
                     alternatePartNumber = null;
                 }
@@ -78,7 +78,7 @@ namespace CollectibleShopManager
             get { return description; }
             set
             {
-                if(value == null)
+                if (value == null)
                 {
                     description = null;
                 }
@@ -114,7 +114,7 @@ namespace CollectibleShopManager
         /// <returns> A PropertyInfo[] array with all the properties from this instance. </returns>
         public PropertyInfo[] GetPropertyInfo()
         {
-            Type t = this.GetType();
+            Type t = GetType();
             PropertyInfo[] properties = t.GetProperties();
             return properties;
         }
@@ -127,17 +127,17 @@ namespace CollectibleShopManager
         /// is to print the current values to the console for the user to see. 
         /// </remarks>
         /// <returns> An Object[] array containing all property values from this instance. </returns>
-        public Object[] GetPropertyValues()
+        public object[] GetPropertyValues()
         {
-            PropertyInfo[] properties = this.GetPropertyInfo();
-            Object[] propertyValues = new object[properties.Length];
+            PropertyInfo[] properties = GetPropertyInfo();
+            object[] propertyValues = new object[properties.Length];
 
             for (int i = 0; i < propertyValues.Length; i++)
             {
                 propertyValues[i] = properties[i].GetValue(this);
             }
             return propertyValues;
-        } 
+        }
 
         /// <summary>
         /// A method that returns a collection of PropertyInfo objects of a specified generic type T.
@@ -148,10 +148,10 @@ namespace CollectibleShopManager
         /// <returns> A PropertyInfo[] array of only the specified type T </returns>
         public List<PropertyInfo> GetGenericPropertyInfo<T>()
         {
-            PropertyInfo[] properties = this.GetPropertyInfo();
+            PropertyInfo[] properties = GetPropertyInfo();
             List<PropertyInfo> genericProperties = new List<PropertyInfo>();
 
-            foreach(var prop in properties)
+            foreach (var prop in properties)
             {
                 if (prop.PropertyType == typeof(T))
                 {
