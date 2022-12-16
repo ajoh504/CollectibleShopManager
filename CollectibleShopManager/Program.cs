@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
-using GameGrubber.ConsoleMenu;
-using GameGrubber.Items;
+using CollectibleShopManager.ConsoleMenu;
+using CollectibleShopManager.Items;
 
-namespace GameGrubber
+namespace CollectibleShopManager
 {
     internal class Program
     {
@@ -12,7 +12,7 @@ namespace GameGrubber
         static void Main(string[] args)
         {
             // Create the main program directory in the user's home directory.
-            string mainDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\GameGrubber";
+            string mainDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\\CollectibleShopManager";
             Directory.CreateDirectory(mainDir);
 
             while (true)

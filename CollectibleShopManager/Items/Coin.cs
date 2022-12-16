@@ -1,4 +1,4 @@
-﻿namespace GameGrubber.Items
+﻿namespace CollectibleShopManager.Items
 {
     internal class Coin : Inventory
     {
