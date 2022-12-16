@@ -1,13 +1,13 @@
 ﻿Fixes: 
 - Print character length limitations to the console
 - Fix: error when trying to access a json file before it was created
-- Refactor entire namespace / solution name
-- Refactor Console Menus
+- Fix: Console does not show newly created items
+- Fix: Console does not print object properties
 
 Short-term changes:
 - Allow user to remove inventory objects from the command line.
 - Allow user to edit individual properties
-- Add other collectible item classes 
+- Add other item classes 
 - Add an invoice class.
 - Add a DateStamp class for invoices 
 - Add a DateStamp class for changes to inventory items, such as sale price or cost

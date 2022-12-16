@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace GameGrubber.ConsoleMenu
 {
-    internal class PointOfSaleMenu
+    internal class PointOfSaleSelectionMenu
     {
+        public static void Execute()
+        {
+
+        }
     }
 }
