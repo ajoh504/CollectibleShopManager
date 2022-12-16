@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GameGrubber.ConsoleMenu
 {
-    internal class SetterHelper<T> where T : Inventory
+    internal static class SetterHelper<T> where T : Inventory
     {
         /// <summary>
         /// A method for setting any inventory properties of type int
