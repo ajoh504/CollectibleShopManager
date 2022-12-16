@@ -1,4 +1,4 @@
-﻿namespace CollectibleShopManager.Items
+﻿namespace GameGrubber.Items
 {
     /// <summary>
     /// Defines a Video Game inventory item. This class inherits from the Inventory base class.

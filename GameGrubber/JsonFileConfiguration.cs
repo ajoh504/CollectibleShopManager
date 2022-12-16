@@ -1,13 +1,13 @@
 ﻿using System.Text.Json;
-using CollectibleShopManager.Items;
+using GameGrubber.Items;
 
-namespace CollectibleShopManager
+namespace GameGrubber
 {
     /// <summary>
     /// Defines all methods for reading from and writing to the inventory JSON files. 
     /// </summary>
     /// <remarks>
-    /// Each collectible item has its own JSON file. The files are stored in the following location: %USERPROFILE%\CollectibleShopManager
+    /// Each collectible item has its own JSON file. The files are stored in the following location: %USERPROFILE%\GameGrubber
     /// </remarks>
     internal class JsonFileConfiguration<T> where T : Inventory
     {
