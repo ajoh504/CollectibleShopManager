@@ -28,7 +28,6 @@ ____________________________________________________");
                 Console.Write(@"
 Standard Item Menu Screen ....... 1
 Video Game Menu Screen .......... 2
-Coin Menu Screen ................ 3
 Quit to Desktop ................. Q
 ");
 
@@ -48,14 +47,6 @@ Quit to Desktop ................. Q
                     VideoGame videoGame = new VideoGame();
                     InventoryMenu<VideoGame> videoGameMenu = new InventoryMenu<VideoGame>(ref jsonConfig, ref videoGame, "Video Game");
                     videoGameMenu.Execute();
-                }
-                else if(mainMenuChoice == "3")
-                {
-                    JsonFileConfiguration<Coin> jsonConfig = new JsonFileConfiguration<Coin>();
-                    jsonConfig.JsonFilePath = $"{mainDir}\\coins.json";
-                    Coin coin = new Coin();
-                    InventoryMenu<Coin> coinMenu = new InventoryMenu<Coin>(ref jsonConfig, ref coin, "Coin");
-                    coinMenu.Execute();
                 }
                 else if (mainMenuChoice.ToUpper() == "Q") Environment.Exit(0);
             }
