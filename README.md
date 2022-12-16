@@ -1,6 +1,6 @@
-# Collectible Shop Manager
+# Game Grubber
 
-An inventory management system with an emphasis on collectible items, such as books, comic books, coins, and more. 
+A point of sale system for video game stores. Sell, track, and manage your video game inventory.  
 
 The main purpose of this project is as a learning tool.
 
