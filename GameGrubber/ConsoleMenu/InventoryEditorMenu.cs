@@ -67,6 +67,7 @@ ___________________________________
                     {
                         Console.WriteLine("\n");
                         PrintHelper<T>.PrintSingleInventoryObject(IDAsInt, ref jsonConfig);
+                        Console.ReadLine();
                     }
                     else Console.WriteLine($"{ID} is invalid");
                 }
@@ -74,6 +75,7 @@ ___________________________________
                 else if (menuScreenChoice == "3") /// View all existing T inventory objects
                 {
                     PrintHelper<T>.PrintAllInventoryObjects(ref jsonConfig);
+                    Console.ReadLine();
                 }
                 else if (menuScreenChoice.ToUpper() == "B") return;
                 else if (menuScreenChoice.ToUpper() == "Q") Environment.Exit(0);

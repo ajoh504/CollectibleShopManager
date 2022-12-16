@@ -1,8 +1,6 @@
 ﻿Fixes: 
 - Print character length limitations to the console
 - Fix: error when trying to access a json file before it was created
-- Fix: Console does not show newly created items
-- Fix: Console does not print object properties
 
 Short-term changes:
 - Allow user to remove inventory objects from the command line.
