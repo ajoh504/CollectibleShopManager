@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using CollectibleShopManager.Items;
+using GameGrubber.Items;
 
-namespace CollectibleShopManager.ConsoleMenu
+namespace GameGrubber.ConsoleMenu
 {
 
     internal class InventoryMenu<T> where T : Inventory /// Defines the Inventory Selection Screen
