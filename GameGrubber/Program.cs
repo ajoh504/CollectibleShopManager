@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 using GameGrubber.ConsoleMenu;
-using GameGrubber.Items;
+using GameGrubber.InventoryItems;
 
 namespace GameGrubber
 {

@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using GameGrubber.Items;
+using GameGrubber.InventoryItems;
 
 namespace GameGrubber.ConsoleMenu
 {

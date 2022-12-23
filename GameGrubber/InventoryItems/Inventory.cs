@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 
-namespace GameGrubber.Items
+namespace GameGrubber.InventoryItems
 {
     /// <summary>
     /// Defines a generic inventory item. 
