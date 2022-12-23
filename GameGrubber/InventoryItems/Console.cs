@@ -22,19 +22,19 @@ namespace GameGrubber.InventoryItems
             set { modelNumber = value; }
         }
 
-        public string BrandName 
+        public string? BrandName 
         { 
             get { return brandName; }
             set { brandName = value; }
         }
 
-        public string Color
+        public string? Color
         {
             get { return color; }
             set { color = value; }
         }
 
-        public bool HasCustomTheme
+        public bool? HasCustomTheme
         {
             get { return hasCustomTheme; }
             set { hasCustomTheme= value; }
