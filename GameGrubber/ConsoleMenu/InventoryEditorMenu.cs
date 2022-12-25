@@ -6,7 +6,7 @@ namespace GameGrubber.ConsoleMenu
 
     internal class InventoryEditorMenu<T> where T : Inventory /// Defines the Inventory editor menu screen
     {
-        private JsonFileConfiguration<T> jsonConfig;
+        private JsonFile<T> jsonConfig;
         private T inventoryObject;
         private string inventoryMenuItem;
 
@@ -16,7 +16,7 @@ namespace GameGrubber.ConsoleMenu
         /// <param name="jsonConfig"> An object to read from and write to any inventory JSON files </param>
         /// <param name="inventoryObject"> The inventory type that defines this instance of the menu screen </param>
         /// <param name="inventoryMenuItem"> A string that determines what to print to the console for the user's selection </param>
-        public InventoryEditorMenu(ref JsonFileConfiguration<T> jsonConfig, ref T inventoryObject, string inventoryMenuItem)
+        public InventoryEditorMenu(ref JsonFile<T> jsonConfig, ref T inventoryObject, string inventoryMenuItem)
         {
             this.jsonConfig = jsonConfig;
             this.inventoryObject = inventoryObject;

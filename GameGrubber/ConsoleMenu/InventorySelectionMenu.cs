@@ -31,7 +31,7 @@ Quit to Desktop ................. Q
                 string mainMenuChoice = Console.ReadLine();
                 if (mainMenuChoice == "1")
                 {
-                    JsonFileConfiguration<Inventory> jsonConfig = new JsonFileConfiguration<Inventory>();
+                    JsonFile<Inventory> jsonConfig = new JsonFile<Inventory>();
                     jsonConfig.JsonFilePath = $"{Program.mainDir}\\inventory.json";
                     Inventory inventory = new Inventory();
                     InventoryEditorMenu<Inventory> inventoryMenu = new InventoryEditorMenu<Inventory>(ref jsonConfig, ref inventory, "Standard Item");
@@ -39,7 +39,7 @@ Quit to Desktop ................. Q
                 }
                 else if (mainMenuChoice == "2")
                 {
-                    JsonFileConfiguration<VideoGame> jsonConfig = new JsonFileConfiguration<VideoGame>();
+                    JsonFile<VideoGame> jsonConfig = new JsonFile<VideoGame>();
                     jsonConfig.JsonFilePath = $"{Program.mainDir}\\videogames.json";
                     VideoGame videoGame = new VideoGame();
                     InventoryEditorMenu<VideoGame> videoGameMenu = new InventoryEditorMenu<VideoGame>(ref jsonConfig, ref videoGame, "Video Game");

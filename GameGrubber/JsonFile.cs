@@ -9,7 +9,7 @@ namespace GameGrubber
     /// <remarks>
     /// Each collectible item has its own JSON file. The files are stored in the following location: %USERPROFILE%\GameGrubber
     /// </remarks>
-    internal class JsonFileConfiguration<T> where T : Inventory
+    internal class JsonFile<T> where T : Inventory
     {
         private string jsonFilePath;
         public string JsonFilePath
