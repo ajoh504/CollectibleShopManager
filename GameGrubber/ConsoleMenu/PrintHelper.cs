@@ -16,7 +16,7 @@ namespace GameGrubber.ConsoleMenu
         /// <param name="ID"> Numeric ID to view a single inventory item. </param>
         public static void PrintSingleInventoryObject(int ID, ref JsonFile<T> jsonFile)
         {
-            List<T> jsonList = jsonFile.GetDeserializedList<T>();
+            List<T> jsonList = jsonFile.GetDeserializedList();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -37,7 +37,7 @@ namespace GameGrubber.ConsoleMenu
         /// </summary>
         public static void PrintAllInventoryObjects(ref JsonFile<T> jsonFile)
         {
-            List<T> jsonList = jsonFile.GetDeserializedList<T>();
+            List<T> jsonList = jsonFile.GetDeserializedList();
 
             foreach (var inventoryObject in jsonList)
             {

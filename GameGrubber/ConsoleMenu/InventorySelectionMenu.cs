@@ -35,7 +35,7 @@ Quit to Desktop ................. Q
                     jsonFile.JsonFilePath = $"{Program.mainDir}\\inventory.json";
                     if (!File.Exists(jsonFile.JsonFilePath))
                     {
-                        jsonFile.CreateNewFile<Inventory>();
+                        jsonFile.CreateNewFile();
                     }
 
                     Inventory inventory = new Inventory();
@@ -48,7 +48,7 @@ Quit to Desktop ................. Q
                     jsonFile.JsonFilePath = $"{Program.mainDir}\\videogames.json";
                     if (!File.Exists(jsonFile.JsonFilePath))
                     {
-                        jsonFile.CreateNewFile<VideoGame>();
+                        jsonFile.CreateNewFile();
                     }
 
                     VideoGame videoGame = new VideoGame();

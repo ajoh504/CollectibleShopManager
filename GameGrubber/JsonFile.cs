@@ -29,7 +29,7 @@ namespace GameGrubber
         /// Creates a JSON file for the given inventory type.
         /// </summary>
         /// <typeparam name="T"> Inventory type </typeparam>
-        public void CreateNewFile<T>()
+        public void CreateNewFile()
         {
             List<T> emptyFile = new List<T>();
             string jsonData = JsonSerializer.Serialize(emptyFile, this.GetWhiteSpaceFormatting());
@@ -40,7 +40,7 @@ namespace GameGrubber
         /// Read all JSON text into a string. Deserialize the string, then return the List as specified by the user
         /// </summary>
         /// <returns> A list of Inventory objects for the given type. </returns>
-        public List<T> GetDeserializedList<T>()
+        public List<T> GetDeserializedList()
         {
             string jsonFileData = File.ReadAllText(jsonFilePath);
             List<T> jsonList = JsonSerializer.Deserialize<List<T>>(jsonFileData);
@@ -50,9 +50,9 @@ namespace GameGrubber
         /// <summary>
         /// Write a new Inventory object (or any class derived from the Inventory class) to a JSON file. 
         /// </summary>
-        public void WriteToFile<T>(T inventory)
+        public void WriteToFile(T inventory)
         {
-            List<T> jsonList = GetDeserializedList<T>();   
+            List<T> jsonList = GetDeserializedList();   
             jsonList.Add(inventory);
             string serializedList = JsonSerializer.Serialize(jsonList, this.GetWhiteSpaceFormatting());
             File.WriteAllText(jsonFilePath, serializedList);
