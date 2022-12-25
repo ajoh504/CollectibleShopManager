@@ -1,6 +1,7 @@
 ﻿Fixes: 
+- Check all JSON files for InventoryID
+- Review all Property setters to verify limitations
 - Print character length limitations to the console
-- Fix: error when trying to access a json file before it was created
 
 Short-term changes:
 - Allow user to remove inventory objects from the command line.
