@@ -2,7 +2,7 @@
 
 namespace GameGrubber.InventoryItems
 {
-    public class Console : Inventory
+    internal class Console : Inventory
     {
         private string? regionCode;
         private string? modelNumber;
