@@ -25,7 +25,11 @@ namespace GameGrubber
             return jsonSettings;
         }
 
-        private void CreateNewFile<T>()
+        /// <summary>
+        /// Creates a JSON file for the given inventory type.
+        /// </summary>
+        /// <typeparam name="T"> Inventory type </typeparam>
+        public void CreateNewFile<T>()
         {
             List<T> emptyFile = new List<T>();
             string jsonData = JsonSerializer.Serialize(emptyFile, this.GetWhiteSpaceFormatting());
@@ -48,11 +52,6 @@ namespace GameGrubber
         /// </summary>
         public void WriteToFile<T>(T inventory)
         {
-            if(!File.Exists(jsonFilePath))
-            {
-                CreateNewFile<T>();
-            }
-
             List<T> jsonList = GetDeserializedList<T>();   
             jsonList.Add(inventory);
             string serializedList = JsonSerializer.Serialize(jsonList, this.GetWhiteSpaceFormatting());

@@ -33,6 +33,11 @@ Quit to Desktop ................. Q
                 {
                     JsonFile<Inventory> jsonFile = new JsonFile<Inventory>();
                     jsonFile.JsonFilePath = $"{Program.mainDir}\\inventory.json";
+                    if (!File.Exists(jsonFile.JsonFilePath))
+                    {
+                        jsonFile.CreateNewFile<Inventory>();
+                    }
+
                     Inventory inventory = new Inventory();
                     InventoryEditorMenu<Inventory> inventoryMenu = new InventoryEditorMenu<Inventory>(ref jsonFile, ref inventory, "Standard Item");
                     inventoryMenu.Execute();
@@ -41,6 +46,11 @@ Quit to Desktop ................. Q
                 {
                     JsonFile<VideoGame> jsonFile = new JsonFile<VideoGame>();
                     jsonFile.JsonFilePath = $"{Program.mainDir}\\videogames.json";
+                    if (!File.Exists(jsonFile.JsonFilePath))
+                    {
+                        jsonFile.CreateNewFile<VideoGame>();
+                    }
+
                     VideoGame videoGame = new VideoGame();
                     InventoryEditorMenu<VideoGame> videoGameMenu = new InventoryEditorMenu<VideoGame>(ref jsonFile, ref videoGame, "Video Game");
                     videoGameMenu.Execute();
