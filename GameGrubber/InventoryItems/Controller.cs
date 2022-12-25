@@ -46,4 +46,4 @@ namespace GameGrubber.InventoryItems
         }
     }
 }
-}
+
