@@ -6,19 +6,19 @@ namespace GameGrubber.ConsoleMenu
 
     internal class InventoryEditorMenu<T> where T : Inventory /// Defines the Inventory editor menu screen
     {
-        private JsonFile<T> jsonConfig;
+        private JsonFile<T> jsonFile;
         private T inventoryObject;
         private string inventoryMenuItem;
 
         /// <summary>
         /// Defines the class constructor
         /// </summary>
-        /// <param name="jsonConfig"> An object to read from and write to any inventory JSON files </param>
+        /// <param name="jsonFile"> An object to read from and write to any inventory JSON files </param>
         /// <param name="inventoryObject"> The inventory type that defines this instance of the menu screen </param>
         /// <param name="inventoryMenuItem"> A string that determines what to print to the console for the user's selection </param>
-        public InventoryEditorMenu(ref JsonFile<T> jsonConfig, ref T inventoryObject, string inventoryMenuItem)
+        public InventoryEditorMenu(ref JsonFile<T> jsonFile, ref T inventoryObject, string inventoryMenuItem)
         {
-            this.jsonConfig = jsonConfig;
+            this.jsonFile = jsonFile;
             this.inventoryObject = inventoryObject;
             this.inventoryMenuItem = inventoryMenuItem;
         }
@@ -56,7 +56,7 @@ ___________________________________
                     SetterHelper<T>.SetIntPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetStringPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetDecimalPropertyValues(inventoryMenuItem, ref inventoryObject);
-                    jsonConfig.WriteToFile(inventoryObject);
+                    jsonFile.WriteToFile(inventoryObject);
                 }
 
                 else if (menuScreenChoice == "2") /// View a single T inventory object
@@ -66,7 +66,7 @@ ___________________________________
                     if (int.TryParse(ID, out int IDAsInt))
                     {
                         Console.WriteLine("\n");
-                        PrintHelper<T>.PrintSingleInventoryObject(IDAsInt, ref jsonConfig);
+                        PrintHelper<T>.PrintSingleInventoryObject(IDAsInt, ref jsonFile);
                         Console.ReadLine();
                     }
                     else Console.WriteLine($"{ID} is invalid");
@@ -74,7 +74,7 @@ ___________________________________
 
                 else if (menuScreenChoice == "3") /// View all existing T inventory objects
                 {
-                    PrintHelper<T>.PrintAllInventoryObjects(ref jsonConfig);
+                    PrintHelper<T>.PrintAllInventoryObjects(ref jsonFile);
                     Console.ReadLine();
                 }
                 else if (menuScreenChoice.ToUpper() == "B") return;

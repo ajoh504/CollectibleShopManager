@@ -14,9 +14,9 @@ namespace GameGrubber.ConsoleMenu
         /// Prints a single T inventory object to the console as specified by the user.
         /// </summary>
         /// <param name="ID"> Numeric ID to view a single inventory item. </param>
-        public static void PrintSingleInventoryObject(int ID, ref JsonFile<T> jsonConfig)
+        public static void PrintSingleInventoryObject(int ID, ref JsonFile<T> jsonFile)
         {
-            List<T> jsonList = jsonConfig.GetDeserializedList<T>();
+            List<T> jsonList = jsonFile.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {
@@ -35,9 +35,9 @@ namespace GameGrubber.ConsoleMenu
         /// <summary>
         /// Print all T inventory objects and their properties to the console.
         /// </summary>
-        public static void PrintAllInventoryObjects(ref JsonFile<T> jsonConfig)
+        public static void PrintAllInventoryObjects(ref JsonFile<T> jsonFile)
         {
-            List<T> jsonList = jsonConfig.GetDeserializedList<T>();
+            List<T> jsonList = jsonFile.GetDeserializedList<T>();
 
             foreach (var inventoryObject in jsonList)
             {

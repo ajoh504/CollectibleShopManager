@@ -31,18 +31,18 @@ Quit to Desktop ................. Q
                 string mainMenuChoice = Console.ReadLine();
                 if (mainMenuChoice == "1")
                 {
-                    JsonFile<Inventory> jsonConfig = new JsonFile<Inventory>();
-                    jsonConfig.JsonFilePath = $"{Program.mainDir}\\inventory.json";
+                    JsonFile<Inventory> jsonFile = new JsonFile<Inventory>();
+                    jsonFile.JsonFilePath = $"{Program.mainDir}\\inventory.json";
                     Inventory inventory = new Inventory();
-                    InventoryEditorMenu<Inventory> inventoryMenu = new InventoryEditorMenu<Inventory>(ref jsonConfig, ref inventory, "Standard Item");
+                    InventoryEditorMenu<Inventory> inventoryMenu = new InventoryEditorMenu<Inventory>(ref jsonFile, ref inventory, "Standard Item");
                     inventoryMenu.Execute();
                 }
                 else if (mainMenuChoice == "2")
                 {
-                    JsonFile<VideoGame> jsonConfig = new JsonFile<VideoGame>();
-                    jsonConfig.JsonFilePath = $"{Program.mainDir}\\videogames.json";
+                    JsonFile<VideoGame> jsonFile = new JsonFile<VideoGame>();
+                    jsonFile.JsonFilePath = $"{Program.mainDir}\\videogames.json";
                     VideoGame videoGame = new VideoGame();
-                    InventoryEditorMenu<VideoGame> videoGameMenu = new InventoryEditorMenu<VideoGame>(ref jsonConfig, ref videoGame, "Video Game");
+                    InventoryEditorMenu<VideoGame> videoGameMenu = new InventoryEditorMenu<VideoGame>(ref jsonFile, ref videoGame, "Video Game");
                     videoGameMenu.Execute();
                 }
                 else if (mainMenuChoice.ToUpper() == "B") return;
