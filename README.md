@@ -1,6 +1,6 @@
 # Game Grubber
 
-A point of sale system for video game stores. Sell, track, and manage your video game inventory.  
+A point-of-sale system that runs in the console, with the focus on small video game retailers. Sell, track, and manage your video game inventory.  
 
 The main purpose of this project is as a learning tool.
 
