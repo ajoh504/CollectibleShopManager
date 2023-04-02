@@ -15,6 +15,36 @@ namespace GameGrubber.Database
         }
 
         /// <summary>
+        /// Retrieve the next available rowid from the database table
+        /// </summary>
+        /// <param name="table"> Table name to search through </param>
+        /// <returns> The next available rowid </returns>
+        protected int GetNextAvailableID(string table)
+        {
+            List<int> availableIDs = new List<int>();
+            using (SQLiteConnection connection = GetConnection())
+            {
+                string cmd = $"SELECT inventory_id FROM {table}";
+                using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
+                {
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            availableIDs.Add(reader.GetInt32(0));
+                        }
+                    }
+                }
+            }
+            int nextAvailableID = availableIDs.Last() + 1;
+            while (availableIDs.Contains(nextAvailableID))
+            {
+                nextAvailableID++;
+            }
+            return nextAvailableID;
+        }
+
+        /// <summary>
         /// Insert a string value into the specified table and column
         /// </summary>
         protected void Insert(string table, string column, string value) 
