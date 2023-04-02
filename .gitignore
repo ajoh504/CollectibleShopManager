@@ -14,7 +14,7 @@
 *.userprefs
 
 # User-specific directories
-GameGrubber/References/
+GameGrubber/Tests/
 
 # Mono auto generated files
 mono_crash.*
