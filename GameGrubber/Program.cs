@@ -1,5 +1,5 @@
-﻿using System.Data.SQLite;
-using GameGrubber.ConsoleMenu;
+﻿using GameGrubber.ConsoleMenu;
+using GameGrubber.Database;
 
 namespace GameGrubber
 {
@@ -18,7 +18,8 @@ namespace GameGrubber
 
             if (!File.Exists(databasePath))
             {
-                SQLiteConnection.CreateFile(databasePath);
+                DatabaseBuilder builder = new DatabaseBuilder();
+                builder.Execute();
             }
             
             MainMenu.Execute();
