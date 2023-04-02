@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using GameGrubber.Database;
 using System.Reflection;
 
 namespace GameGrubber.InventoryItems
@@ -10,17 +10,29 @@ namespace GameGrubber.InventoryItems
     /// Provides a base class to inherit from. Any inventory item with unique or special properties
     /// cam inherit from the Inventory class. 
     /// </remarks>
-    internal class Inventory
+    internal class Inventory : BaseTable
     {
         /// <summary>
         /// Defines all private fields
         /// </summary>
+        
+        private readonly string tableName;
         private int inventoryId;
         private string? partNumber;
         private string? alternatePartNumber;
         private string? description;
         private decimal cost;
         private decimal sellPrice;
+        private const string partNumColumn = "part_number";
+        private const string altPartNumColumn = "alt_part_number";
+        private const string descriptionColumn = "description";
+        private const string costColumn = "cost";
+        private const string sellPriceColumn = "sell_price";
+
+        public Inventory()
+        {
+            this.tableName = "inventory";
+        }
 
         /// <summary>
         /// Defines all public properties.
@@ -28,7 +40,10 @@ namespace GameGrubber.InventoryItems
         public int InventoryID
         {
             get { return inventoryId; }
-            set { inventoryId = value; }
+            set 
+            { 
+                inventoryId = value; 
+            }
         }
 
         public string? PartNumber
