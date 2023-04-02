@@ -45,7 +45,7 @@ namespace GameGrubber.Database
         }
 
         /// <summary>
-        /// Insert an decimal value into the specified table and column
+        /// Insert a decimal value into the specified table and column
         /// </summary>
         protected void Insert(string table, string column, decimal value)
         {
