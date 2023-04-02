@@ -51,7 +51,7 @@ namespace GameGrubber.Database
         {
             using(SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"INSERT INTO {table} ({column}) values ({value})";
+                string cmd = $"INSERT INTO {table} ({column}) values ('{value}')";
                 using(SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
@@ -66,7 +66,7 @@ namespace GameGrubber.Database
         {
             using (SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"INSERT INTO {table} ({column}) values ({value})";
+                string cmd = $"INSERT INTO {table} ({column}) values ('{value}')";
                 using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
@@ -81,7 +81,7 @@ namespace GameGrubber.Database
         {
             using (SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"INSERT INTO {table} ({column}) values ({value})";
+                string cmd = $"INSERT INTO {table} ({column}) values ('{value}')";
                 using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
