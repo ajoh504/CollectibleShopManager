@@ -1,10 +1,5 @@
 ﻿using GameGrubber.InventoryItems;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameGrubber.ConsoleMenu
 {
@@ -20,16 +15,23 @@ namespace GameGrubber.ConsoleMenu
 
             foreach (var prop in intProperties)
             {
-                Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
-                string value = Console.ReadLine();
-                if (int.TryParse(value, out int intValue))
+                if (prop.Name.Equals("InventoryID"))
                 {
-                    prop.SetValue(inventoryObject, intValue, null);
+                    Console.WriteLine($"The {prop.Name} for this {item} will be set to {inventoryObject.InventoryID}");
                 }
                 else
                 {
-                    Console.WriteLine("Value set to 0");
-                    prop.SetValue(inventoryObject, 0, null);
+                    Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
+                    string value = Console.ReadLine();
+                    if (int.TryParse(value, out int intValue))
+                    {
+                        prop.SetValue(inventoryObject, intValue, null);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Value set to 0");
+                        prop.SetValue(inventoryObject, 0, null);
+                    }
                 }
             }
         }
