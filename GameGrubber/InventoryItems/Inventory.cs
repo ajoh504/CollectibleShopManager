@@ -1,4 +1,7 @@
 ﻿using GameGrubber.Database;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.SQLite;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace GameGrubber.InventoryItems
@@ -32,18 +35,22 @@ namespace GameGrubber.InventoryItems
         public Inventory()
         {
             this.tableName = "inventory";
+            inventoryId = GetNextAvailableID(tableName);
+            NewRow(tableName, inventoryId);
         }
 
-        /// <summary>
-        /// Defines all public properties.
-        /// </summary>
+        public void PrintAllData()
+        {
+            List<string> list = SelectAll(tableName);
+            foreach(object item in list)
+            {
+                Debug.WriteLine(item);
+            }
+        }
+
         public int InventoryID
         {
             get { return inventoryId; }
-            set 
-            { 
-                inventoryId = value; 
-            }
         }
 
         public string? PartNumber
@@ -63,6 +70,7 @@ namespace GameGrubber.InventoryItems
                 else
                 {
                     partNumber = value;
+                    UpdateRow(tableName, partNumColumn, value, inventoryId);
                 }
             }
         }
@@ -84,6 +92,7 @@ namespace GameGrubber.InventoryItems
                 else
                 {
                     alternatePartNumber = value;
+                    UpdateRow(tableName, altPartNumColumn, value, inventoryId);
                 }
             }
         }
@@ -105,18 +114,29 @@ namespace GameGrubber.InventoryItems
                 else
                 {
                     description = value;
+                    UpdateRow(tableName, descriptionColumn, value, inventoryId);
                 }
             }
         }
+
         public decimal Cost
         {
             get { return cost; }
-            set { cost = value; }
+            set 
+            { 
+                cost = value;
+                UpdateRow(tableName, costColumn, value , inventoryId);
+            }
         }
+
         public decimal SellPrice
         {
             get { return sellPrice; }
-            set { sellPrice = value; }
+            set 
+            { 
+                sellPrice = value;
+                UpdateRow(tableName, sellPriceColumn, value, inventoryId);
+            }
         }
 
         /// <summary>
