@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameGrubber.InventoryItems
+﻿namespace GameGrubber.InventoryItems
 {
     internal class Accessory : Inventory
     {
+        private readonly string tableName;
         private string? category;
+        private const string categoryColumn = "category";
+
+        public Accessory()
+        {
+            this.tableName = "accessory";
+        }
 
         public string? Category 
         { 

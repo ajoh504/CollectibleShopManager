@@ -1,6 +1,5 @@
 ﻿using GameGrubber.Database;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Data.SQLite;
 using System.Diagnostics;
 using System.Reflection;
 
@@ -36,16 +35,29 @@ namespace GameGrubber.InventoryItems
         {
             this.tableName = "inventory";
             inventoryId = GetNextAvailableID(tableName);
-            NewRow(tableName, inventoryId);
         }
 
+        public void New() => NewRow(tableName, inventoryId);
+
+        /// <summary>
+        /// Prints all rows from this inventory table
+        /// </summary>
         public void PrintAllData()
         {
             List<string> list = SelectAll(tableName);
-            foreach(object item in list)
+            foreach(string item in list)
             {
-                Debug.WriteLine(item);
+                Console.WriteLine(item);
             }
+        }
+
+        /// <summary>
+        /// Prints a single row from this inventory table
+        /// </summary>
+        /// <param name="id"> id to search for a specific row</param>
+        public void PrintSingleRow(int id) 
+        {
+            Console.WriteLine(SelectSingleRow(tableName, id));
         }
 
         public int InventoryID
