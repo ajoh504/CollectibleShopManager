@@ -31,11 +31,11 @@ Selection: {inventoryMenuItem} Menu Screen
 Please select one of the following:
 ___________________________________");
 
-                string lineOne = $"Add a New {inventoryMenuItem}";
-                string lineTwo = $"View a Single {inventoryMenuItem}";
-                string lineThree = $"View All {inventoryMenuItem}s";
-                string lineFour = "Go Back";
-                string lineFive = "Quit to Desktop";
+                string lineOne = $"Add a new {inventoryMenuItem}";
+                string lineTwo = $"View a single {inventoryMenuItem}";
+                string lineThree = $"View all {inventoryMenuItem}s";
+                string lineFour = "Go back";
+                string lineFive = "Quit to desktop";
 
                 Console.Write($@"
 {lineOne.PadRight(32, '.')} 1
@@ -49,6 +49,7 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new T inventory object
                 {
+                    inventoryObject.New();
                     SetterHelper<T>.SetIntPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetStringPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetDecimalPropertyValues(inventoryMenuItem, ref inventoryObject);
@@ -61,7 +62,7 @@ ___________________________________
                     if (int.TryParse(ID, out int IDAsInt))
                     {
                         Console.WriteLine("\n");
-                        PrintHelper<T>.PrintSingleInventoryObject(IDAsInt);
+                        PrintHelper<T>.PrintSingleInventoryObject(ref inventoryObject, IDAsInt);
                         Console.ReadLine();
                     }
                     else Console.WriteLine($"{ID} is invalid");
@@ -69,7 +70,7 @@ ___________________________________
 
                 else if (menuScreenChoice == "3") /// View all existing T inventory objects
                 {
-                    PrintHelper<T>.PrintAllInventoryObjects();
+                    PrintHelper<T>.PrintAllInventoryObjects(ref inventoryObject);
                     Console.ReadLine();
                 }
                 else if (menuScreenChoice.ToUpper() == "B") return;
