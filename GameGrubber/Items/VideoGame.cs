@@ -50,7 +50,7 @@
                 {
                     Console.WriteLine("Invalid platform length. Default value set to null");
                     platform = null;
-                    UpdateRow(tableName, titleColumn, "", InventoryID);
+                    UpdateRow(tableName, platformColumn, "", InventoryID);
                 }
                 else
                 {
