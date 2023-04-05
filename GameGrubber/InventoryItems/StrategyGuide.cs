@@ -4,6 +4,8 @@
     {
         private string? publisher;
         private int? isbn;
+        private const string publisherColumn = "publisher";
+        private const string isbnColumn = "isbn";
 
         public StrategyGuide()
         {

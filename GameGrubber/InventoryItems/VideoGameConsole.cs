@@ -7,6 +7,11 @@
         private string? brandName;
         private string? color;
         private bool? hasCustomTheme;
+        private const string regionCodeColumn = "region_code";
+        private const string modelNumberColumn = "model_number";
+        private const string brandNameColumn = "brand_name";
+        private const string colorColumn = "color";
+        private const string hasCustomThemeColumn = "has_custom_theme";
 
         public VideoGameConsole() 
         {

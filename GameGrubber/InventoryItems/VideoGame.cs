@@ -7,6 +7,8 @@
     {
         private string? title;
         private string? platform;
+        private const string titleColumn = "title";
+        private const string platformColumn = "platform";
 
         public VideoGame()
         {
