@@ -45,11 +45,10 @@ ___________________________________");
 {lineFive.PadRight(32, '.')} Q
 ___________________________________
 ");
-
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new T inventory object
                 {
-                    inventoryObject.New();
+                    inventoryObject.AddNewRow();
                     SetterHelper<T>.SetIntPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetStringPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetDecimalPropertyValues(inventoryMenuItem, ref inventoryObject);
