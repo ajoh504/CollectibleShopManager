@@ -8,6 +8,11 @@
         private string? title;
         private string? platform;
 
+        public VideoGame()
+        {
+            tableName = "video_game";
+        }
+
         public string? Title
         {
             get { return title; }

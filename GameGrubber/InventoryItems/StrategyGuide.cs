@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameGrubber.InventoryItems
+﻿namespace GameGrubber.InventoryItems
 {
     internal class StrategyGuide : Inventory
     {
         private string? publisher;
         private int? isbn;
+
+        public StrategyGuide()
+        {
+            tableName = "strategy_guide";
+        }
 
         public string? Publisher
         {

@@ -2,7 +2,6 @@
 {
     internal class Controller : Inventory
     {
-        private readonly string tableName;
         private string? modelNumber;
         private string? brandName;
         private string? color;
@@ -16,7 +15,7 @@
 
         public Controller()
         {
-            this.tableName = "controller";
+            tableName = "controller";
         }
 
 

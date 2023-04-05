@@ -2,13 +2,12 @@
 {
     internal class Accessory : Inventory
     {
-        private readonly string tableName;
         private string? category;
         private const string categoryColumn = "category";
 
         public Accessory()
         {
-            this.tableName = "accessory";
+            tableName = "accessory";
         }
 
         public string? Category 

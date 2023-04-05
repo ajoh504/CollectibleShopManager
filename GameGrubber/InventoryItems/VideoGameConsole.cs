@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace GameGrubber.InventoryItems
+﻿namespace GameGrubber.InventoryItems
 {
     internal class VideoGameConsole : Inventory
     {
@@ -9,6 +7,11 @@ namespace GameGrubber.InventoryItems
         private string? brandName;
         private string? color;
         private bool? hasCustomTheme;
+
+        public VideoGameConsole() 
+        {
+            tableName = "video_game_console";
+        }
 
         public string? RegionCode
         {
