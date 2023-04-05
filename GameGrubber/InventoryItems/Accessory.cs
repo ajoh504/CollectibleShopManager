@@ -13,7 +13,11 @@
         public string? Category 
         { 
             get { return category; } 
-            set { category = value; }
+            set 
+            { 
+                category = value; 
+                UpdateRow(tableName, categoryColumn, value, InventoryID);
+            }
         }
     }
 }

@@ -22,31 +22,53 @@
         public string? ModelNumber
         {
             get { return modelNumber; }
-            set { modelNumber = value; }
+            set 
+            { 
+                modelNumber = value;
+                UpdateRow(tableName, modelNumberColumn, value, InventoryID);
+            }
         }
 
         public string? BrandName
         {
             get { return brandName; }
-            set { brandName = value; }
+            set 
+            { 
+                brandName = value;
+                UpdateRow(tableName, brandNameColumn, value, InventoryID);
+            }
         }
 
         public string? Color
         {
             get { return color; }
-            set { color = value; }
+            set 
+            { 
+                color = value;
+                UpdateRow(tableName, colorColumn, value, InventoryID);
+            }
         }
 
         public string ConnectionType
         {
             get { return connectionType; }
-            set { connectionType = value; }
+            set 
+            { 
+                connectionType = value;
+                UpdateRow(tableName, connectionTypeColumn, value, InventoryID);
+            }
         }
 
         public bool? HasCustomTheme
         {
             get { return hasCustomTheme; }
-            set { hasCustomTheme = value; }
+            set 
+            {
+                hasCustomTheme = value;
+                // Database accepts 0 or 1 as Boolean
+                if (value == false) UpdateRow(tableName, hasCustomThemeColumn, 0, InventoryID);
+                if (value == true) UpdateRow(tableName, hasCustomThemeColumn, 1, InventoryID);
+            }
         }
     }
 }

@@ -28,10 +28,12 @@
                 {
                     Console.WriteLine("Invalid title length. Default value set to null");
                     title = null;
+                    UpdateRow(tableName, titleColumn, "", InventoryID);
                 }
                 else
                 {
                     title = value;
+                    UpdateRow(tableName, titleColumn, value, InventoryID);
                 }
             }
         }
@@ -48,10 +50,12 @@
                 {
                     Console.WriteLine("Invalid platform length. Default value set to null");
                     platform = null;
+                    UpdateRow(tableName, titleColumn, "", InventoryID);
                 }
                 else
                 {
                     platform = value;
+                    UpdateRow(tableName, platformColumn, value, InventoryID);
                 }
             }
         }
