@@ -1,6 +1,4 @@
 ﻿using GameGrubber.Database;
-using System.Data.Entity.ModelConfiguration.Conventions;
-using System.Diagnostics;
 using System.Reflection;
 
 namespace GameGrubber.InventoryItems
@@ -18,7 +16,7 @@ namespace GameGrubber.InventoryItems
         /// Defines all private fields
         /// </summary>
         
-        private readonly string tableName;
+        protected string tableName;
         private int inventoryId;
         private string? partNumber;
         private string? alternatePartNumber;
@@ -37,7 +35,26 @@ namespace GameGrubber.InventoryItems
             inventoryId = GetNextAvailableID(tableName);
         }
 
-        public void New() => NewRow(tableName, inventoryId);
+        /// <summary>
+        /// Add a new row to the database column
+        /// </summary>
+        public void AddNewRow()
+        {
+            string row = SelectSingleRow(tableName, inventoryId);
+            if (row != "")
+            {
+                string[] _ = row.Split(",");
+                string stringId = _[0];
+                int currentId = Int32.Parse(stringId);
+                if (currentId == inventoryId) 
+                {
+                    inventoryId = GetNextAvailableID(tableName);
+                    NewRow(tableName, inventoryId);
+                    return;
+                }
+            }
+            NewRow(tableName, inventoryId);
+        } 
 
         /// <summary>
         /// Prints all rows from this inventory table
