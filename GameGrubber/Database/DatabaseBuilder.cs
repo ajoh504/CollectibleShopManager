@@ -11,7 +11,7 @@ namespace GameGrubber.Database
         {
             @"
 CREATE TABLE inventory (
-    inventory_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     part_number VARCHAR(14), 
     alt_part_number VARCHAR(14),
     description VARCHAR(50),
@@ -20,7 +20,7 @@ CREATE TABLE inventory (
 )",
             @"
 CREATE TABLE accessory (
-    inventory_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     part_number VARCHAR(14), 
     alt_part_number VARCHAR(14),
     description VARCHAR(50),
@@ -30,7 +30,7 @@ CREATE TABLE accessory (
 )",
             @"
 CREATE TABLE controller (
-    inventory_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     part_number VARCHAR(14), 
     alt_part_number VARCHAR(14),
     description VARCHAR(50),
@@ -44,7 +44,7 @@ CREATE TABLE controller (
 )",
             @"
 CREATE TABLE strategy_guide (
-    inventory_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     part_number VARCHAR(14), 
     alt_part_number VARCHAR(14),
     description VARCHAR(50),
@@ -55,7 +55,7 @@ CREATE TABLE strategy_guide (
 )",
             @"
 CREATE TABLE video_game (
-    inventory_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     part_number VARCHAR(14), 
     alt_part_number VARCHAR(14),
     description VARCHAR(50),
@@ -66,7 +66,7 @@ CREATE TABLE video_game (
 )",
             @"
 CREATE TABLE video_game_console (
-    inventory_id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY,
     part_number VARCHAR(14), 
     alt_part_number VARCHAR(14),
     description VARCHAR(50),
@@ -77,7 +77,16 @@ CREATE TABLE video_game_console (
     brand_name VARCHAR(25),
     color VARCHAR(10),
     has_custom_theme BOOLEAN
+)",
+            @"
+CREATE TABLE invoice (
+    id INTEGER PRIMARY KEY,
+    price NUMERIC(10, 2),
+    date DATETIME,
+    items_sold VARCHAR(200)
 )"
+
+
         };
 
         public void Execute()
