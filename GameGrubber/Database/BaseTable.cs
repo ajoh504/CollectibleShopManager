@@ -17,11 +17,16 @@ namespace GameGrubber.Database
             return connection;
         }
 
+        /// <summary>
+        /// Add a new row to the specified database table
+        /// </summary>
+        /// <param name="table"> Table to add a row to </param>
+        /// <param name="id"> Number for rowid </param>
         protected void NewRow(string table, int id)
         {
             using (SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"INSERT INTO {table} (inventory_id) values ({id})";
+                string cmd = $"INSERT INTO {table} (id) values ({id})";
                 using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
@@ -39,7 +44,7 @@ namespace GameGrubber.Database
             List<int> availableIDs = new List<int>();
             using (SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"SELECT inventory_id FROM {table}";
+                string cmd = $"SELECT id FROM {table}";
                 using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader())
@@ -67,7 +72,7 @@ namespace GameGrubber.Database
         {
             using(SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"UPDATE {table} SET {column} = '{value}' WHERE inventory_id = {id}";
+                string cmd = $"UPDATE {table} SET {column} = '{value}' WHERE id = {id}";
                 using(SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
@@ -82,7 +87,7 @@ namespace GameGrubber.Database
         {
             using (SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"UPDATE {table} SET {column} = {value} WHERE inventory_id = {id}";
+                string cmd = $"UPDATE {table} SET {column} = {value} WHERE id = {id}";
                 using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
@@ -97,7 +102,7 @@ namespace GameGrubber.Database
         {
             using (SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"UPDATE {table} SET {column} = {value} WHERE inventory_id = {id}";
+                string cmd = $"UPDATE {table} SET {column} = {value} WHERE id = {id}";
                 using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
@@ -148,7 +153,7 @@ namespace GameGrubber.Database
         {
             using (SQLiteConnection connection = GetConnection())
             {
-                string cmd = $"SELECT * FROM {table} WHERE inventory_id = {id}";
+                string cmd = $"SELECT * FROM {table} WHERE id = {id}";
                 using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     using (SQLiteDataReader reader = command.ExecuteReader()) 
