@@ -33,7 +33,7 @@ namespace GameGrubber.Database
         /// </summary>
         /// <param name="table"> Table name to search through </param>
         /// <returns> The next available rowid </returns>
-        protected int GetNextAvailableID(string table)
+        public int GetNextAvailableID(string table)
         {
             List<int> availableIDs = new List<int>();
             using (SQLiteConnection connection = GetConnection())
@@ -64,7 +64,7 @@ namespace GameGrubber.Database
         /// </summary>
         /// <param name="table"> Table to select values from </param>
         /// <returns> A string list of all row values </returns>
-        protected List<string> SelectAll(string table)
+        public List<string> SelectAll(string table)
         {
             List<string> values = new List<string>();
             using (SQLiteConnection connection = GetConnection())
@@ -98,7 +98,7 @@ namespace GameGrubber.Database
         /// <param name="table"> Table to select from </param>
         /// <param name="id"> id of the row to select from </param>
         /// <returns> A string of all row values, separated by commas </returns>
-        protected string SelectSingleRow(string table, int id)
+        public string SelectSingleRow(string table, int id)
         {
             using (SQLiteConnection connection = GetConnection())
             {

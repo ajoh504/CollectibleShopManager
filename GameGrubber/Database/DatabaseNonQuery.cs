@@ -19,7 +19,7 @@ namespace GameGrubber.Database
         /// </summary>
         /// <param name="table"> Table to add a row to </param>
         /// <param name="id"> Number for rowid </param>
-        protected void NewRow(string table, int id)
+        public void NewRow(string table, int id)
         {
             using (SQLiteConnection connection = GetConnection())
             {
@@ -34,7 +34,7 @@ namespace GameGrubber.Database
         /// <summary>
         /// Insert a string value into the specified table and column
         /// </summary>
-        protected void UpdateRow(string table, string column, string value, int id) 
+        public void UpdateRow(string table, string column, string value, int id) 
         {
             using(SQLiteConnection connection = GetConnection())
             {
@@ -49,7 +49,7 @@ namespace GameGrubber.Database
         /// <summary>
         /// Insert an integer value into the specified table and column
         /// </summary>
-        protected void UpdateRow(string table, string column, int value, int id)
+        public void UpdateRow(string table, string column, int value, int id)
         {
             using (SQLiteConnection connection = GetConnection())
             {
@@ -64,7 +64,7 @@ namespace GameGrubber.Database
         /// <summary>
         /// Insert a decimal value into the specified table and column
         /// </summary>
-        protected void UpdateRow(string table, string column, decimal value, int id)
+        public void UpdateRow(string table, string column, decimal value, int id)
         {
             using (SQLiteConnection connection = GetConnection())
             {
