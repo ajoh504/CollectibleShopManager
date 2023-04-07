@@ -1,4 +1,6 @@
-﻿namespace GameGrubber.InventoryItems
+﻿using GameGrubber.Database;
+
+namespace GameGrubber.InventoryItems
 {
     internal class Controller : Inventory
     {
@@ -12,10 +14,12 @@
         private const string colorColumn = "color";
         private const string connectionTypeColumn = "connection_type";
         private const string hasCustomThemeColumn = "has_custom_theme";
+        private DatabaseNonQuery nonQuery;
 
         public Controller()
         {
             tableName = "controller";
+            nonQuery = new DatabaseNonQuery();
         }
 
 
@@ -25,7 +29,7 @@
             set 
             { 
                 modelNumber = value;
-                UpdateRow(tableName, modelNumberColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, modelNumberColumn, value, InventoryID);
             }
         }
 
@@ -35,7 +39,7 @@
             set 
             { 
                 brandName = value;
-                UpdateRow(tableName, brandNameColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, brandNameColumn, value, InventoryID);
             }
         }
 
@@ -45,7 +49,7 @@
             set 
             { 
                 color = value;
-                UpdateRow(tableName, colorColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, colorColumn, value, InventoryID);
             }
         }
 
@@ -55,7 +59,7 @@
             set 
             { 
                 connectionType = value;
-                UpdateRow(tableName, connectionTypeColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, connectionTypeColumn, value, InventoryID);
             }
         }
 
@@ -66,8 +70,8 @@
             {
                 hasCustomTheme = value;
                 // Database accepts 0 or 1 as Boolean
-                if (value == false) UpdateRow(tableName, hasCustomThemeColumn, 0, InventoryID);
-                if (value == true) UpdateRow(tableName, hasCustomThemeColumn, 1, InventoryID);
+                if (value == false) nonQuery.UpdateRow(tableName, hasCustomThemeColumn, 0, InventoryID);
+                if (value == true) nonQuery.UpdateRow(tableName, hasCustomThemeColumn, 1, InventoryID);
             }
         }
     }

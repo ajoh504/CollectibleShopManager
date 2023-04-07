@@ -1,4 +1,6 @@
-﻿namespace GameGrubber.InventoryItems
+﻿using GameGrubber.Database;
+
+namespace GameGrubber.InventoryItems
 {
     internal class StrategyGuide : Inventory
     {
@@ -6,10 +8,12 @@
         private int isbn;
         private const string publisherColumn = "publisher";
         private const string isbnColumn = "isbn";
+        private DatabaseNonQuery nonQuery;
 
         public StrategyGuide()
         {
             tableName = "strategy_guide";
+            nonQuery = new DatabaseNonQuery();
         }
 
         public string? Publisher
@@ -18,7 +22,7 @@
             set 
             { 
                 publisher = value;
-                UpdateRow(tableName, publisherColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, publisherColumn, value, InventoryID);
             }
         }
 
@@ -28,7 +32,7 @@
             set 
             { 
                 isbn = value;
-                UpdateRow(tableName, isbnColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, isbnColumn, value, InventoryID);
             }
         }
     }

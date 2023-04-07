@@ -10,7 +10,7 @@ namespace GameGrubber.InventoryItems
     /// Provides a base class to inherit from. Any inventory item with unique or special properties
     /// cam inherit from the Inventory class. 
     /// </remarks>
-    internal class Inventory : BaseTable
+    internal class Inventory
     {
         /// <summary>
         /// Defines all private fields
@@ -28,11 +28,15 @@ namespace GameGrubber.InventoryItems
         private const string descriptionColumn = "description";
         private const string costColumn = "cost";
         private const string sellPriceColumn = "sell_price";
+        private DatabaseNonQuery nonQuery;
+        private DatabaseValueSearch valueSearch;
 
         public Inventory()
         {
+            nonQuery = new DatabaseNonQuery();
+            valueSearch = new DatabaseValueSearch();
             this.tableName = "inventory";
-            inventoryId = GetNextAvailableID(tableName);
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
 
         /// <summary>
@@ -40,7 +44,7 @@ namespace GameGrubber.InventoryItems
         /// </summary>
         public void AddNewRow()
         {
-            string row = SelectSingleRow(tableName, inventoryId);
+            string row = valueSearch.SelectSingleRow(tableName, inventoryId);
             if (row != "")
             {
                 string[] _ = row.Split(",");
@@ -48,12 +52,12 @@ namespace GameGrubber.InventoryItems
                 int currentId = Int32.Parse(stringId);
                 if (currentId == inventoryId) 
                 {
-                    inventoryId = GetNextAvailableID(tableName);
-                    NewRow(tableName, inventoryId);
+                    inventoryId = valueSearch.GetNextAvailableID(tableName);
+                    nonQuery.NewRow(tableName, inventoryId);
                     return;
                 }
             }
-            NewRow(tableName, inventoryId);
+            nonQuery.NewRow(tableName, inventoryId);
         } 
 
         /// <summary>
@@ -61,7 +65,7 @@ namespace GameGrubber.InventoryItems
         /// </summary>
         public void PrintAllData()
         {
-            List<string> list = SelectAll(tableName);
+            List<string> list = valueSearch.SelectAll(tableName);
             foreach(string item in list)
             {
                 Console.WriteLine(item);
@@ -74,7 +78,7 @@ namespace GameGrubber.InventoryItems
         /// <param name="id"> id to search for a specific row</param>
         public void PrintSingleRow(int id) 
         {
-            Console.WriteLine(SelectSingleRow(tableName, id));
+            Console.WriteLine(valueSearch.SelectSingleRow(tableName, id));
         }
 
         public int InventoryID
@@ -99,7 +103,7 @@ namespace GameGrubber.InventoryItems
                 else
                 {
                     partNumber = value;
-                    UpdateRow(tableName, partNumColumn, value, inventoryId);
+                    nonQuery.UpdateRow(tableName, partNumColumn, value, inventoryId);
                 }
             }
         }
@@ -121,7 +125,7 @@ namespace GameGrubber.InventoryItems
                 else
                 {
                     alternatePartNumber = value;
-                    UpdateRow(tableName, altPartNumColumn, value, inventoryId);
+                    nonQuery.UpdateRow(tableName, altPartNumColumn, value, inventoryId);
                 }
             }
         }
@@ -143,7 +147,7 @@ namespace GameGrubber.InventoryItems
                 else
                 {
                     description = value;
-                    UpdateRow(tableName, descriptionColumn, value, inventoryId);
+                    nonQuery.UpdateRow(tableName, descriptionColumn, value, inventoryId);
                 }
             }
         }
@@ -154,7 +158,7 @@ namespace GameGrubber.InventoryItems
             set 
             { 
                 cost = value;
-                UpdateRow(tableName, costColumn, value , inventoryId);
+                nonQuery.UpdateRow(tableName, costColumn, value , inventoryId);
             }
         }
 
@@ -164,7 +168,7 @@ namespace GameGrubber.InventoryItems
             set 
             { 
                 sellPrice = value;
-                UpdateRow(tableName, sellPriceColumn, value, inventoryId);
+                nonQuery.UpdateRow(tableName, sellPriceColumn, value, inventoryId);
             }
         }
 

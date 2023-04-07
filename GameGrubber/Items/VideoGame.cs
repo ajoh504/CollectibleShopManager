@@ -1,4 +1,6 @@
-﻿namespace GameGrubber.InventoryItems
+﻿using GameGrubber.Database;
+
+namespace GameGrubber.InventoryItems
 {
     /// <summary>
     /// Defines a Video Game inventory item. This class inherits from the Inventory base class.
@@ -9,11 +11,7 @@
         private string? platform;
         private const string titleColumn = "title";
         private const string platformColumn = "platform";
-
-        public VideoGame()
-        {
-            tableName = "video_game";
-        }
+        private DatabaseNonQuery nonQuery;
 
         public string? Title
         {
@@ -28,12 +26,12 @@
                 {
                     Console.WriteLine("Invalid title length. Default value set to null");
                     title = null;
-                    UpdateRow(tableName, titleColumn, "", InventoryID);
+                    nonQuery.UpdateRow(tableName, titleColumn, "", InventoryID);
                 }
                 else
                 {
                     title = value;
-                    UpdateRow(tableName, titleColumn, value, InventoryID);
+                    nonQuery.UpdateRow(tableName, titleColumn, value, InventoryID);
                 }
             }
         }
@@ -50,15 +48,20 @@
                 {
                     Console.WriteLine("Invalid platform length. Default value set to null");
                     platform = null;
-                    UpdateRow(tableName, platformColumn, "", InventoryID);
+                    nonQuery.UpdateRow(tableName, platformColumn, "", InventoryID);
                 }
                 else
                 {
                     platform = value;
-                    UpdateRow(tableName, platformColumn, value, InventoryID);
+                    nonQuery.UpdateRow(tableName, platformColumn, value, InventoryID);
                 }
             }
         }
 
+        public VideoGame()
+        {
+            tableName = "video_game";
+            nonQuery = new DatabaseNonQuery();
+        }
     }
 }

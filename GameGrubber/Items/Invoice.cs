@@ -2,7 +2,7 @@
 
 namespace GameGrubber.Items
 {
-    internal class Invoice : BaseTable
+    internal class Invoice
 
     {
         private int invoiceId;
@@ -13,6 +13,8 @@ namespace GameGrubber.Items
         private const string dateColumn = "date";
         private const string priceColumn = "price";
         private const string itemsSoldColumn = "items_sold";
+        private DatabaseNonQuery nonQuery;
+        private DatabaseValueSearch valueSearch;
 
         public DateTime Date
         {
@@ -36,6 +38,8 @@ namespace GameGrubber.Items
         {
             this.tableName = "invoice";
             itemsSold = new List<string>();
+            nonQuery = new DatabaseNonQuery();
+            valueSearch = new DatabaseValueSearch();
         }
 
         /// <summary>
@@ -43,7 +47,7 @@ namespace GameGrubber.Items
         /// </summary>
         public void AddNewRow()
         {
-            string row = SelectSingleRow(tableName, invoiceId);
+            string row = valueSearch.SelectSingleRow(tableName, invoiceId);
             if (row != "")
             {
                 string[] _ = row.Split(",");
@@ -51,12 +55,12 @@ namespace GameGrubber.Items
                 int currentId = Int32.Parse(stringId);
                 if (currentId == invoiceId)
                 {
-                    invoiceId = GetNextAvailableID(tableName);
-                    NewRow(tableName, invoiceId);
+                    invoiceId = valueSearch.GetNextAvailableID(tableName);
+                    nonQuery.NewRow(tableName, invoiceId);
                     return;
                 }
             }
-            NewRow(tableName, invoiceId);
+            nonQuery.NewRow(tableName, invoiceId);
         }   
     }
 }

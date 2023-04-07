@@ -1,4 +1,6 @@
-﻿namespace GameGrubber.InventoryItems
+﻿using GameGrubber.Database;
+
+namespace GameGrubber.InventoryItems
 {
     internal class VideoGameConsole : Inventory
     {
@@ -12,11 +14,7 @@
         private const string brandNameColumn = "brand_name";
         private const string colorColumn = "color";
         private const string hasCustomThemeColumn = "has_custom_theme";
-
-        public VideoGameConsole() 
-        {
-            tableName = "video_game_console";
-        }
+        private DatabaseNonQuery nonQuery;
 
         public string? RegionCode
         {
@@ -24,7 +22,7 @@
             set 
             { 
                 regionCode = value;
-                UpdateRow(tableName, regionCodeColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, regionCodeColumn, value, InventoryID);
             }
         }
 
@@ -34,7 +32,7 @@
             set 
             { 
                 modelNumber = value;
-                UpdateRow(tableName, modelNumberColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, modelNumberColumn, value, InventoryID);
             }
         }
 
@@ -43,8 +41,8 @@
             get { return brandName; }
             set 
             { 
-                brandName = value; 
-                UpdateRow(tableName, brandNameColumn, value, InventoryID);
+                brandName = value;
+                nonQuery.UpdateRow(tableName, brandNameColumn, value, InventoryID);
             }
         }
 
@@ -54,7 +52,7 @@
             set 
             { 
                 color = value;
-                UpdateRow(tableName, colorColumn, value, InventoryID);
+                nonQuery.UpdateRow(tableName, colorColumn, value, InventoryID);
             }
         }
 
@@ -65,9 +63,15 @@
             { 
                 hasCustomTheme= value;
                 // Database accepts 0 or 1 as Boolean
-                if (value == false) UpdateRow(tableName, hasCustomThemeColumn, 0, InventoryID);
-                if (value == true) UpdateRow(tableName, hasCustomThemeColumn, 1, InventoryID);
+                if (value == false) nonQuery.UpdateRow(tableName, hasCustomThemeColumn, 0, InventoryID);
+                if (value == true) nonQuery.UpdateRow(tableName, hasCustomThemeColumn, 1, InventoryID);
             }
+        }
+
+        public VideoGameConsole()
+        {
+            tableName = "video_game_console";
+            nonQuery = new DatabaseNonQuery();
         }
     }
 }
