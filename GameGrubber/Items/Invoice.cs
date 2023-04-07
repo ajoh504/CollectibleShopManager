@@ -1,5 +1,4 @@
 ﻿using GameGrubber.Database;
-using GameGrubber.InventoryItems;
 
 namespace GameGrubber.Items
 {
@@ -15,9 +14,28 @@ namespace GameGrubber.Items
         private const string priceColumn = "price";
         private const string itemsSoldColumn = "items_sold";
 
+        public DateTime Date
+        {
+            get { return date; }
+            set { date = value; }
+        }
+
+        public decimal Price 
+        {
+            get { return price; }
+            set { price = value; } 
+        }
+
+        public List<string> ItemsSold 
+        {
+            get { return itemsSold; }
+            set { itemsSold = value; }
+        }
+
         public Invoice()
         {
             this.tableName = "invoice";
+            itemsSold = new List<string>();
         }
 
         /// <summary>
