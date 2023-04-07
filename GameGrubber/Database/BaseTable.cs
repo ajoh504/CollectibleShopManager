@@ -1,6 +1,5 @@
 ﻿using System.Collections.Specialized;
 using System.Data.SQLite;
-using System.Dynamic;
 using System.Text;
 
 namespace GameGrubber.Database
@@ -10,7 +9,7 @@ namespace GameGrubber.Database
         /// <summary>
         /// Return an opened database connection object
         /// </summary>
-        protected SQLiteConnection GetConnection()
+        private SQLiteConnection GetConnection()
         {
             SQLiteConnection connection = new SQLiteConnection($"Data Source={Program.databasePath};Version=3;");
             connection.Open();
