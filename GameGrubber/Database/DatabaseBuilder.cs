@@ -5,7 +5,7 @@ namespace GameGrubber.Database
     /// <summary>
     /// Defines a class for creating all data tables
     /// </summary>
-    internal class DatabaseBuilder : BaseTable
+    internal class DatabaseBuilder
     {
         private readonly string[] commands = new string[]
         {
@@ -88,6 +88,16 @@ CREATE TABLE invoice (
 
 
         };
+
+        /// <summary>
+        /// Return an opened database connection object
+        /// </summary>
+        private SQLiteConnection GetConnection()
+        {
+            SQLiteConnection connection = new SQLiteConnection($"Data Source={Program.databasePath};Version=3;");
+            connection.Open();
+            return connection;
+        }
 
         public void Execute()
         {
