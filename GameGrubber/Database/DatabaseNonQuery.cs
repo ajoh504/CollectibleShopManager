@@ -1,10 +1,8 @@
-﻿using System.Collections.Specialized;
-using System.Data.SQLite;
-using System.Text;
+﻿using System.Data.SQLite;
 
 namespace GameGrubber.Database
 {
-    internal abstract class BaseTable
+    internal class DatabaseNonQuery
     {
         /// <summary>
         /// Return an opened database connection object
