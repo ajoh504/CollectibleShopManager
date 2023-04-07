@@ -2,7 +2,7 @@
 
 namespace GameGrubber.Database
 {
-    internal class DatabaseValueChecker
+    internal class DatabaseValueSearch
     {
         /// <summary>
         /// Return an opened database connection object
