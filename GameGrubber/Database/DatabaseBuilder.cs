@@ -12,8 +12,7 @@ namespace GameGrubber.Database
             @"
 CREATE TABLE inventory (
     id INTEGER PRIMARY KEY,
-    part_number VARCHAR(14), 
-    alt_part_number VARCHAR(14),
+    item_code VARCHAR(14), 
     description VARCHAR(50),
     cost NUMERIC(10, 2),
     sell_price NUMERIC(10, 2)
@@ -21,8 +20,7 @@ CREATE TABLE inventory (
             @"
 CREATE TABLE accessory (
     id INTEGER PRIMARY KEY,
-    part_number VARCHAR(14), 
-    alt_part_number VARCHAR(14),
+    item_code VARCHAR(14), 
     description VARCHAR(50),
     cost NUMERIC(10, 2),
     sell_price NUMERIC(10, 2),
@@ -31,8 +29,7 @@ CREATE TABLE accessory (
             @"
 CREATE TABLE controller (
     id INTEGER PRIMARY KEY,
-    part_number VARCHAR(14), 
-    alt_part_number VARCHAR(14),
+    item_code VARCHAR(14), 
     description VARCHAR(50),
     cost NUMERIC(10, 2),
     sell_price NUMERIC(10, 2),
@@ -45,8 +42,7 @@ CREATE TABLE controller (
             @"
 CREATE TABLE strategy_guide (
     id INTEGER PRIMARY KEY,
-    part_number VARCHAR(14), 
-    alt_part_number VARCHAR(14),
+    item_code VARCHAR(14), 
     description VARCHAR(50),
     cost NUMERIC(10, 2),
     sell_price NUMERIC(10, 2),
@@ -56,8 +52,7 @@ CREATE TABLE strategy_guide (
             @"
 CREATE TABLE video_game (
     id INTEGER PRIMARY KEY,
-    part_number VARCHAR(14), 
-    alt_part_number VARCHAR(14),
+    item_code VARCHAR(14), 
     description VARCHAR(50),
     cost NUMERIC(10, 2),
     sell_price NUMERIC(10, 2),
@@ -67,8 +62,7 @@ CREATE TABLE video_game (
             @"
 CREATE TABLE video_game_console (
     id INTEGER PRIMARY KEY,
-    part_number VARCHAR(14), 
-    alt_part_number VARCHAR(14),
+    item_code VARCHAR(14), 
     description VARCHAR(50),
     cost NUMERIC(10, 2),
     sell_price NUMERIC(10, 2),
