@@ -23,7 +23,50 @@ namespace GameGrubber.Database
         {
             using (SQLiteConnection connection = GetConnection())
             {
+                using (SQLiteCommand command = new SQLiteCommand())
+                {
+                    string cmd = $"SELECT {column} FROM {table}";
+                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            NameValueCollection collection = reader.GetValues();
+                            foreach (var row in collection)
+                            {
+                                if (collection.Get(column) == value)
+                                {
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
 
+        /// <summary>
+        /// Returns true if the inventory part code exists in the database, false otherwise
+        /// </summary>
+        /// <param name="value"> Part code to search for </param>
+        public bool PartCodeExists(string value)
+        {
+            string[] tableNames = new string[]
+            {
+                "accessory", 
+                "controller", 
+                "inventory",
+                "strategy_guide", 
+                "video_game", 
+                "video_game_console"
+            };
+
+            foreach (string table in tableNames)
+            {
+                if (Exists(table, "item_code", value))
+                {
+                    return true;
+                }
             }
             return false;
         }
