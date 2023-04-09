@@ -48,10 +48,10 @@ namespace GameGrubber.Database
         }
 
         /// <summary>
-        /// Returns true if the inventory part code exists in the database, false otherwise
+        /// Returns true if the inventory item code exists in the database, false otherwise
         /// </summary>
-        /// <param name="value"> Part code to search for </param>
-        public bool PartCodeExists(string value)
+        /// <param name="value"> Item code to search for </param>
+        public bool ItemCodeExists(string value)
         {
             string[] tableNames = new string[]
             {
