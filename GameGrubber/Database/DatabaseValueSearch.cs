@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.Data.SQLite;
+using System.Reflection.PortableExecutable;
 using System.Text;
 
 namespace GameGrubber.Database
@@ -17,28 +18,29 @@ namespace GameGrubber.Database
         }
 
         /// <summary>
+        /// Return a SQLiteDataReader object
+        /// </summary>
+        private SQLiteDataReader GetReader(string query)
+        {
+            SQLiteConnection connection = GetConnection();
+            SQLiteCommand command = new SQLiteCommand(query, connection);
+            return command.ExecuteReader();
+        }
+
+        /// <summary>
         /// Return true if the value exists in the database, false otherwise
         /// </summary>
         public bool Exists(string table, string column, string value)
         {
-            using (SQLiteConnection connection = GetConnection())
+            string query = $"SELECT {column} FROM {table}";
+            using(SQLiteDataReader reader = GetReader(query)) 
             {
-                using (SQLiteCommand command = new SQLiteCommand())
+                while (reader.Read())
                 {
-                    string cmd = $"SELECT {column} FROM {table}";
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    NameValueCollection collection = reader.GetValues();
+                    if (collection.Get(column) == value)
                     {
-                        while (reader.Read())
-                        {
-                            NameValueCollection collection = reader.GetValues();
-                            foreach (var row in collection)
-                            {
-                                if (collection.Get(column) == value)
-                                {
-                                    return true;
-                                }
-                            }
-                        }
+                        return true;
                     }
                 }
             }
@@ -79,18 +81,12 @@ namespace GameGrubber.Database
         public int GetNextAvailableID(string table)
         {
             List<int> availableIDs = new List<int>();
-            using (SQLiteConnection connection = GetConnection())
+            string query = $"SELECT id FROM {table}";
+            using (SQLiteDataReader reader = GetReader(query))
             {
-                string cmd = $"SELECT id FROM {table}";
-                using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
+                while (reader.Read())
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            availableIDs.Add(reader.GetInt32(0));
-                        }
-                    }
+                    availableIDs.Add(reader.GetInt32(0));
                 }
             }
             if (availableIDs.Count == 0) return 0;
@@ -103,33 +99,27 @@ namespace GameGrubber.Database
         }
 
         /// <summary>
-        /// Get a string list of all row values from the specified table, separated by commas
+        /// Get a formatted string list of all row values from the specified table, separated by commas
         /// </summary>
         /// <param name="table"> Table to select values from </param>
         /// <returns> A string list of all row values </returns>
-        public List<string> SelectAll(string table)
+        public List<string> SelectAllFormatted(string table)
         {
             List<string> values = new List<string>();
-            using (SQLiteConnection connection = GetConnection())
+            string query = $"SELECT * FROM {table}";
+            using (SQLiteDataReader reader = GetReader(query))
             {
-                string cmd = $"SELECT * FROM {table}";
-                using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
+                while (reader.Read())
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    NameValueCollection rowValues = reader.GetValues();
+                    StringBuilder sb = new StringBuilder();
+                    foreach (string key in rowValues.AllKeys)
                     {
-                        while (reader.Read())
-                        {
-                            NameValueCollection rowValues = reader.GetValues();
-                            StringBuilder sb = new StringBuilder();
-                            foreach (string key in rowValues.AllKeys)
-                            {
-                                sb.Append(rowValues[key]);
-                                sb.Append(", ");
-                            }
-                            sb.Remove(sb.Length - 1, 1); // remove final comma
-                            values.Add(sb.ToString());
-                        }
+                        sb.Append($"{key.ToUpper()}: {rowValues[key]}");
+                        sb.Append(", ");
                     }
+                    sb.Remove(sb.Length - 1, 1); // remove final comma
+                    values.Add(sb.ToString());
                 }
             }
             return values;
@@ -143,26 +133,20 @@ namespace GameGrubber.Database
         /// <returns> A string of all row values, separated by commas </returns>
         public string SelectSingleRow(string table, int id)
         {
-            using (SQLiteConnection connection = GetConnection())
+            string query = $"SELECT * FROM {table} WHERE id = {id}";
+            using (SQLiteDataReader reader = GetReader(query))
             {
-                string cmd = $"SELECT * FROM {table} WHERE id = {id}";
-                using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
+                while (reader.Read())
                 {
-                    using (SQLiteDataReader reader = command.ExecuteReader())
+                    NameValueCollection rowValues = reader.GetValues();
+                    StringBuilder sb = new StringBuilder();
+                    foreach (string key in rowValues.AllKeys)
                     {
-                        while (reader.Read())
-                        {
-                            NameValueCollection rowValues = reader.GetValues();
-                            StringBuilder sb = new StringBuilder();
-                            foreach (string key in rowValues.AllKeys)
-                            {
-                                sb.Append(rowValues[key]);
-                                sb.Append(", ");
-                            }
-                            sb.Remove(sb.Length - 1, 1); // remove final comma
-                            return sb.ToString();
-                        }
+                        sb.Append(rowValues[key]);
+                        sb.Append(", ");
                     }
+                    sb.Remove(sb.Length - 1, 1); // remove final comma
+                    return sb.ToString();
                 }
             }
             return "";
