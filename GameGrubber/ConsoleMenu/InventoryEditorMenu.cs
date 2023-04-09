@@ -61,7 +61,7 @@ ___________________________________
                     if (int.TryParse(ID, out int IDAsInt))
                     {
                         Console.WriteLine("\n");
-                        PrintHelper<T>.PrintSingleInventoryObject(ref inventoryObject, IDAsInt);
+                        inventoryObject.PrintSingleRow(IDAsInt);
                         Console.ReadLine();
                     }
                     else Console.WriteLine($"{ID} is invalid");
@@ -69,7 +69,7 @@ ___________________________________
 
                 else if (menuScreenChoice == "3") /// View all existing T inventory objects
                 {
-                    PrintHelper<T>.PrintAllInventoryObjects(ref inventoryObject);
+                    inventoryObject.PrintAllData();
                     Console.ReadLine();
                 }
                 else if (menuScreenChoice.ToUpper() == "B") return;
