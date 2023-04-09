@@ -133,7 +133,7 @@ namespace GameGrubber.InventoryItems
         /// </summary>
         public void PrintAllData()
         {
-            List<string> list = valueSearch.SelectAll(tableName);
+            List<string> list = valueSearch.SelectAllFormatted(tableName);
             foreach (string item in list)
             {
                 Console.WriteLine(item);
