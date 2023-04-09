@@ -4,6 +4,7 @@ namespace GameGrubber.InventoryItems
 {
     internal class Controller : Inventory
     {
+        private int inventoryId;
         private string? modelNumber;
         private string? brandName;
         private string? color;
@@ -15,6 +16,12 @@ namespace GameGrubber.InventoryItems
         private const string connectionTypeColumn = "connection_type";
         private const string hasCustomThemeColumn = "has_custom_theme";
         private DatabaseNonQuery nonQuery;
+        private DatabaseValueSearch valueSearch;
+
+        public int InventoryID
+        {
+            get { return inventoryId; }
+        }
 
         public string? ModelNumber
         {
@@ -65,6 +72,8 @@ namespace GameGrubber.InventoryItems
         {
             tableName = "controller";
             nonQuery = new DatabaseNonQuery();
+            valueSearch = new DatabaseValueSearch();
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
 
         public override void AddNewRow()

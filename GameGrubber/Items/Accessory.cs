@@ -4,9 +4,16 @@ namespace GameGrubber.InventoryItems
 {
     internal class Accessory : Inventory
     {
+        private int inventoryId;
         private string? category;
         private const string categoryColumn = "category";
         private DatabaseNonQuery nonQuery;
+        private DatabaseValueSearch valueSearch;
+
+        public int InventoryID
+        {
+            get { return inventoryId; }
+        }
 
         public string? Category 
         { 
@@ -21,12 +28,14 @@ namespace GameGrubber.InventoryItems
         {
             tableName = "accessory";
             nonQuery = new DatabaseNonQuery();
+            valueSearch = new DatabaseValueSearch();
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
 
         public override void AddNewRow()
         {
             base.AddNewRow();
-            nonQuery.UpdateRow(tableName, categoryColumn, category, InventoryID);
+            nonQuery.UpdateRow(tableName, categoryColumn, category, inventoryId);
         }
     }
 }

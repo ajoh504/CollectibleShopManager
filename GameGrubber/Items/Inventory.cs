@@ -102,12 +102,12 @@ namespace GameGrubber.InventoryItems
         /// </summary>
         public virtual void AddNewRow()
         {
-            inventoryId = valueSearch.GetNextAvailableID(tableName);
             nonQuery.NewRow(tableName, inventoryId);
             nonQuery.UpdateRow(tableName, itemCodeColumn, itemCode, inventoryId);
             nonQuery.UpdateRow(tableName, descriptionColumn, description, inventoryId);
             nonQuery.UpdateRow(tableName, costColumn, cost, inventoryId);
             nonQuery.UpdateRow(tableName, sellPriceColumn, sellPrice, inventoryId);
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
 
         /// <summary>

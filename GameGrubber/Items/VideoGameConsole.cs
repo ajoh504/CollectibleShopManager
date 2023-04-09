@@ -1,10 +1,10 @@
 ﻿using GameGrubber.Database;
-using System.Data.Entity.Core.Metadata.Edm;
 
 namespace GameGrubber.InventoryItems
 {
     internal class VideoGameConsole : Inventory
     {
+        private int inventoryId;
         private string? regionCode;
         private string? modelNumber;
         private string? brandName;
@@ -16,6 +16,12 @@ namespace GameGrubber.InventoryItems
         private const string colorColumn = "color";
         private const string hasCustomThemeColumn = "has_custom_theme";
         private DatabaseNonQuery nonQuery;
+        private DatabaseValueSearch valueSearch;
+
+        public int InventoryID
+        {
+            get { return inventoryId; }
+        }
 
         public string? RegionCode
         {
@@ -66,6 +72,8 @@ namespace GameGrubber.InventoryItems
         {
             tableName = "video_game_console";
             nonQuery = new DatabaseNonQuery();
+            valueSearch = new DatabaseValueSearch();
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
 
         public override void AddNewRow()

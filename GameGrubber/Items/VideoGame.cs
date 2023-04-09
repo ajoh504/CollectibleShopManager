@@ -7,11 +7,18 @@ namespace GameGrubber.InventoryItems
     /// </summary>
     internal class VideoGame : Inventory
     {
+        private int inventoryId;
         private string? title;
         private string? platform;
         private const string titleColumn = "title";
         private const string platformColumn = "platform";
         private DatabaseNonQuery nonQuery;
+        private DatabaseValueSearch valueSearch;
+
+        public int InventoryID
+        {
+            get { return inventoryId; }
+        }
 
         public string? Title
         {
@@ -48,6 +55,8 @@ namespace GameGrubber.InventoryItems
         {
             tableName = "video_game";
             nonQuery = new DatabaseNonQuery();
+            valueSearch = new DatabaseValueSearch();
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
 
         public override void AddNewRow()
