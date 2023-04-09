@@ -45,14 +45,13 @@ namespace GameGrubber.InventoryItems
                 }
                 else if (value.Length > 10)
                 {
-                    Console.WriteLine("Invalid part number length. Default value set to null");
+                    Console.WriteLine("Invalid item code character length. Default value set to null");
                     itemCode = null;
                 }
                 else
                 {
                     itemCode = value;
-                    nonQuery.UpdateRow(tableName, itemCodeColumn
-                        , value, inventoryId);
+                    nonQuery.UpdateRow(tableName, itemCodeColumn, value, inventoryId);
                 }
             }
         }
@@ -99,6 +98,11 @@ namespace GameGrubber.InventoryItems
             }
         }
 
+        /// <summary>
+        /// Send delegate to determine if an item code exists in the database
+        /// </summary>
+        public Func<string, bool> ItemCodeExists => valueSearch.ItemCodeExists;
+
         public Inventory()
         {
             nonQuery = new DatabaseNonQuery();
@@ -112,19 +116,7 @@ namespace GameGrubber.InventoryItems
         /// </summary>
         public void AddNewRow()
         {
-            string row = valueSearch.SelectSingleRow(tableName, inventoryId);
-            if (row != "")
-            {
-                string[] _ = row.Split(",");
-                string stringId = _[0];
-                int currentId = Int32.Parse(stringId);
-                if (currentId == inventoryId)
-                {
-                    inventoryId = valueSearch.GetNextAvailableID(tableName);
-                    nonQuery.NewRow(tableName, inventoryId);
-                    return;
-                }
-            }
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
             nonQuery.NewRow(tableName, inventoryId);
         }
 
