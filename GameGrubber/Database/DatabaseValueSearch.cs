@@ -90,12 +90,7 @@ namespace GameGrubber.Database
                 }
             }
             if (availableIDs.Count == 0) return 0;
-            int nextAvailableID = availableIDs.Last() + 1;
-            while (availableIDs.Contains(nextAvailableID))
-            {
-                nextAvailableID++;
-            }
-            return nextAvailableID;
+            return availableIDs.Last() + 1;
         }
 
         /// <summary>
