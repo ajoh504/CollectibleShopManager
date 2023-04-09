@@ -4,18 +4,10 @@ namespace GameGrubber.InventoryItems
 {
     internal class StrategyGuide : Inventory
     {
-        private int inventoryId;
         private string? publisher;
         private int isbn;
         private const string publisherColumn = "publisher";
         private const string isbnColumn = "isbn";
-        private DatabaseNonQuery nonQuery;
-        private DatabaseValueSearch valueSearch;
-
-        public int InventoryID
-        {
-            get { return inventoryId; }
-        }
 
         public string? Publisher
         {
@@ -45,9 +37,14 @@ namespace GameGrubber.InventoryItems
 
         public override void AddNewRow()
         {
-            base.AddNewRow();
+            nonQuery.NewRow(tableName, inventoryId);
+            nonQuery.UpdateRow(tableName, itemCodeColumn, itemCode, inventoryId);
+            nonQuery.UpdateRow(tableName, descriptionColumn, description, inventoryId);
+            nonQuery.UpdateRow(tableName, costColumn, cost, inventoryId);
+            nonQuery.UpdateRow(tableName, sellPriceColumn, sellPrice, inventoryId);
             nonQuery.UpdateRow(tableName, publisherColumn, publisher, InventoryID);
             nonQuery.UpdateRow(tableName, isbnColumn, isbn, InventoryID);
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
     }
 }

@@ -4,7 +4,6 @@ namespace GameGrubber.InventoryItems
 {
     internal class VideoGameConsole : Inventory
     {
-        private int inventoryId;
         private string? regionCode;
         private string? modelNumber;
         private string? brandName;
@@ -15,13 +14,6 @@ namespace GameGrubber.InventoryItems
         private const string brandNameColumn = "brand_name";
         private const string colorColumn = "color";
         private const string hasCustomThemeColumn = "has_custom_theme";
-        private DatabaseNonQuery nonQuery;
-        private DatabaseValueSearch valueSearch;
-
-        public int InventoryID
-        {
-            get { return inventoryId; }
-        }
 
         public string? RegionCode
         {
@@ -78,7 +70,11 @@ namespace GameGrubber.InventoryItems
 
         public override void AddNewRow()
         {
-            base.AddNewRow();
+            nonQuery.NewRow(tableName, inventoryId);
+            nonQuery.UpdateRow(tableName, itemCodeColumn, itemCode, inventoryId);
+            nonQuery.UpdateRow(tableName, descriptionColumn, description, inventoryId);
+            nonQuery.UpdateRow(tableName, costColumn, cost, inventoryId);
+            nonQuery.UpdateRow(tableName, sellPriceColumn, sellPrice, inventoryId);
             nonQuery.UpdateRow(tableName, regionCodeColumn, regionCode, InventoryID);
             nonQuery.UpdateRow(tableName, modelNumberColumn, modelNumber, InventoryID);
             nonQuery.UpdateRow(tableName, brandNameColumn, brandName, InventoryID);
@@ -86,6 +82,7 @@ namespace GameGrubber.InventoryItems
             // Database accepts 0 or 1 as Boolean
             if (hasCustomTheme == true) nonQuery.UpdateRow(tableName, hasCustomThemeColumn, 1, InventoryID);
             else nonQuery.UpdateRow(tableName, hasCustomThemeColumn, 0, InventoryID);
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
     }
 }

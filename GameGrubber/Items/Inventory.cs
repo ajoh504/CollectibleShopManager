@@ -12,22 +12,18 @@ namespace GameGrubber.InventoryItems
     /// </remarks>
     internal class Inventory
     {
-        /// <summary>
-        /// Defines all private fields
-        /// </summary>
-        
         protected string tableName;
-        private int inventoryId;
-        private string? itemCode;
-        private string? description;
-        private decimal cost;
-        private decimal sellPrice;
-        private const string itemCodeColumn = "item_code";
-        private const string descriptionColumn = "description";
-        private const string costColumn = "cost";
-        private const string sellPriceColumn = "sell_price";
-        private DatabaseNonQuery nonQuery;
-        private DatabaseValueSearch valueSearch;
+        protected int inventoryId;
+        protected string? itemCode;
+        protected string? description;
+        protected decimal cost;
+        protected decimal sellPrice;
+        protected const string itemCodeColumn = "item_code";
+        protected const string descriptionColumn = "description";
+        protected const string costColumn = "cost";
+        protected const string sellPriceColumn = "sell_price";
+        protected DatabaseNonQuery nonQuery;
+        protected DatabaseValueSearch valueSearch;
 
         public int InventoryID
         {

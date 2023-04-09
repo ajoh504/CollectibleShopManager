@@ -7,18 +7,10 @@ namespace GameGrubber.InventoryItems
     /// </summary>
     internal class VideoGame : Inventory
     {
-        private int inventoryId;
         private string? title;
         private string? platform;
         private const string titleColumn = "title";
         private const string platformColumn = "platform";
-        private DatabaseNonQuery nonQuery;
-        private DatabaseValueSearch valueSearch;
-
-        public int InventoryID
-        {
-            get { return inventoryId; }
-        }
 
         public string? Title
         {
@@ -61,9 +53,14 @@ namespace GameGrubber.InventoryItems
 
         public override void AddNewRow()
         {
-            base.AddNewRow();
+            nonQuery.NewRow(tableName, inventoryId);
+            nonQuery.UpdateRow(tableName, itemCodeColumn, itemCode, inventoryId);
+            nonQuery.UpdateRow(tableName, descriptionColumn, description, inventoryId);
+            nonQuery.UpdateRow(tableName, costColumn, cost, inventoryId);
+            nonQuery.UpdateRow(tableName, sellPriceColumn, sellPrice, inventoryId);
             nonQuery.UpdateRow(tableName, platformColumn, platform, InventoryID);
             nonQuery.UpdateRow(tableName, titleColumn, title, InventoryID);
+            inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
     }
 }
