@@ -22,16 +22,9 @@ namespace GameGrubber.InventoryItems
                 {
                     platform = null;
                 }
-                else if (value.Length > 50)
-                {
-                    Console.WriteLine("Invalid title length. Default value set to null");
-                    title = null;
-                    nonQuery.UpdateRow(tableName, titleColumn, "", InventoryID);
-                }
                 else
                 {
                     title = value;
-                    nonQuery.UpdateRow(tableName, titleColumn, value, InventoryID);
                 }
             }
         }
@@ -44,16 +37,9 @@ namespace GameGrubber.InventoryItems
                 {
                     platform = null;
                 }
-                else if (value.Length > 20)
-                {
-                    Console.WriteLine("Invalid platform length. Default value set to null");
-                    platform = null;
-                    nonQuery.UpdateRow(tableName, platformColumn, "", InventoryID);
-                }
                 else
                 {
                     platform = value;
-                    nonQuery.UpdateRow(tableName, platformColumn, value, InventoryID);
                 }
             }
         }
@@ -62,6 +48,13 @@ namespace GameGrubber.InventoryItems
         {
             tableName = "video_game";
             nonQuery = new DatabaseNonQuery();
+        }
+
+        public override void AddNewRow()
+        {
+            base.AddNewRow();
+            nonQuery.UpdateRow(tableName, platformColumn, platform, InventoryID);
+            nonQuery.UpdateRow(tableName, titleColumn, title, InventoryID);
         }
     }
 }

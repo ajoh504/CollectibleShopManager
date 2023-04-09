@@ -48,10 +48,10 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new T inventory object
                 {
-                    inventoryObject.AddNewRow();
                     SetterHelper<T>.SetIntPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetStringPropertyValues(inventoryMenuItem, ref inventoryObject);
                     SetterHelper<T>.SetDecimalPropertyValues(inventoryMenuItem, ref inventoryObject);
+                    inventoryObject.AddNewRow();
                 }
 
                 else if (menuScreenChoice == "2") /// View a single T inventory object

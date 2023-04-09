@@ -43,15 +43,9 @@ namespace GameGrubber.InventoryItems
                 {
                     itemCode = null;
                 }
-                else if (value.Length > 10)
-                {
-                    Console.WriteLine("Invalid item code character length. Default value set to null");
-                    itemCode = null;
-                }
                 else
                 {
                     itemCode = value;
-                    nonQuery.UpdateRow(tableName, itemCodeColumn, value, inventoryId);
                 }
             }
         }
@@ -65,15 +59,9 @@ namespace GameGrubber.InventoryItems
                 {
                     description = null;
                 }
-                else if (value.Length > 50)
-                {
-                    Console.WriteLine("Invalid description length. Default value set to null");
-                    description = null;
-                }
                 else
                 {
                     description = value;
-                    nonQuery.UpdateRow(tableName, descriptionColumn, value, inventoryId);
                 }
             }
         }
@@ -84,7 +72,6 @@ namespace GameGrubber.InventoryItems
             set 
             { 
                 cost = value;
-                nonQuery.UpdateRow(tableName, costColumn, value , inventoryId);
             }
         }
 
@@ -94,7 +81,6 @@ namespace GameGrubber.InventoryItems
             set 
             { 
                 sellPrice = value;
-                nonQuery.UpdateRow(tableName, sellPriceColumn, value, inventoryId);
             }
         }
 
@@ -114,10 +100,14 @@ namespace GameGrubber.InventoryItems
         /// <summary>
         /// Add a new row to the database column
         /// </summary>
-        public void AddNewRow()
+        public virtual void AddNewRow()
         {
             inventoryId = valueSearch.GetNextAvailableID(tableName);
             nonQuery.NewRow(tableName, inventoryId);
+            nonQuery.UpdateRow(tableName, itemCodeColumn, itemCode, inventoryId);
+            nonQuery.UpdateRow(tableName, descriptionColumn, description, inventoryId);
+            nonQuery.UpdateRow(tableName, costColumn, cost, inventoryId);
+            nonQuery.UpdateRow(tableName, sellPriceColumn, sellPrice, inventoryId);
         }
 
         /// <summary>

@@ -10,19 +10,12 @@ namespace GameGrubber.InventoryItems
         private const string isbnColumn = "isbn";
         private DatabaseNonQuery nonQuery;
 
-        public StrategyGuide()
-        {
-            tableName = "strategy_guide";
-            nonQuery = new DatabaseNonQuery();
-        }
-
         public string? Publisher
         {
             get { return publisher; }
             set 
             { 
                 publisher = value;
-                nonQuery.UpdateRow(tableName, publisherColumn, value, InventoryID);
             }
         }
 
@@ -32,8 +25,20 @@ namespace GameGrubber.InventoryItems
             set 
             { 
                 isbn = value;
-                nonQuery.UpdateRow(tableName, isbnColumn, value, InventoryID);
             }
+        }
+
+        public StrategyGuide()
+        {
+            tableName = "strategy_guide";
+            nonQuery = new DatabaseNonQuery();
+        }
+
+        public override void AddNewRow()
+        {
+            base.AddNewRow();
+            nonQuery.UpdateRow(tableName, publisherColumn, publisher, InventoryID);
+            nonQuery.UpdateRow(tableName, isbnColumn, isbn, InventoryID);
         }
     }
 }

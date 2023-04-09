@@ -8,20 +8,25 @@ namespace GameGrubber.InventoryItems
         private const string categoryColumn = "category";
         private DatabaseNonQuery nonQuery;
 
-        public Accessory()
-        {
-            tableName = "accessory";
-            nonQuery = new DatabaseNonQuery();
-        }
-
         public string? Category 
         { 
             get { return category; } 
             set 
             { 
                 category = value;
-                nonQuery.UpdateRow(tableName, categoryColumn, value, InventoryID);
             }
+        }
+
+        public Accessory()
+        {
+            tableName = "accessory";
+            nonQuery = new DatabaseNonQuery();
+        }
+
+        public override void AddNewRow()
+        {
+            base.AddNewRow();
+            nonQuery.UpdateRow(tableName, categoryColumn, category, InventoryID);
         }
     }
 }
