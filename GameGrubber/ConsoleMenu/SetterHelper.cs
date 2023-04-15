@@ -26,7 +26,7 @@ namespace GameGrubber.ConsoleMenu
         /// A method for setting any inventory properties of type int
         /// </summary>
         /// <param name="item"> A string to print to the console for the user's selection </param>
-        public static void SetIntPropertyValues(string item, ref T inventoryObject)
+        public static bool SetIntPropertyValues(string item, ref T inventoryObject)
         {
             List<PropertyInfo> intProperties = inventoryObject.GetGenericPropertyInfo<int>();
 
@@ -34,13 +34,14 @@ namespace GameGrubber.ConsoleMenu
             {
                 if (prop.Name.Equals("InventoryID"))
                 {
-                    Console.WriteLine($"The {prop.Name} for this {item} will be set to {inventoryObject.InventoryID}");
+                    Console.WriteLine($"The {prop.Name} for this {item} will be set to {inventoryObject.InventoryID}\n");
                 }
                 else
                 {
                     Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
                     string value = Console.ReadLine();
-                    if (int.TryParse(value, out int intValue))
+                    if (value.ToUpper().Equals("B")) return false;
+                    else if (int.TryParse(value, out int intValue))
                     {
                         prop.SetValue(inventoryObject, intValue, null);
                     }
@@ -51,13 +52,14 @@ namespace GameGrubber.ConsoleMenu
                     }
                 }
             }
+            return true;
         }
 
         /// <summary>
         /// A method for setting any inventory properties of type string
         /// </summary>
         /// <param name="item"> A string to print to the console for the user's selection </param>
-        public static void SetStringPropertyValues(string item, ref T inventoryObject)
+        public static bool SetStringPropertyValues(string item, ref T inventoryObject)
         {
             List<PropertyInfo> stringProperties = inventoryObject.GetGenericPropertyInfo<string>();
 
@@ -65,7 +67,7 @@ namespace GameGrubber.ConsoleMenu
             {
                 if (prop.Name.Equals("ItemCode"))
                 {
-                    VerifyItemCode(item, ref inventoryObject);
+                    if(VerifyItemCode(item, ref inventoryObject) == false) return false;
                 }
                 else
                 {
@@ -73,7 +75,8 @@ namespace GameGrubber.ConsoleMenu
                     {
                         Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
                         string value = Console.ReadLine();
-                        if (!IsValidLength(value, prop.Name))
+                        if (value.ToUpper().Equals("B")) return false;
+                        else if (!IsValidLength(value, prop.Name))
                         {
                             Console.WriteLine($"Length requirement is {LengthConstraints[prop.Name]}. Please try again.");
                             Console.ReadLine();
@@ -86,13 +89,14 @@ namespace GameGrubber.ConsoleMenu
                     }
                 }
             }
+            return true;
         }
 
         /// <summary>
         /// A method for setting any inventory properties of type decimal
         /// </summary>
         /// <param name="item"> A string to print to the console for the user's selection </param>
-        public static void SetDecimalPropertyValues(string item, ref T inventoryObject)
+        public static bool SetDecimalPropertyValues(string item, ref T inventoryObject)
         {
             List<PropertyInfo> decimalProperties = inventoryObject.GetGenericPropertyInfo<decimal>();
 
@@ -100,7 +104,8 @@ namespace GameGrubber.ConsoleMenu
             {
                 Console.WriteLine($"Add: {prop.Name} for a new {item} or press enter to skip");
                 string value = Console.ReadLine();
-                if (decimal.TryParse(value, out decimal decimalValue))
+                if (value.ToUpper().Equals("B")) return false;
+                else if (decimal.TryParse(value, out decimal decimalValue))
                 {
                     prop.SetValue(inventoryObject, decimalValue, null);
                 }
@@ -110,6 +115,7 @@ namespace GameGrubber.ConsoleMenu
                     prop.SetValue(inventoryObject, 0M, null);
                 }
             }
+            return true;
         }
 
         /// <summary>
@@ -118,13 +124,14 @@ namespace GameGrubber.ConsoleMenu
         /// <remarks>
         /// Inform the user if the item code already exists in the database. Do not allow empty strings
         /// </remarks>
-        private static void VerifyItemCode(string item, ref T inventoryObject)
+        private static bool VerifyItemCode(string item, ref T inventoryObject)
         {
             while (true)
             {
                 Console.WriteLine($"Add: A unique ItemCode for a new {item} (required)");
                 string itemCode = Console.ReadLine();
-                if(itemCode == "")
+                if (itemCode.ToUpper().Equals("B")) return false;
+                else if (itemCode == "")
                 {
                     Console.WriteLine("ItemCode is required. Press any key to try again.");
                     Console.ReadLine();
@@ -140,7 +147,7 @@ Press any key to enter a new item code.");
                 else
                 {
                     inventoryObject.ItemCode = itemCode;
-                    return;
+                    return true;
                 }
             }
         }
