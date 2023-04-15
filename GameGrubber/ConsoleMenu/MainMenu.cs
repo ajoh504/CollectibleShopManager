@@ -7,13 +7,12 @@
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(@"
+                Console.Write(@"
 ____________________________________
 
-Game Grubber - Main Menu
-____________________________________");
+Game Grubber 
+____________________________________
 
-                Console.Write(@"
 Point of Sale ................... 1
 Inventory ....................... 2
 Quit to Desktop ................. Q

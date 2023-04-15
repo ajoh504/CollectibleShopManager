@@ -27,8 +27,7 @@ namespace GameGrubber.ConsoleMenu
                 Console.WriteLine($@"
 ___________________________________
 
-Selection: {inventoryMenuItem} Menu Screen
-Please select one of the following:
+Selection: {inventoryMenuItem} menu screen
 ___________________________________");
 
                 string lineOne = $"Add a new {inventoryMenuItem}";

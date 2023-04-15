@@ -9,17 +9,15 @@ namespace GameGrubber.ConsoleMenu
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(@"
-____________________________________________________
-
-Inventory Selection Menu
-Please select one of the following:
-____________________________________________________");
-
                 Console.Write(@"
+____________________________________
+
+Inventory selection menu
+____________________________________
+
 Generic item menu screen ........ 1
 Video game menu screen .......... 2
-Gaming console menu screen ...... 3
+Console menu screen ............. 3
 Strategy guide menu screen ...... 4
 Controller menu screen .......... 5
 Accessory menu screen ........... 6

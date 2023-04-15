@@ -22,9 +22,13 @@ namespace GameGrubber.ConsoleMenu
             {
                 Console.Clear();
                 Console.Write(@"
+____________________________________
+
+Checkout
+____________________________________
+
+Complete the sale ................. C
 Go back ........................... B
-Add an item to this sale by entering 
-the item code:
 ");
 
                 string item = Console.ReadLine();

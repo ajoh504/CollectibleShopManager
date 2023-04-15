@@ -7,14 +7,12 @@
             while (true)
             {
                 Console.Clear();
-                Console.WriteLine(@"
-____________________________________________________
-
-Point of Sale Selection Menu
-Please select one of the following:
-____________________________________________________");
-
                 Console.Write(@"
+____________________________________
+
+Point of sale selection menu
+____________________________________
+
 Make a sale ..................... 1
 Go back ......................... B
 Quit to desktop ................. Q
