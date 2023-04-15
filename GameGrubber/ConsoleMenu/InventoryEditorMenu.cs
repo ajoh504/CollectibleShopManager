@@ -57,7 +57,8 @@ ___________________________________
                 {
                     Console.Write("Enter the ID of the game that you wish to view:\n");
                     string ID = Console.ReadLine();
-                    if (int.TryParse(ID, out int IDAsInt))
+                    if (ID.ToUpper().Equals("B")) return;
+                    else if (int.TryParse(ID, out int IDAsInt))
                     {
                         Console.WriteLine("\n");
                         inventoryObject.PrintSingleRow(IDAsInt);
