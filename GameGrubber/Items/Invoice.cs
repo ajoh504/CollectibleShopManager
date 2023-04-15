@@ -47,20 +47,18 @@ namespace GameGrubber.Items
         /// </summary>
         public void AddNewRow()
         {
-            string row = valueSearch.SelectSingleRow(tableName, invoiceId);
-            if (row != "")
-            {
-                string[] _ = row.Split(",");
-                string stringId = _[0];
-                int currentId = Int32.Parse(stringId);
-                if (currentId == invoiceId)
-                {
-                    invoiceId = valueSearch.GetNextAvailableID(tableName);
-                    nonQuery.NewRow(tableName, invoiceId);
-                    return;
-                }
-            }
             nonQuery.NewRow(tableName, invoiceId);
-        }   
+            nonQuery.UpdateRow(tableName, dateColumn, date, invoiceId);
+            nonQuery.UpdateRow(tableName, priceColumn, price, invoiceId);
+            nonQuery.UpdateRow(tableName, itemsSoldColumn, Format(itemsSold), invoiceId);
+        }
+
+        /// <summary>
+        /// Add a comma delimiter to the items sold on this invoice, and convert the list to a 
+        /// string value
+        /// </summary>
+        /// <param name="items"> String List to format </param>
+        /// <returns> Formatted string to store in the database </returns>
+        private string Format(List<string> items) => String.Join(',', items);
     }
 }
