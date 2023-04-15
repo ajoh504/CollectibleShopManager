@@ -47,9 +47,9 @@ ___________________________________
                 string menuScreenChoice = Console.ReadLine();
                 if (menuScreenChoice == "1") /// Add a new T inventory object
                 {
-                    SetterHelper<T>.SetIntPropertyValues(inventoryMenuItem, ref inventoryObject);
-                    SetterHelper<T>.SetStringPropertyValues(inventoryMenuItem, ref inventoryObject);
-                    SetterHelper<T>.SetDecimalPropertyValues(inventoryMenuItem, ref inventoryObject);
+                    if(SetterHelper<T>.SetIntPropertyValues(inventoryMenuItem, ref inventoryObject) == false) continue;
+                    if(SetterHelper<T>.SetStringPropertyValues(inventoryMenuItem, ref inventoryObject) == false) continue;
+                    if(SetterHelper<T>.SetDecimalPropertyValues(inventoryMenuItem, ref inventoryObject) == false) continue;
                     inventoryObject.AddNewRow();
                 }
 
