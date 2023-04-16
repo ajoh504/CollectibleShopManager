@@ -1,6 +1,5 @@
 ﻿using System.Collections.Specialized;
 using System.Data.SQLite;
-using System.Reflection.PortableExecutable;
 using System.Text;
 
 namespace GameGrubber.Database
@@ -51,7 +50,8 @@ namespace GameGrubber.Database
         /// Returns true if the inventory item code exists in the database, false otherwise
         /// </summary>
         /// <param name="value"> Item code to search for </param>
-        public bool ItemCodeExists(string value)
+        /// <param name="tableName"> Table name where the item code is stored in the database </param>
+        public bool ItemCodeExists(string value, out string tableName)
         {
             string[] tableNames = new string[]
             {
@@ -67,9 +67,11 @@ namespace GameGrubber.Database
             {
                 if (Exists(table, "item_code", value))
                 {
+                    tableName = table;
                     return true;
                 }
             }
+            tableName = "";
             return false;
         }
 
