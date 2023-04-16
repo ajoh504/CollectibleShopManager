@@ -47,6 +47,7 @@ namespace GameGrubber.Items
             itemsToSell = new List<string>();
             nonQuery = new DatabaseNonQuery();
             valueSearch = new DatabaseValueSearch();
+            subTotal = 0.00M;
         }
 
         /// <summary>
@@ -84,7 +85,7 @@ namespace GameGrubber.Items
             {
                 return price;
             }
-            else return 0;
+            else return 0.00M;
         }
     }
 }
