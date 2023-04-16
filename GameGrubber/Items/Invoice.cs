@@ -1,4 +1,5 @@
 ﻿using GameGrubber.Database;
+using System.Text;
 
 namespace GameGrubber.Items
 {
@@ -10,6 +11,7 @@ namespace GameGrubber.Items
         private decimal price;
         private decimal subTotal;
         private List<string> itemsToSell;
+        private string itemsFormatted;
         private List<string> itemsSold;
         private const string dateColumn = "date";
         private const string priceColumn = "price";
@@ -42,7 +44,11 @@ namespace GameGrubber.Items
 
         public string ItemsToSell
         {
-            get { return FormatItems(); }
+            get 
+            {
+                if (itemsFormatted.Equals("")) return "No items on this sale.";
+                else return itemsFormatted; 
+            }
         }
 
         public Invoice()
@@ -53,6 +59,7 @@ namespace GameGrubber.Items
             nonQuery = new DatabaseNonQuery();
             valueSearch = new DatabaseValueSearch();
             subTotal = 0.00M;
+            itemsFormatted = "";
         }
 
         /// <summary>
@@ -72,7 +79,9 @@ namespace GameGrubber.Items
         public void AddItemToSell(string item, string tableName)
         {
             itemsToSell.Add(item);
-            subTotal += GetPrice(item, tableName);
+            decimal price = GetPrice(item, tableName);
+            subTotal += price;
+            itemsFormatted += $"{item} - {price}\n";
         }
 
         /// <summary>
@@ -91,15 +100,6 @@ namespace GameGrubber.Items
                 return price;
             }
             else return 0.00M;
-        }
-
-        /// <summary>
-        /// Format the itemsToSell list as a string to print to the console
-        /// </summary>
-        private string FormatItems()
-        {
-            if (itemsToSell.Count == 0) return "No items on this sale";
-            else return String.Join("\n", itemsToSell);
         }
     }
 }
