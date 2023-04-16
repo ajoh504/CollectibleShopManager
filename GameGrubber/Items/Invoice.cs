@@ -8,7 +8,7 @@ namespace GameGrubber.Items
         private string tableName;
         private DateTime date;
         private decimal price;
-        private int subTotal;
+        private decimal subTotal;
         private List<string> itemsToSell;
         private List<string> itemsSold;
         private const string dateColumn = "date";
@@ -35,10 +35,9 @@ namespace GameGrubber.Items
             set { itemsSold = value; }
         }
 
-        public int SubTotal
+        public decimal SubTotal
         {
             get { return subTotal; }
-            private set { value = CalculateSubtotal(); }
         }
 
         public Invoice()
@@ -64,10 +63,10 @@ namespace GameGrubber.Items
         /// <summary>
         /// Add an item to sell to update the subtotal
         /// </summary>
-        public void AddItemToSell(string item)
+        public void AddItemToSell(string item, string tableName)
         {
             itemsToSell.Add(item);
-            subTotal = CalculateSubtotal();
+            subTotal += GetPrice(item, tableName);
         }
 
         /// <summary>
@@ -78,19 +77,14 @@ namespace GameGrubber.Items
         /// <returns> Formatted string to store in the database </returns>
         private string Format(List<string> items) => String.Join(',', items);
 
-        private int CalculateSubtotal()
+        private decimal GetPrice(string itemCode, string tableName)
         {
-            int[] totals = new int[itemsToSell.Count];
-            foreach (string item in itemsToSell)
+            string result = valueSearch.SelectSingleValue("sell_price", tableName, "item_code", itemCode);
+            if (Decimal.TryParse(result, out decimal price))
             {
-                valueSearch.SelectSingleRow()
+                return price;
             }
-            return 0;
-        }
-
-        private int GetPrice(string itemCode)
-        {
-
+            else return 0;
         }
     }
 }
