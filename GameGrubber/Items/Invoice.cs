@@ -40,6 +40,11 @@ namespace GameGrubber.Items
             get { return subTotal; }
         }
 
+        public string ItemsToSell
+        {
+            get { return FormatItems(); }
+        }
+
         public Invoice()
         {
             this.tableName = "invoice";
@@ -86,6 +91,15 @@ namespace GameGrubber.Items
                 return price;
             }
             else return 0.00M;
+        }
+
+        /// <summary>
+        /// Format the itemsToSell list as a string to print to the console
+        /// </summary>
+        private string FormatItems()
+        {
+            if (itemsToSell.Count == 0) return "No items on this sale";
+            else return String.Join("\n", itemsToSell);
         }
     }
 }
