@@ -7,15 +7,11 @@ namespace GameGrubber.ConsoleMenu
     {
         private Invoice invoice;
         private DatabaseValueSearch databaseValueSearch;
-        private List<string> itemsToSell;
-        private Subtotal subtotal;
 
         public CheckoutMenu() 
         { 
             invoice = new Invoice();
             databaseValueSearch = new DatabaseValueSearch();
-            itemsToSell = new List<string>();  
-            subtotal = new Subtotal();
         }
 
         public void Execute()
@@ -32,21 +28,19 @@ ____________________________________
 Complete the sale ................. C
 Go back ........................... B
 
-{FormatItems(itemsToSell)}
-Subtotal: {subtotal}
+Subtotal: ${invoice.SubTotal}
+Enter an item code:
 ");
 
                 string item = Console.ReadLine();
                 if (item.ToUpper().Equals("B")) return;
                 else if (item.ToUpper().Equals("C"))
                 {
-                    invoice.ItemsSold = itemsToSell;
-                    invoice.Price = subtotal.Tally;
                     invoice.AddNewRow();
                 }
-                else if (databaseValueSearch.ItemCodeExists(item)) 
+                else if (databaseValueSearch.ItemCodeExists(item, out string tableName)) 
                 {
-                    itemsToSell.Add(item);
+                    invoice.AddItemToSell(item, tableName);
                 } 
                 else Console.Write("Item code not found. Press enter to continue.");
             }
@@ -55,7 +49,7 @@ Subtotal: {subtotal}
         /// <summary>
         /// Format the itemsToSell list as a string to print to the console
         /// </summary>
-        private string FormatItems(List<string> itemToSell)
+        private string FormatItems(List<string> itemsToSell)
         {
             if (itemsToSell.Count == 0) return "";
             else return String.Join("\n", itemsToSell);
