@@ -148,5 +148,27 @@ namespace GameGrubber.Database
             }
             return "";
         }
+
+        /// <summary>
+        /// Select a single value from the database where a comparable value is of type VARCHAR
+        /// </summary>
+        /// <remarks>
+        /// Sample query as a formatted string:
+        /// $"SELECT {selectableColumn} FROM {table} WHERE {comparableColumn} = '{comparableVarcharValue}'";
+        /// </remarks>
+        /// <param name="selectableColumn"> Database column to select from </param>
+        /// <param name="table"> Database table to query </param>
+        /// <param name="comparableColumn"> Database column to compare values </param>
+        /// <param name="comparableVarcharValue"> VARCHAR value to compare </param>
+        /// <returns> A string value from the selectable column </returns>
+        public string SelectSingleValue(string selectableColumn, string table, string comparableColumn, string comparableVarcharValue)
+        {
+            string query = $"SELECT {selectableColumn} FROM {table} WHERE {comparableColumn} = '{comparableVarcharValue}'";
+            using (SQLiteDataReader reader = GetReader(query))
+            {
+                NameValueCollection rowValues = reader.GetValues();
+                return rowValues[selectableColumn];
+            }
+        }
     }
 }
