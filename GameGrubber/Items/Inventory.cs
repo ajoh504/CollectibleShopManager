@@ -80,11 +80,6 @@ namespace GameGrubber.InventoryItems
             }
         }
 
-        /// <summary>
-        /// Send delegate to determine if an item code exists in the database
-        /// </summary>
-        public Func<string, bool> ItemCodeExists => valueSearch.ItemCodeExists;
-
         public Inventory()
         {
             nonQuery = new DatabaseNonQuery();
@@ -92,6 +87,12 @@ namespace GameGrubber.InventoryItems
             this.tableName = "inventory";
             inventoryId = valueSearch.GetNextAvailableID(tableName);
         }
+
+        /// <summary>
+        /// Send delegate to determine if an item code exists in the database
+        /// </summary>
+
+        public bool ItemCodeExists(string itemCode) => valueSearch.ItemCodeExists(itemCode, out string _);
 
         /// <summary>
         /// Add a new row to the database column
