@@ -25,12 +25,12 @@ ____________________________________
 Checkout
 ____________________________________
 
+Add item code .....................
 Complete the sale ................. C
 Go back ........................... B
 
 {invoice.ItemsToSell}
 Subtotal: ${invoice.SubTotal}
-Enter an item code:
 ");
 
                 string item = Console.ReadLine();
