@@ -20,7 +20,9 @@ namespace GameGrubber.Items
             tableName = "tax";
             nonQuery = new DatabaseNonQuery();
             valueSearch = new DatabaseValueSearch();
-            taxValue = Decimal.Parse(valueSearch.SelectValueById(taxSchemeColumn, tableName, 0));
+            if (!valueSearch.TableIsEmpty(tableName))
+                taxValue = Decimal.Parse(valueSearch.SelectValueById(taxSchemeColumn, tableName, 0));
+            else taxValue = 0M;
         }
 
         /// <summary>
