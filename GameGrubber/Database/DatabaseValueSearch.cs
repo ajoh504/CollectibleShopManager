@@ -212,16 +212,37 @@ namespace GameGrubber.Database
         }
 
         /// <summary>
+        /// Select a single value from the database by its id
+        /// </summary>
+        /// <remarks>
+        /// Sample query as a formatted string:
+        /// $"SELECT {selectableColumn} FROM {table} WHERE {comparableColumn} = '{id}'";
+        /// </remarks>
+        /// <param name="selectableColumn"> Database column to select from </param>
+        /// <param name="table"> Database table to query </param>
+        /// <param name="id"> id value </param>
+        /// <returns> A string value from the selectable column </returns>
+        public string SelectValueById(string selectableColumn, string table, int id)
+        {
+            string query = $"SELECT {selectableColumn} FROM {table} WHERE id = {id}";
+            using (SQLiteDataReader reader = GetReader(query))
+            {
+                NameValueCollection rowValues = reader.GetValues();
+                return rowValues[selectableColumn];
+            }
+        }
+
+        /// <summary>
         /// Return true if the database table is empty, false otherwise
         /// </summary>
         /// <param name="tableName">Table to check for empty rows</param>
         public bool TableIsEmpty(string tableName)
         {
-            string query = $"SELECT COUNT(*) FROM {tableName}";
+            string query = $"SELECT * FROM {tableName}";
             using(SQLiteDataReader reader = GetReader(query))
             {
                 NameValueCollection values = reader.GetValues();
-                return count == 0;
+                return !reader.HasRows;
             }
         }
     }
