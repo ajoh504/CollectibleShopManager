@@ -27,7 +27,7 @@ namespace GameGrubber.Database
         }
 
         /// <summary>
-        /// Return true if the value exists in the database, false otherwise
+        /// Return true if the string value exists in the database, false otherwise
         /// </summary>
         public bool Exists(string table, string column, string value)
         {
@@ -38,6 +38,46 @@ namespace GameGrubber.Database
                 {
                     NameValueCollection collection = reader.GetValues();
                     if (collection.Get(column) == value)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Return true if the decimal value exists in the database, false otherwise
+        /// </summary>
+        public bool Exists(string table, string column, decimal value)
+        {
+            string query = $"SELECT {column} FROM {table}";
+            using (SQLiteDataReader reader = GetReader(query))
+            {
+                while (reader.Read())
+                {
+                    NameValueCollection collection = reader.GetValues();
+                    if (collection.Get(column) == value.ToString())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Return true if the integer value exists in the database, false otherwise
+        /// </summary>
+        public bool Exists(string table, string column, int value)
+        {
+            string query = $"SELECT {column} FROM {table}";
+            using (SQLiteDataReader reader = GetReader(query))
+            {
+                while (reader.Read())
+                {
+                    NameValueCollection collection = reader.GetValues();
+                    if (collection.Get(column) == value.ToString())
                     {
                         return true;
                     }
@@ -168,6 +208,20 @@ namespace GameGrubber.Database
             {
                 NameValueCollection rowValues = reader.GetValues();
                 return rowValues[selectableColumn];
+            }
+        }
+
+        /// <summary>
+        /// Return true if the database table is empty, false otherwise
+        /// </summary>
+        /// <param name="tableName">Table to check for empty rows</param>
+        public bool TableIsEmpty(string tableName)
+        {
+            string query = $"SELECT COUNT(*) FROM {tableName}";
+            using(SQLiteDataReader reader = GetReader(query))
+            {
+                NameValueCollection values = reader.GetValues();
+                return count == 0;
             }
         }
     }

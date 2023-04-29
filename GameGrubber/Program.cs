@@ -21,8 +21,8 @@ namespace GameGrubber
                 DatabaseBuilder builder = new DatabaseBuilder();
                 builder.Execute();
             }
-            
-            MainMenu.Execute();
+            MainMenu mainMenu = new MainMenu();
+            mainMenu.Execute();
         }
     }
 }     

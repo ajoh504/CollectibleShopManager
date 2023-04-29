@@ -34,12 +34,42 @@ namespace GameGrubber.Database
         /// <summary>
         /// Insert a string value into the specified table and column
         /// </summary>
-        public void UpdateRow<T>(string table, string column, T value, int id) 
+        public void UpdateRow(string table, string column, string value, int id) 
         {
             using(SQLiteConnection connection = GetConnection())
             {
                 string cmd = $"UPDATE {table} SET {column} = '{value}' WHERE id = {id}";
                 using(SQLiteCommand command = new SQLiteCommand(cmd, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Insert a decimal value into the specified table and column
+        /// </summary>
+        public void UpdateRow(string table, string column, decimal value, int id)
+        {
+            using (SQLiteConnection connection = GetConnection())
+            {
+                string cmd = $"UPDATE {table} SET {column} = {value} WHERE id = {id}";
+                using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
+                {
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Insert a DateTime value into the specified table and column
+        /// </summary>
+        public void UpdateRow(string table, string column, DateTime value, int id)
+        {
+            using (SQLiteConnection connection = GetConnection())
+            {
+                string cmd = $"UPDATE {table} SET {column} = {value} WHERE id = {id}";
+                using (SQLiteCommand command = new SQLiteCommand(cmd, connection))
                 {
                     command.ExecuteNonQuery();
                 }

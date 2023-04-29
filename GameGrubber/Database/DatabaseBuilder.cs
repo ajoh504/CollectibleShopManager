@@ -1,4 +1,5 @@
 ﻿using System.Data.SQLite;
+using System.Runtime.InteropServices;
 
 namespace GameGrubber.Database
 {
@@ -78,9 +79,15 @@ CREATE TABLE invoice (
     price NUMERIC(10, 2),
     date DATETIME,
     items_sold VARCHAR(200)
-)"
+)",
+            @"
+CREATE TABLE tax (
+    id INTEGER PRIMARY KEY,
+    tax_scheme NUMERIC(10)
+)",
 
-
+            @"
+CREATE UNIQUE INDEX one_row_index ON tax (id)"
         };
 
         /// <summary>

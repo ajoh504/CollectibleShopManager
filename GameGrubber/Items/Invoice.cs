@@ -81,7 +81,7 @@ namespace GameGrubber.Items
             itemsToSell.Add(item);
             decimal price = GetPrice(item, tableName);
             subTotal += price;
-            itemsFormatted += $"{item} - {price}\n";
+            itemsFormatted += $"{item} - ${price}\n";
         }
 
         /// <summary>
