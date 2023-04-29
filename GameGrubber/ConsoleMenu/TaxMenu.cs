@@ -27,7 +27,7 @@ Go back ......................... B
                     {
                         while (true)
                         {
-                            Console.Write($"Add a {parsed}% tax? Y/N");
+                            Console.Write($"Add a {parsed}% tax? Y/N\n");
                             string yesOrNo = Console.ReadLine();
                             if (yesOrNo.ToUpper().Equals("N")) break;
                             else if (yesOrNo.ToUpper().Equals("Y"))
