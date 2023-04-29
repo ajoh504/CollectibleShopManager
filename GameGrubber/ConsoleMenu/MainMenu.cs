@@ -1,8 +1,8 @@
 ﻿namespace GameGrubber.ConsoleMenu
 {
-    internal static class MainMenu
+    internal class MainMenu
     {
-        public static void Execute()
+        public void Execute()
         {
             while (true)
             {
@@ -19,8 +19,16 @@ Quit to Desktop ................. Q
 ");
 
                 string choice = Console.ReadLine();
-                if (choice == "1") PointOfSaleSelectionMenu.Execute();
-                else if (choice == "2") InventorySelectionMenu.Execute();
+                if (choice == "1") 
+                {
+                    PointOfSaleSelectionMenu posMenu = new PointOfSaleSelectionMenu();
+                    posMenu.Execute(); 
+                }
+                else if (choice == "2")
+                {
+                    InventorySelectionMenu inventoryMenu = new InventorySelectionMenu();
+                    inventoryMenu.Execute();
+                }
                 else if (choice.ToUpper() == "Q") Environment.Exit(0);
             }
         }
