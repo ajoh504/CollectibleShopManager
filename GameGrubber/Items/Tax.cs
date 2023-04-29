@@ -6,24 +6,34 @@ namespace GameGrubber.Items
     {
         private string tableName;
         private const string taxSchemeColumn = "tax_scheme";
+        private decimal taxValue;
         private DatabaseNonQuery nonQuery;
         private DatabaseValueSearch valueSearch;
+
+        public decimal Value
+        {
+            get { return taxValue; }
+        }
 
         public Tax()
         {
             tableName = "tax";
             nonQuery = new DatabaseNonQuery();
             valueSearch = new DatabaseValueSearch();
+            taxValue = Decimal.Parse(valueSearch.SelectValueById(taxSchemeColumn, tableName, 0));
         }
 
+        /// <summary>
+        /// Sets a new tax scheme
+        /// </summary>
         public void UpdateTax(decimal tax)
         {
             if (valueSearch.TableIsEmpty(tableName))
             {
-                Console.WriteLine(true);
+                nonQuery.NewRow(tableName, 0);
+                nonQuery.UpdateRow(tableName, taxSchemeColumn, tax, 0);
             }
             else Console.WriteLine(false);
-
             nonQuery.UpdateRow(tableName, taxSchemeColumn, tax, 0);
         }
     }
