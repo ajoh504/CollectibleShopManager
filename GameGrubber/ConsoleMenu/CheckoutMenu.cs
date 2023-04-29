@@ -30,6 +30,7 @@ Complete the sale ................. C
 Go back ........................... B
 
 {invoice.ItemsToSell}
+Tax: ${invoice.Tax}
 Subtotal: ${invoice.SubTotal}
 ");
 
@@ -43,7 +44,12 @@ Subtotal: ${invoice.SubTotal}
                 {
                     invoice.AddItemToSell(item, tableName);
                 } 
-                else Console.Write("Item code not found. Press enter to continue.");
+                else
+                {
+                    Console.Write("Item code not found. Press enter to continue.");
+                    Console.ReadLine();
+                }
+                
             }
         }
     }
