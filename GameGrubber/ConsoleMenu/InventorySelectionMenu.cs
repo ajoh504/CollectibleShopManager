@@ -2,9 +2,9 @@
 
 namespace GameGrubber.ConsoleMenu
 {
-    internal static class InventorySelectionMenu
+    internal class InventorySelectionMenu
     {
-        public static void Execute()
+        public void Execute()
         {
             while (true)
             {
