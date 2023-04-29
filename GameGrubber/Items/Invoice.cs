@@ -1,5 +1,4 @@
 ﻿using GameGrubber.Database;
-using System.Text;
 
 namespace GameGrubber.Items
 {
@@ -10,6 +9,8 @@ namespace GameGrubber.Items
         private DateTime date;
         private decimal price;
         private decimal subTotal;
+        private decimal tax;
+        private Tax taxPercent;
         private List<string> itemsToSell;
         private string itemsFormatted;
         private List<string> itemsSold;
@@ -42,6 +43,11 @@ namespace GameGrubber.Items
             get { return subTotal; }
         }
 
+        public decimal Tax
+        {
+            get { return tax; }
+        }
+
         public string ItemsToSell
         {
             get 
@@ -59,6 +65,8 @@ namespace GameGrubber.Items
             nonQuery = new DatabaseNonQuery();
             valueSearch = new DatabaseValueSearch();
             subTotal = 0.00M;
+            tax = 0.00M;
+            taxPercent = new Tax();
             itemsFormatted = "";
         }
 
@@ -80,7 +88,8 @@ namespace GameGrubber.Items
         {
             itemsToSell.Add(item);
             decimal price = GetPrice(item, tableName);
-            subTotal += price;
+            tax = Math.Round(price * (taxPercent.Value * .01M), 2);
+            subTotal = tax + price;
             itemsFormatted += $"{item} - ${price}\n";
         }
 
